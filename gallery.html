@@ -6,10 +6,65 @@
   <title>Gallery | Diet of the Word Church</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
-    .fade-in-up { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1); }
-    .fade-in-up.visible { opacity: 1; transform: none; }
+    .fade-in-up { opacity: 0; transform: translateY(30px); transition: all 0.6s cubic-bezier(0.4,0,0.2,1); }
+    .fade-in-up.visible { opacity: 1; transform: translateY(0); }
     .divider-gradient { background: linear-gradient(90deg, #6366f1 0%, #2563eb 50%, #a21caf 100%); height: 4px; border-radius: 2px; }
     .icon-gradient { background: linear-gradient(135deg, #6366f1 0%, #2563eb 60%, #a21caf 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .parallax-hero { background-attachment: fixed; }
+    @media (max-width: 1024px) { .parallax-hero { background-attachment: scroll; } }
+    .gallery-item {
+      opacity: 1;
+      transform: scale(1);
+      transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+    .gallery-item.hide-anim {
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+      pointer-events: none;
+      transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+    .gallery-item.tilt {
+      will-change: transform;
+      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    .gallery-item .ripple {
+      position: absolute;
+      border-radius: 50%;
+      transform: scale(0);
+      animation: ripple 0.6s linear;
+      background: rgba(59,130,246,0.2);
+      pointer-events: none;
+      z-index: 20;
+    }
+    @keyframes ripple {
+      to { transform: scale(4); opacity: 0; }
+    }
+    .divider-gradient {
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6, #3b82f6);
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+    }
+    .divider-gradient::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -80px; width: 80px; height: 100%;
+      background: linear-gradient(90deg, rgba(255,255,255,0.5) 0%, transparent 100%);
+      animation: shimmer 2s infinite linear;
+    }
+    @keyframes shimmer {
+      0% { left: -80px; }
+      100% { left: 100%; }
+    }
+    #backToTop.floating {
+      animation: floaty 2s infinite ease-in-out;
+    }
+    @keyframes floaty {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
   </style>
 </head>
 <body class="bg-white text-black">
@@ -280,13 +335,16 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="relative min-h-[40vh] flex items-center justify-center bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1200&q=80');">
+  <section class="relative min-h-[40vh] flex items-center justify-center bg-cover bg-center bg-no-repeat parallax-hero" style="background-image: url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1200&q=80');">
     <div class="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-purple-800/80 to-blue-400/60"></div>
     <div class="container mx-auto px-4 py-16 text-center relative z-10 flex flex-col items-center fade-in-up">
       <h1 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight text-white drop-shadow-xl tracking-wide uppercase">Gallery</h1>
       <p class="text-lg md:text-xl text-blue-100 mb-6 max-w-2xl mx-auto font-medium">A glimpse into the life and ministry of Diet of the Word Church. Explore moments of worship, fellowship, and service captured in our community.</p>
     </div>
   </section>
+  <button id="backToTop" aria-label="Back to top" class="fixed bottom-8 right-8 z-50 bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-full shadow-lg opacity-0 pointer-events-none transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+  </button>
 
   <!-- Gallery Statistics Section -->
   <section class="bg-gradient-to-r from-blue-50 via-purple-50 to-blue-100 py-16">
@@ -404,32 +462,32 @@
     </div>
     
     <!-- Gallery Filter -->
-    <div class="flex flex-wrap justify-center gap-4 mb-12 fade-in-up">
-      <button class="filter-btn active px-6 py-3 rounded-full bg-gradient-to-r from-blue-700 to-purple-700 text-white font-semibold transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-400 shadow-lg" data-filter="all">
+    <div class="flex flex-wrap justify-center gap-4 mb-12 fade-in-up" aria-live="polite" id="filter-announcer">
+      <button class="filter-btn active px-6 py-3 rounded-full bg-gradient-to-r from-blue-700 to-purple-700 text-white font-semibold transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-400 shadow-lg" data-filter="all" aria-pressed="true">
         <span class="flex items-center gap-2">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
           All Photos (11)
         </span>
       </button>
-      <button class="filter-btn px-6 py-3 rounded-full bg-gray-200 text-gray-700 font-semibold transition-all duration-300 hover:scale-105 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-lg" data-filter="worship">
+      <button class="filter-btn px-6 py-3 rounded-full bg-gray-200 text-gray-700 font-semibold transition-all duration-300 hover:scale-105 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-lg" data-filter="worship" aria-pressed="false">
         <span class="flex items-center gap-2">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553 2.276A2 2 0 0121 14.09V17a2 2 0 01-2 2H5a2 2 0 01-2-2v-2.91a2 2 0 01.447-1.314L8 10m7 0V5a3 3 0 00-6 0v5m6 0H9"/></svg>
           Worship (3)
         </span>
       </button>
-      <button class="filter-btn px-6 py-3 rounded-full bg-gray-200 text-gray-700 font-semibold transition-all duration-300 hover:scale-105 hover:bg-purple-100 focus:outline-none focus:ring-2 focus:ring-purple-400 shadow-lg" data-filter="community">
+      <button class="filter-btn px-6 py-3 rounded-full bg-gray-200 text-gray-700 font-semibold transition-all duration-300 hover:scale-105 hover:bg-purple-100 focus:outline-none focus:ring-2 focus:ring-purple-400 shadow-lg" data-filter="community" aria-pressed="false">
         <span class="flex items-center gap-2">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
           Community (3)
         </span>
       </button>
-      <button class="filter-btn px-6 py-3 rounded-full bg-gray-200 text-gray-700 font-semibold transition-all duration-300 hover:scale-105 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-lg" data-filter="youth">
+      <button class="filter-btn px-6 py-3 rounded-full bg-gray-200 text-gray-700 font-semibold transition-all duration-300 hover:scale-105 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-lg" data-filter="youth" aria-pressed="false">
         <span class="flex items-center gap-2">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 1.343-3 3 0 1.657 1.343 3 3 3s3-1.343 3-3c0-1.657-1.343-3-3-3zm0 0V4m0 7v7m0 0H9m3 0h3"/></svg>
           Youth (3)
         </span>
       </button>
-      <button class="filter-btn px-6 py-3 rounded-full bg-gray-200 text-gray-700 font-semibold transition-all duration-300 hover:scale-105 hover:bg-purple-100 focus:outline-none focus:ring-2 focus:ring-purple-400 shadow-lg" data-filter="events">
+      <button class="filter-btn px-6 py-3 rounded-full bg-gray-200 text-gray-700 font-semibold transition-all duration-300 hover:scale-105 hover:bg-purple-100 focus:outline-none focus:ring-2 focus:ring-purple-400 shadow-lg" data-filter="events" aria-pressed="false">
         <span class="flex items-center gap-2">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
           Events (2)
@@ -440,9 +498,10 @@
     <!-- Gallery Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="gallery-grid">
       <!-- Gallery Item 1 - Worship -->
-      <div class="gallery-item group fade-in-up" data-category="worship">
+      <div class="gallery-item group fade-in-up" data-category="worship" tabindex="0" aria-label="Worship Service image">
         <div class="relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
-          <img src="assets/images/gallery/ivana-cajina-dnL6ZIpht2s-unsplash.jpg" alt="Worship Service" class="w-full h-64 object-cover cursor-pointer" onclick="openLightbox(this.src, 'Worship Service', 'Spirit-filled worship and praise with our church family')" />
+          <div class="image-spinner absolute inset-0 flex items-center justify-center bg-white/60 z-10"><svg class="animate-spin h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg></div>
+          <img src="assets/images/gallery/ivana-cajina-dnL6ZIpht2s-unsplash.jpg" alt="Worship Service" class="w-full h-64 object-cover cursor-pointer gallery-img" onload="this.previousElementSibling.style.display='none'" onclick="openLightbox(this.src, 'Worship Service', 'Spirit-filled worship and praise with our church family')" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
             <div class="flex items-center gap-2 mb-2">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553 2.276A2 2 0 0121 14.09V17a2 2 0 01-2 2H5a2 2 0 01-2-2v-2.91a2 2 0 01.447-1.314L8 10m7 0V5a3 3 0 00-6 0v5m6 0H9"/></svg>
@@ -629,15 +688,14 @@
   </section>
 
   <!-- Lightbox Modal -->
-  <div id="lightbox" class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4">
+  <div id="lightbox" class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4" aria-modal="true" role="dialog">
     <div class="relative max-w-4xl max-h-full">
-      <button onclick="closeLightbox()" class="absolute -top-12 right-0 text-white hover:text-gray-300 text-4xl font-bold z-10">
-        &times;
-      </button>
+      <button onclick="closeLightbox()" class="absolute -top-12 right-0 text-white hover:text-gray-300 text-4xl font-bold z-10" aria-label="Close lightbox">&times;</button>
       <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl" />
       <div class="mt-4 text-center">
         <h3 id="lightbox-title" class="text-white text-xl font-bold mb-2"></h3>
         <p id="lightbox-description" class="text-gray-300"></p>
+        <div id="lightbox-indicator" class="text-blue-200 text-sm mt-2"></div>
       </div>
     </div>
   </div>
@@ -1111,6 +1169,162 @@
         statsObserver.observe(statsSection);
       }
     });
+    
+    // Parallax effect for hero
+    window.addEventListener('scroll', function() {
+      const hero = document.querySelector('.parallax-hero');
+      if (hero) {
+        hero.style.backgroundPositionY = `${window.scrollY * 0.4}px`;
+      }
+    });
+    // Back to Top button
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 300) {
+        backToTop.classList.add('opacity-100', 'pointer-events-auto', 'floating');
+        backToTop.classList.remove('opacity-0', 'pointer-events-none');
+      } else {
+        backToTop.classList.remove('opacity-100', 'pointer-events-auto', 'floating');
+        backToTop.classList.add('opacity-0', 'pointer-events-none');
+      }
+    });
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    // Focus trap for lightbox
+    function trapFocus(element) {
+      const focusableEls = element.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      const firstFocusableEl = focusableEls[0];
+      const lastFocusableEl = focusableEls[focusableEls.length - 1];
+      element.addEventListener('keydown', function(e) {
+        if (e.key === 'Tab') {
+          if (e.shiftKey) {
+            if (document.activeElement === firstFocusableEl) {
+              e.preventDefault();
+              lastFocusableEl.focus();
+            }
+          } else {
+            if (document.activeElement === lastFocusableEl) {
+              e.preventDefault();
+              firstFocusableEl.focus();
+            }
+          }
+        }
+      });
+    }
+    document.getElementById('lightbox').addEventListener('transitionend', function() {
+      if (!this.classList.contains('hidden')) {
+        trapFocus(this);
+        this.querySelector('button').focus();
+      }
+    });
+    // Animated filter transitions and accessibility
+    document.addEventListener('DOMContentLoaded', function() {
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const galleryItems = document.querySelectorAll('.gallery-item');
+      const announcer = document.getElementById('filter-announcer');
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const filter = this.getAttribute('data-filter');
+          // Update aria-pressed
+          filterBtns.forEach(b => b.setAttribute('aria-pressed', 'false'));
+          this.setAttribute('aria-pressed', 'true');
+          // Announce filter
+          announcer.setAttribute('aria-live', 'polite');
+          announcer.setAttribute('data-announcement', `Showing ${filter.charAt(0).toUpperCase() + filter.slice(1)} photos`);
+          // Filter gallery items with animation
+          let visibleIndex = 0;
+          galleryItems.forEach((item, index) => {
+            if (filter === 'all' || item.getAttribute('data-category') === filter) {
+              setTimeout(() => {
+                item.classList.remove('hide-anim');
+                item.classList.add('visible');
+                item.style.zIndex = 1;
+              }, visibleIndex * 80);
+              visibleIndex++;
+            } else {
+              item.classList.remove('visible');
+              item.classList.add('hide-anim');
+              item.style.zIndex = 0;
+            }
+          });
+        });
+      });
+      // Gallery card tilt effect
+      document.querySelectorAll('.gallery-item').forEach(card => {
+        card.addEventListener('mousemove', function(e) {
+          const rect = this.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = ((y - centerY) / centerY) * 6;
+          const rotateY = ((x - centerX) / centerX) * -6;
+          this.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+        card.addEventListener('mouseleave', function() {
+          this.style.transform = '';
+        });
+        // Ripple effect
+        card.addEventListener('click', function(e) {
+          const ripple = document.createElement('span');
+          ripple.className = 'ripple';
+          const rect = this.getBoundingClientRect();
+          ripple.style.left = `${e.clientX - rect.left}px`;
+          ripple.style.top = `${e.clientY - rect.top}px`;
+          ripple.style.width = ripple.style.height = `${rect.width / 2}px`;
+          this.appendChild(ripple);
+          setTimeout(() => ripple.remove(), 600);
+        });
+      });
+    });
+    // Lightbox navigation indicator
+    function openLightbox(src, title, description) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxTitle = document.getElementById('lightbox-title');
+      const lightboxDescription = document.getElementById('lightbox-description');
+      const lightboxIndicator = document.getElementById('lightbox-indicator');
+      galleryImages = Array.from(document.querySelectorAll('.gallery-item:not(.hide-anim):not(.hidden) img'));
+      currentImageIndex = galleryImages.findIndex(img => img.src === src);
+      lightboxImg.src = src;
+      lightboxTitle.textContent = title;
+      lightboxDescription.textContent = description;
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex', 'show');
+      document.body.style.overflow = 'hidden';
+      addLightboxNavigation();
+      // Show indicator
+      if (galleryImages.length > 0 && currentImageIndex >= 0) {
+        lightboxIndicator.textContent = `${currentImageIndex + 1} of ${galleryImages.length}`;
+      } else {
+        lightboxIndicator.textContent = '';
+      }
+    }
+    function navigateLightbox(direction) {
+      if (galleryImages.length === 0) return;
+      currentImageIndex = (currentImageIndex + direction + galleryImages.length) % galleryImages.length;
+      const newImage = galleryImages[currentImageIndex];
+      const galleryItem = newImage.closest('.gallery-item');
+      const title = galleryItem.querySelector('.text-white.font-bold').textContent;
+      const description = galleryItem.querySelector('.text-gray-200.text-sm').textContent;
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxTitle = document.getElementById('lightbox-title');
+      const lightboxDescription = document.getElementById('lightbox-description');
+      const lightboxIndicator = document.getElementById('lightbox-indicator');
+      lightboxImg.style.opacity = '0';
+      setTimeout(() => {
+        lightboxImg.src = newImage.src;
+        lightboxTitle.textContent = title;
+        lightboxDescription.textContent = description;
+        lightboxImg.style.opacity = '1';
+        if (galleryImages.length > 0 && currentImageIndex >= 0) {
+          lightboxIndicator.textContent = `${currentImageIndex + 1} of ${galleryImages.length}`;
+        } else {
+          lightboxIndicator.textContent = '';
+        }
+      }, 200);
+    }
   </script>
 
   <!-- Gallery Testimonials Section -->
