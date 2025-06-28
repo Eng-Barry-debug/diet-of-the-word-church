@@ -253,11 +253,17 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="relative min-h-[40vh] flex items-center justify-center bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1200&q=80');">
+  <section class="relative min-h-[40vh] flex items-center justify-center bg-cover bg-center bg-no-repeat overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1200&q=80');">
     <div class="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-purple-800/80 to-blue-400/60"></div>
-    <div class="container mx-auto px-4 py-16 text-center relative z-10 flex flex-col items-center fade-in-up">
-      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight text-white drop-shadow-xl tracking-wide uppercase">Contact Us</h1>
-      <p class="text-lg md:text-xl text-blue-100 mb-6 max-w-2xl mx-auto font-medium">We'd love to hear from you! Reach out with questions, prayer requests, or to get involved with Diet of the Word Church.</p>
+    <!-- Floating shapes -->
+    <div class="absolute inset-0 pointer-events-none z-0">
+      <div class="absolute top-10 left-1/4 w-8 h-8 bg-white/10 rounded-full floating" style="animation-delay: 0s;"></div>
+      <div class="absolute bottom-10 right-1/3 w-6 h-6 bg-white/20 rounded-full floating" style="animation-delay: 1s;"></div>
+      <div class="absolute top-1/2 right-1/4 w-4 h-4 bg-white/20 rounded-full floating" style="animation-delay: 2s;"></div>
+    </div>
+    <div class="container mx-auto px-4 py-16 text-center relative z-10 flex flex-col items-center fade-in-up animate-fade-in">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight text-white drop-shadow-xl tracking-wide uppercase animate-fade-in">Contact Us</h1>
+      <p class="text-lg md:text-xl text-blue-100 mb-6 max-w-2xl mx-auto font-medium animate-fade-in" style="animation-delay: 0.2s;">We'd love to hear from you! Reach out with questions, prayer requests, or to get involved with Diet of the Word Church.</p>
     </div>
   </section>
 
@@ -265,29 +271,52 @@
   <section class="container mx-auto px-4 py-20 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
     <!-- Contact Info -->
     <div class="flex flex-col gap-8 fade-in-up">
-      <div class="flex items-start gap-4">
-        <svg class="w-8 h-8 icon-gradient mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 12.414a2 2 0 00-2.828 0l-4.243 4.243a8 8 0 1111.314 0z"/></svg>
+      <div class="flex items-start gap-4 group" tabindex="0" aria-label="Location: Nairobi, Kenya">
+        <svg class="w-8 h-8 icon-gradient mt-1 animate-fade-in" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 12.414a2 2 0 00-2.828 0l-4.243 4.243a8 8 0 1111.314 0z"/></svg>
         <div>
-          <div class="text-blue-900 font-bold text-lg">Location</div>
+          <div class="text-blue-900 font-bold text-lg">Location <span class="ml-1" aria-label="Tooltip: Nairobi, Kenya" title="Nairobi, Kenya">🛈</span></div>
           <div class="text-gray-700">Nairobi, Kenya</div>
         </div>
       </div>
-      <div class="flex items-start gap-4">
-        <svg class="w-8 h-8 icon-gradient mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 12a4 4 0 01-8 0m8 0a4 4 0 00-8 0m8 0V8a4 4 0 00-8 0v4m8 0v4a4 4 0 01-8 0v-4"/></svg>
+      <div class="flex items-start gap-4 group" tabindex="0" aria-label="Email: info@dietofthewordchurch.org">
+        <svg class="w-8 h-8 icon-gradient mt-1 animate-fade-in" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 12a4 4 0 01-8 0m8 0a4 4 0 00-8 0m8 0V8a4 4 0 00-8 0v4m8 0v4a4 4 0 01-8 0v-4"/></svg>
         <div>
-          <div class="text-blue-900 font-bold text-lg">Email</div>
-          <div class="text-gray-700">info@dietofthewordchurch.org</div>
+          <div class="text-blue-900 font-bold text-lg">Email <span class="ml-1" aria-label="Tooltip: info@dietofthewordchurch.org" title="info@dietofthewordchurch.org">🛈</span></div>
+          <div class="text-gray-700"><a href="mailto:info@dietofthewordchurch.org" class="underline hover:text-blue-600 focus:text-blue-600 transition-colors duration-200">info@dietofthewordchurch.org</a></div>
         </div>
       </div>
-      <div class="flex items-start gap-4">
-        <svg class="w-8 h-8 icon-gradient mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-9 4v8"/></svg>
+      <div class="flex items-start gap-4 group" tabindex="0" aria-label="Phone: +254 700 000 000">
+        <svg class="w-8 h-8 icon-gradient mt-1 animate-fade-in" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-9 4v8"/></svg>
         <div>
-          <div class="text-blue-900 font-bold text-lg">Phone</div>
-          <div class="text-gray-700">+254 700 000 000</div>
+          <div class="text-blue-900 font-bold text-lg">Phone <span class="ml-1" aria-label="Tooltip: +254 700 000 000" title="+254 700 000 000">🛈</span></div>
+          <div class="text-gray-700"><a href="tel:+254700000000" class="underline hover:text-blue-600 focus:text-blue-600 transition-colors duration-200">+254 700 000 000</a></div>
         </div>
       </div>
+      
+      <!-- Social Media Contact -->
+      <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl border border-blue-200">
+        <h3 class="text-blue-900 font-bold text-lg mb-4">Connect With Us</h3>
+        <div class="flex gap-4">
+          <a href="#" class="social-link group" aria-label="Facebook">
+            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </div>
+          </a>
+          <a href="#" class="social-link group" aria-label="Instagram">
+            <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white hover:from-purple-600 hover:to-pink-600 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.323-1.297C4.198 14.895 3.708 13.744 3.708 12.447s.49-2.448 1.297-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.807.875 1.297 2.026 1.297 3.323s-.49 2.448-1.297 3.323c-.875.807-2.026 1.297-3.323 1.297zm7.718-1.297c-.875.807-2.026 1.297-3.323 1.297s-2.448-.49-3.323-1.297c-.807-.875-1.297-2.026-1.297-3.323s.49-2.448 1.297-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.807.875 1.297 2.026 1.297 3.323s-.49 2.448-1.297 3.323z"/></svg>
+            </div>
+          </a>
+          <a href="#" class="social-link group" aria-label="YouTube">
+            <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white hover:bg-red-700 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </div>
+          </a>
+        </div>
+      </div>
+      
       <!-- Map Placeholder -->
-      <div class="w-full h-48 md:h-64 bg-gradient-to-r from-blue-100 via-purple-100 to-blue-50 border-2 border-blue-300 rounded-xl overflow-hidden shadow-inner group transition-all duration-300">
+      <div class="w-full h-48 md:h-64 bg-gradient-to-r from-blue-100 via-purple-100 to-blue-50 border-2 border-blue-300 rounded-xl overflow-hidden shadow-inner group transition-all duration-300 focus-within:ring-2 focus-within:ring-blue-400" tabindex="0" aria-label="Map to Diet of the Word Church">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.7750065377127!2d36.771057873647315!3d-1.3103219356500975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1a7d08c819c5%3A0x8ac870a0e525ab87!2sDiet%20Of%20The%20Word%20Church!5e0!3m2!1sen!2ske!4v1751043410914!5m2!1sen!2ske"
           title="Map to Diet of the Word Church"
@@ -295,25 +324,146 @@
           allowfullscreen=""
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
+          tabindex="-1"
         ></iframe>
       </div>
     </div>
+    
     <!-- Contact Form -->
-    <form class="bg-white rounded-2xl shadow-lg p-10 flex flex-col gap-6 fade-in-up" autocomplete="off" novalidate>
-      <div>
-        <label for="name" class="block text-blue-900 font-semibold mb-2">Full Name</label>
-        <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded border border-blue-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-400 outline-none transition" placeholder="Your Name" />
+    <div class="fade-in-up">
+      <!-- Form Progress Indicator -->
+      <div class="mb-6">
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-sm font-medium text-blue-900">Form Progress</span>
+          <span id="progress-percentage" class="text-sm font-medium text-blue-900">0%</span>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2">
+          <div id="progress-bar" class="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
+        </div>
       </div>
-      <div>
-        <label for="email" class="block text-blue-900 font-semibold mb-2">Email Address</label>
-        <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded border border-blue-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-400 outline-none transition" placeholder="you@email.com" />
-      </div>
-      <div>
-        <label for="message" class="block text-blue-900 font-semibold mb-2">Message</label>
-        <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 rounded border border-blue-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-400 outline-none transition" placeholder="How can we help you?"></textarea>
-      </div>
-      <button type="submit" class="w-full bg-gradient-to-r from-blue-700 via-purple-600 to-blue-900 hover:from-purple-700 hover:to-blue-950 text-white font-bold py-4 rounded shadow-lg transition-all duration-300 transform hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-purple-400 text-lg uppercase tracking-wider">Send Message</button>
-    </form>
+      
+      <form class="bg-white rounded-2xl shadow-lg p-10 flex flex-col gap-6" id="contact-form" autocomplete="off" novalidate aria-labelledby="contact-form-title">
+        <h2 id="contact-form-title" class="sr-only">Contact Form</h2>
+        
+        <div class="relative">
+          <input type="text" id="name" name="name" required class="peer w-full px-4 py-3 rounded border border-blue-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-400 outline-none transition placeholder-transparent" placeholder="Your Name" aria-describedby="name-error" />
+          <label for="name" class="absolute left-4 top-3 text-blue-900 font-semibold pointer-events-none transition-all duration-200 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:-top-5 peer-focus:text-xs peer-focus:text-blue-700 bg-white px-1">Full Name <span title="Please enter your full name" aria-label="Help: Full Name" class="ml-1 cursor-help">🛈</span></label>
+          <div id="name-error" class="text-sm text-red-400 mt-1 h-5" aria-live="polite"></div>
+        </div>
+        
+        <div class="relative">
+          <input type="email" id="email" name="email" required class="peer w-full px-4 py-3 rounded border border-blue-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-400 outline-none transition placeholder-transparent" placeholder="you@email.com" aria-describedby="email-error" />
+          <label for="email" class="absolute left-4 top-3 text-blue-900 font-semibold pointer-events-none transition-all duration-200 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:-top-5 peer-focus:text-xs peer-focus:text-blue-700 bg-white px-1">Email Address <span title="We'll never share your email." aria-label="Help: Email" class="ml-1 cursor-help">🛈</span></label>
+          <div id="email-error" class="text-sm text-red-400 mt-1 h-5" aria-live="polite"></div>
+        </div>
+        
+        <div class="relative">
+          <input type="tel" id="phone" name="phone" class="peer w-full px-4 py-3 rounded border border-blue-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-400 outline-none transition placeholder-transparent" placeholder="+254 700 000 000" aria-describedby="phone-error" />
+          <label for="phone" class="absolute left-4 top-3 text-blue-900 font-semibold pointer-events-none transition-all duration-200 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:-top-5 peer-focus:text-xs peer-focus:text-blue-700 bg-white px-1">Phone Number <span title="Optional - for urgent matters" aria-label="Help: Phone" class="ml-1 cursor-help">🛈</span></label>
+          <div id="phone-error" class="text-sm text-red-400 mt-1 h-5" aria-live="polite"></div>
+        </div>
+        
+        <div class="relative">
+          <select id="reason" name="reason" required class="peer w-full px-4 py-3 rounded border border-blue-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-400 outline-none transition bg-white placeholder-transparent" aria-describedby="reason-error">
+            <option value="" disabled selected hidden></option>
+            <option value="question">General Question</option>
+            <option value="prayer">Prayer Request</option>
+            <option value="volunteer">Volunteer/Serve</option>
+            <option value="visit">Plan a Visit</option>
+            <option value="other">Other</option>
+          </select>
+          <label for="reason" class="absolute left-4 top-3 text-blue-900 font-semibold pointer-events-none transition-all duration-200 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-blue-700 bg-white px-1">Contact Reason <span title="Select the main reason for contacting us" aria-label="Help: Contact Reason" class="ml-1 cursor-help">🛈</span></label>
+          <div id="reason-error" class="text-sm text-red-400 mt-1 h-5" aria-live="polite"></div>
+        </div>
+        
+        <div class="relative">
+          <select id="hear-about" name="hear-about" required class="peer w-full px-4 py-3 rounded border border-blue-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-400 outline-none transition bg-white placeholder-transparent" aria-describedby="hear-error">
+            <option value="" disabled selected hidden></option>
+            <option value="friend">Friend/Family</option>
+            <option value="social">Social Media</option>
+            <option value="search">Search Engine</option>
+            <option value="event">Church Event</option>
+            <option value="walk-in">Walk-in/Passing By</option>
+            <option value="other">Other</option>
+          </select>
+          <label for="hear-about" class="absolute left-4 top-3 text-blue-900 font-semibold pointer-events-none transition-all duration-200 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-blue-700 bg-white px-1">How did you hear about us? <span title="Let us know how you found us" aria-label="Help: How did you hear about us" class="ml-1 cursor-help">🛈</span></label>
+          <div id="hear-error" class="text-sm text-red-400 mt-1 h-5" aria-live="polite"></div>
+        </div>
+        
+        <div class="relative">
+          <textarea id="message" name="message" rows="5" required class="peer w-full px-4 py-3 rounded border border-blue-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-400 outline-none transition placeholder-transparent resize-none" placeholder="How can we help you?" aria-describedby="message-error message-counter"></textarea>
+          <label for="message" class="absolute left-4 top-3 text-blue-900 font-semibold pointer-events-none transition-all duration-200 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:-top-5 peer-focus:text-xs peer-focus:text-blue-700 bg-white px-1">Message <span title="Type your message or request" aria-label="Help: Message" class="ml-1 cursor-help">🛈</span></label>
+          <div class="flex justify-between items-center mt-1">
+            <div id="message-error" class="text-sm text-red-400 h-5" aria-live="polite"></div>
+            <div id="message-counter" class="text-sm text-gray-500" aria-live="polite">0 / 500 characters</div>
+          </div>
+          <!-- Character count progress bar -->
+          <div class="w-full bg-gray-200 rounded-full h-1 mt-1">
+            <div id="message-progress" class="bg-gradient-to-r from-blue-500 to-purple-600 h-1 rounded-full transition-all duration-300" style="width: 0%"></div>
+          </div>
+        </div>
+        
+        <!-- File Upload -->
+        <div class="relative">
+          <div id="file-upload" class="border-2 border-dashed border-blue-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors duration-200 cursor-pointer">
+            <input type="file" id="attachment" name="attachment" class="hidden" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" multiple />
+            <svg class="w-12 h-12 text-blue-400 mx-auto mb-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+            </svg>
+            <p class="text-blue-900 font-medium">Drop files here or click to upload</p>
+            <p class="text-sm text-gray-500 mt-1">PDF, DOC, DOCX, JPG, PNG (max 5MB each)</p>
+          </div>
+          <div id="file-list" class="mt-2 space-y-1"></div>
+        </div>
+        
+        <fieldset class="flex flex-col gap-2" aria-labelledby="preferred-contact-label">
+          <legend id="preferred-contact-label" class="text-blue-900 font-semibold mb-1">Preferred Contact Method <span title="How should we reach you?" aria-label="Help: Preferred Contact Method" class="ml-1 cursor-help">🛈</span></legend>
+          <div class="flex gap-4 flex-wrap">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="preferred-contact" value="email" class="accent-purple-600" checked />
+              <span>Email</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="preferred-contact" value="phone" class="accent-purple-600" />
+              <span>Phone</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="preferred-contact" value="none" class="accent-purple-600" />
+              <span>No reply needed</span>
+            </label>
+          </div>
+        </fieldset>
+        
+        <div class="relative">
+          <input type="time" id="best-time" name="best-time" class="peer w-full px-4 py-3 rounded border border-blue-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-400 outline-none transition placeholder-transparent" aria-describedby="time-error" />
+          <label for="best-time" class="absolute left-4 top-3 text-blue-900 font-semibold pointer-events-none transition-all duration-200 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-blue-700 bg-white px-1">Best Time to Contact <span title="Let us know when to reach you (optional)" aria-label="Help: Best Time to Contact" class="ml-1 cursor-help">🛈</span></label>
+          <div id="time-error" class="text-sm text-red-400 mt-1 h-5" aria-live="polite"></div>
+        </div>
+        
+        <div class="flex items-center gap-2">
+          <input type="checkbox" id="consent" name="consent" required class="accent-purple-600" aria-describedby="consent-error" />
+          <label for="consent" class="text-blue-900 font-semibold">I agree to the <a href="#" class="underline hover:text-purple-700">terms and privacy policy</a> <span title="You must agree before submitting" aria-label="Help: Consent" class="ml-1 cursor-help">🛈</span></label>
+        </div>
+        <div id="consent-error" class="text-sm text-red-400 mt-1 h-5" aria-live="polite"></div>
+        
+        <div class="flex gap-4 mt-2">
+          <button type="submit" class="w-full bg-gradient-to-r from-blue-700 via-purple-600 to-blue-900 hover:from-purple-700 hover:to-blue-950 text-white font-bold py-4 rounded shadow-lg transition-all duration-300 transform hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-purple-400 text-lg uppercase tracking-wider ripple-btn relative overflow-hidden flex items-center justify-center" aria-label="Send Message">
+            <span class="submit-text">Send Message</span>
+            <span class="loading-spinner hidden absolute inset-0 flex items-center justify-center">
+              <svg class="w-6 h-6 text-white animate-spin" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg>
+            </span>
+          </button>
+          <button type="reset" class="w-full bg-white border border-purple-200 text-purple-700 font-bold py-4 rounded shadow-lg transition-all duration-300 hover:bg-purple-50 focus-visible:ring-2 focus-visible:ring-purple-400 text-lg uppercase tracking-wider" aria-label="Reset Form">Reset</button>
+        </div>
+        
+        <div id="form-success" class="hidden mt-4 p-4 bg-green-500/20 backdrop-blur-sm rounded-lg border border-green-400/30">
+          <p class="text-green-900 flex items-center justify-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Thank you! Your message has been sent.
+          </p>
+        </div>
+      </form>
+    </div>
   </section>
 
   <!-- Footer Component -->
@@ -336,6 +486,24 @@
     </div>
   </footer>
 
+  <!-- Floating Back to Top Button -->
+  <button id="back-to-top" class="fixed bottom-8 right-8 z-50 bg-gradient-to-r from-blue-700 via-purple-600 to-blue-900 text-white p-4 rounded-full shadow-lg hover:scale-110 focus-visible:ring-2 focus-visible:ring-purple-400 transition-all duration-300 hidden" aria-label="Back to top">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7M4 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+  </button>
+
+  <!-- Confirmation Modal -->
+  <div id="confirmation-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-8 relative flex flex-col gap-6 animate-fade-in" tabindex="-1">
+      <h3 id="modal-title" class="text-2xl font-bold text-blue-900 mb-2">Confirm Your Details</h3>
+      <div id="modal-summary" class="text-gray-800 text-base"></div>
+      <div class="flex gap-4 mt-4">
+        <button id="modal-confirm" class="flex-1 bg-gradient-to-r from-blue-700 via-purple-600 to-blue-900 text-white font-bold py-3 rounded shadow-lg hover:from-purple-700 hover:to-blue-950 focus-visible:ring-2 focus-visible:ring-purple-400 transition-all duration-200">Submit</button>
+        <button id="modal-cancel" class="flex-1 bg-white border border-purple-200 text-purple-700 font-bold py-3 rounded shadow-lg hover:bg-purple-50 focus-visible:ring-2 focus-visible:ring-purple-400 transition-all duration-200">Edit</button>
+      </div>
+      <button id="modal-close" class="absolute top-3 right-3 text-gray-400 hover:text-blue-700 focus:outline-none" aria-label="Close dialog"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></button>
+    </div>
+  </div>
+
   <script>
     // Animate fade-in-up elements on scroll
     function animateFadeInUp() {
@@ -348,6 +516,301 @@
     }
     window.addEventListener('scroll', animateFadeInUp);
     window.addEventListener('DOMContentLoaded', animateFadeInUp);
+
+    // Contact form advanced validation and UX
+    const form = document.getElementById('contact-form');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const messageInput = document.getElementById('message');
+    const nameError = document.getElementById('name-error');
+    const emailError = document.getElementById('email-error');
+    const messageError = document.getElementById('message-error');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const submitText = submitBtn.querySelector('.submit-text');
+    const loadingSpinner = submitBtn.querySelector('.loading-spinner');
+    const formSuccess = document.getElementById('form-success');
+
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    }
+
+    function showError(input, errorDiv, message) {
+      errorDiv.textContent = message;
+      input.setAttribute('aria-invalid', 'true');
+    }
+    function clearError(input, errorDiv) {
+      errorDiv.textContent = '';
+      input.removeAttribute('aria-invalid');
+    }
+
+    nameInput.addEventListener('input', () => {
+      if (!nameInput.value.trim()) {
+        showError(nameInput, nameError, 'Please enter your name.');
+      } else {
+        clearError(nameInput, nameError);
+      }
+    });
+    emailInput.addEventListener('input', () => {
+      if (!emailInput.value.trim()) {
+        showError(emailInput, emailError, 'Please enter your email.');
+      } else if (!validateEmail(emailInput.value.trim())) {
+        showError(emailInput, emailError, 'Please enter a valid email address.');
+      } else {
+        clearError(emailInput, emailError);
+      }
+    });
+    messageInput.addEventListener('input', () => {
+      if (!messageInput.value.trim()) {
+        showError(messageInput, messageError, 'Please enter your message.');
+      } else {
+        clearError(messageInput, messageError);
+      }
+    });
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      let valid = true;
+      if (!nameInput.value.trim()) {
+        showError(nameInput, nameError, 'Please enter your name.');
+        valid = false;
+      }
+      if (!emailInput.value.trim()) {
+        showError(emailInput, emailError, 'Please enter your email.');
+        valid = false;
+      } else if (!validateEmail(emailInput.value.trim())) {
+        showError(emailInput, emailError, 'Please enter a valid email address.');
+        valid = false;
+      }
+      if (!messageInput.value.trim()) {
+        showError(messageInput, messageError, 'Please enter your message.');
+        valid = false;
+      }
+      if (!valid) {
+        return;
+      }
+      // Animate button
+      submitBtn.disabled = true;
+      submitText.classList.add('opacity-0');
+      loadingSpinner.classList.remove('hidden');
+      // Simulate async send
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitText.classList.remove('opacity-0');
+        loadingSpinner.classList.add('hidden');
+        formSuccess.classList.remove('hidden');
+        formSuccess.classList.add('animate-fade-in');
+        form.reset();
+        setTimeout(() => {
+          formSuccess.classList.add('animate-fade-out');
+          setTimeout(() => {
+            formSuccess.classList.add('hidden');
+            formSuccess.classList.remove('animate-fade-in', 'animate-fade-out');
+          }, 500);
+        }, 3000);
+      }, 1500);
+    });
+
+    // Ripple effect for button
+    function addRipple(e) {
+      const btn = e.currentTarget;
+      const circle = document.createElement('span');
+      const diameter = Math.max(btn.clientWidth, btn.clientHeight);
+      const radius = diameter / 2;
+      circle.style.width = circle.style.height = `${diameter}px`;
+      circle.style.left = `${e.clientX - btn.getBoundingClientRect().left - radius}px`;
+      circle.style.top = `${e.clientY - btn.getBoundingClientRect().top - radius}px`;
+      circle.classList.add('ripple');
+      btn.appendChild(circle);
+      setTimeout(() => circle.remove(), 600);
+    }
+    submitBtn.addEventListener('click', addRipple);
+
+    // Keyboard navigation focus style
+    function handleKeyboardNav() {
+      document.body.classList.add('keyboard-navigation');
+    }
+    function handleMouseNav() {
+      document.body.classList.remove('keyboard-navigation');
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Tab') handleKeyboardNav(); });
+    document.addEventListener('mousedown', handleMouseNav);
+
+    // CSS for floating, fade-in, ripple, and focus styles
+    const style = document.createElement('style');
+    style.textContent = `
+      .floating { animation: floaty 2.5s infinite ease-in-out; }
+      @keyframes floaty { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-12px);} }
+      .animate-fade-in { animation: fadeIn 0.8s cubic-bezier(.4,0,.2,1) both; }
+      .animate-fade-out { animation: fadeOut 0.5s cubic-bezier(.4,0,.2,1) both; }
+      @keyframes fadeIn { from{opacity:0;transform:translateY(40px);} to{opacity:1;transform:none;} }
+      @keyframes fadeOut { from{opacity:1;transform:none;} to{opacity:0;transform:translateY(-10px);} }
+      .ripple { position: absolute; border-radius: 50%; background: rgba(255,255,255,0.5); transform: scale(0); animation: ripple 0.6s linear; pointer-events: none; z-index: 10; }
+      @keyframes ripple { to { transform: scale(2.5); opacity: 0; } }
+      .keyboard-navigation *:focus { outline: 2px solid #a21caf !important; outline-offset: 2px !important; }
+    `;
+    document.head.appendChild(style);
+
+    // Advanced validation for new fields
+    const reasonInput = document.getElementById('reason');
+    const reasonError = document.getElementById('reason-error');
+    const hearInput = document.getElementById('hear-about');
+    const hearError = document.getElementById('hear-error');
+    const consentInput = document.getElementById('consent');
+    const consentError = document.getElementById('consent-error');
+    const timeInput = document.getElementById('best-time');
+    const timeError = document.getElementById('time-error');
+    const radios = form.querySelectorAll('input[name="preferred-contact"]');
+
+    reasonInput.addEventListener('change', () => {
+      if (!reasonInput.value) {
+        reasonError.textContent = 'Please select a reason.';
+        reasonInput.setAttribute('aria-invalid', 'true');
+      } else {
+        reasonError.textContent = '';
+        reasonInput.removeAttribute('aria-invalid');
+      }
+    });
+    hearInput.addEventListener('change', () => {
+      if (!hearInput.value) {
+        hearError.textContent = 'Please select an option.';
+        hearInput.setAttribute('aria-invalid', 'true');
+      } else {
+        hearError.textContent = '';
+        hearInput.removeAttribute('aria-invalid');
+      }
+    });
+    consentInput.addEventListener('change', () => {
+      if (!consentInput.checked) {
+        consentError.textContent = 'You must agree before submitting.';
+        consentInput.setAttribute('aria-invalid', 'true');
+      } else {
+        consentError.textContent = '';
+        consentInput.removeAttribute('aria-invalid');
+      }
+    });
+    // Time is optional, but can validate format if needed
+
+    // Micro-interactions for selects
+    [reasonInput, hearInput].forEach(sel => {
+      sel.addEventListener('focus', e => sel.classList.add('ring-2', 'ring-purple-400'));
+      sel.addEventListener('blur', e => sel.classList.remove('ring-2', 'ring-purple-400'));
+    });
+    // Micro-interactions for radios
+    radios.forEach(radio => {
+      radio.addEventListener('focus', e => radio.parentElement.classList.add('ring-2', 'ring-purple-400', 'rounded'));
+      radio.addEventListener('blur', e => radio.parentElement.classList.remove('ring-2', 'ring-purple-400', 'rounded'));
+    });
+
+    // Reset button confirmation
+    const resetBtn = form.querySelector('button[type="reset"]');
+    resetBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (confirm('Are you sure you want to reset the form?')) {
+        form.reset();
+        [nameError, emailError, messageError, reasonError, hearError, consentError, timeError].forEach(div => div.textContent = '');
+      }
+    });
+
+    // Back to top button
+    const backToTopBtn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        backToTopBtn.classList.remove('hidden');
+      } else {
+        backToTopBtn.classList.add('hidden');
+      }
+    });
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Confirmation modal logic
+    const modal = document.getElementById('confirmation-modal');
+    const modalSummary = document.getElementById('modal-summary');
+    const modalConfirm = document.getElementById('modal-confirm');
+    const modalCancel = document.getElementById('modal-cancel');
+    const modalClose = document.getElementById('modal-close');
+    let lastFocused;
+
+    function openModal(summaryHtml) {
+      modalSummary.innerHTML = summaryHtml;
+      modal.classList.remove('hidden');
+      lastFocused = document.activeElement;
+      setTimeout(() => modal.querySelector('[tabindex="-1"]').focus(), 100);
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+      if (lastFocused) lastFocused.focus();
+    }
+    modalClose.addEventListener('click', closeModal);
+    modalCancel.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    // Keyboard trap
+    modal.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'Tab') {
+        const focusable = modal.querySelectorAll('button, [tabindex]:not([tabindex="-1"])');
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey ? document.activeElement === first : document.activeElement === last) {
+          e.preventDefault();
+          (e.shiftKey ? last : first).focus();
+        }
+      }
+    });
+
+    // Override form submit to show modal
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      let valid = true;
+      // Validate all fields
+      if (!nameInput.value.trim()) { showError(nameInput, nameError, 'Please enter your name.'); valid = false; }
+      if (!emailInput.value.trim()) { showError(emailInput, emailError, 'Please enter your email.'); valid = false; }
+      else if (!validateEmail(emailInput.value.trim())) { showError(emailInput, emailError, 'Please enter a valid email address.'); valid = false; }
+      if (!reasonInput.value) { reasonError.textContent = 'Please select a reason.'; reasonInput.setAttribute('aria-invalid', 'true'); valid = false; }
+      if (!hearInput.value) { hearError.textContent = 'Please select an option.'; hearInput.setAttribute('aria-invalid', 'true'); valid = false; }
+      if (!messageInput.value.trim()) { showError(messageInput, messageError, 'Please enter your message.'); valid = false; }
+      if (!consentInput.checked) { consentError.textContent = 'You must agree before submitting.'; consentInput.setAttribute('aria-invalid', 'true'); valid = false; }
+      // No need to validate time or radios (optional)
+      if (!valid) return;
+      // Build summary
+      const summary = `
+        <div><strong>Name:</strong> ${nameInput.value}</div>
+        <div><strong>Email:</strong> ${emailInput.value}</div>
+        <div><strong>Contact Reason:</strong> ${reasonInput.options[reasonInput.selectedIndex].text}</div>
+        <div><strong>Heard About Us:</strong> ${hearInput.options[hearInput.selectedIndex].text}</div>
+        <div><strong>Preferred Contact:</strong> ${form.querySelector('input[name=preferred-contact]:checked').nextElementSibling.textContent}</div>
+        <div><strong>Best Time:</strong> ${timeInput.value || 'Anytime'}</div>
+        <div><strong>Message:</strong><br>${messageInput.value.replace(/\n/g, '<br>')}</div>
+      `;
+      openModal(summary);
+    });
+    // Modal confirm triggers real submit
+    modalConfirm.addEventListener('click', function() {
+      closeModal();
+      // Animate button
+      submitBtn.disabled = true;
+      submitText.classList.add('opacity-0');
+      loadingSpinner.classList.remove('hidden');
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitText.classList.remove('opacity-0');
+        loadingSpinner.classList.add('hidden');
+        formSuccess.classList.remove('hidden');
+        formSuccess.classList.add('animate-fade-in');
+        form.reset();
+        setTimeout(() => {
+          formSuccess.classList.add('animate-fade-out');
+          setTimeout(() => {
+            formSuccess.classList.add('hidden');
+            formSuccess.classList.remove('animate-fade-in', 'animate-fade-out');
+          }, 500);
+        }, 3000);
+      }, 1500);
+    });
   </script>
 </body>
 </html>

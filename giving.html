@@ -263,27 +263,32 @@
     <!-- Main Content -->
     <main class="min-h-screen">
         <!-- Hero Section -->
-        <section class="bg-gradient-to-r from-primary to-blue-800 text-white py-16">
-            <div class="container mx-auto px-4">
-                <div class="max-w-4xl mx-auto text-center">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Support Our Ministry</h1>
+        <section class="relative bg-gradient-to-r from-primary to-blue-800 text-white py-16 parallax-hero" style="background-image: url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1200&q=80');">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-purple-800/80 to-blue-400/60 animate-gradient"></div>
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="max-w-4xl mx-auto text-center fade-in-up">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6 drop-shadow-xl">Support Our Ministry</h1>
                     <p class="text-xl md:text-2xl mb-8">Your generous giving enables us to spread the Gospel and serve our community</p>
+                    <div class="divider-gradient mx-auto mb-8"></div>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-                        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 fade-in-up tilt">
                             <div class="text-3xl font-bold mb-2">Tithe</div>
                             <p class="text-white">Faithful giving of 10%</p>
                         </div>
-                        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 fade-in-up tilt">
                             <div class="text-3xl font-bold mb-2">Offerings</div>
                             <p class="text-white">Additional gifts above tithe</p>
                         </div>
-                        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 fade-in-up tilt">
                             <div class="text-3xl font-bold mb-2">Special Projects</div>
                             <p class="text-white">Building fund & missions</p>
                         </div>
                     </div>
                 </div>
             </div>
+            <button id="backToTop" aria-label="Back to top" class="fixed bottom-8 right-8 z-50 bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-full shadow-lg opacity-0 pointer-events-none transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+            </button>
         </section>
 
         <!-- Giving Form Section -->
@@ -625,6 +630,94 @@
 
         function generateReference() {
             return 'DWC' + Date.now().toString().slice(-6);
+        }
+
+        // Parallax effect for hero
+        window.addEventListener('scroll', function() {
+            const hero = document.querySelector('.parallax-hero');
+            if (hero) {
+                hero.style.backgroundPositionY = `${window.scrollY * 0.4}px`;
+            }
+        });
+
+        // Back to Top button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('opacity-100', 'pointer-events-auto', 'floating');
+                backToTop.classList.remove('opacity-0', 'pointer-events-none');
+            } else {
+                backToTop.classList.remove('opacity-100', 'pointer-events-auto', 'floating');
+                backToTop.classList.add('opacity-0', 'pointer-events-none');
+            }
+        });
+
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Animate on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.fade-in-up');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        entry.target.style.animationDelay = entry.target.dataset.delay || '0s';
+                    }
+                });
+            }, { threshold: 0.1 });
+            elements.forEach(el => { observer.observe(el); });
+        }
+        document.addEventListener('DOMContentLoaded', animateOnScroll);
+
+        // Tilt effect for info cards
+        function addTiltEffect() {
+            document.querySelectorAll('.tilt').forEach(card => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * 6;
+                    const rotateY = ((x - centerX) / centerX) * -6;
+                    this.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+        }
+        document.addEventListener('DOMContentLoaded', addTiltEffect);
+
+        // Ripple effect for submit button
+        const submitBtn = document.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            submitBtn.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                ripple.className = 'ripple';
+                const rect = this.getBoundingClientRect();
+                ripple.style.left = `${e.clientX - rect.left}px`;
+                ripple.style.top = `${e.clientY - rect.top}px`;
+                ripple.style.width = ripple.style.height = `${rect.width / 2}px`;
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        }
+
+        // Loading spinner on submit
+        function showLoading() {
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<svg class="animate-spin h-6 w-6 mx-auto" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg>';
+            }
+        }
+        function hideLoading() {
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Proceed to Payment';
+            }
         }
     </script>
 </body>
