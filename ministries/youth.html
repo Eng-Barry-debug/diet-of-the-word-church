@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Youth Ministry | Diet of the Word Church</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .fade-in-up { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1); }
+    .fade-in-up.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <!-- Header Navigation Component -->
+  <header id="main-header" class="bg-white/80 backdrop-blur border-b border-blue-100 shadow transition-shadow duration-300 sticky top-0 z-50">
+    <nav class="container mx-auto flex items-center justify-between px-4 py-4">
+      <!-- Logo/Brand -->
+      <a href="../index.html" class="flex items-center gap-3 text-blue-900 font-extrabold text-2xl tracking-wide focus-visible:ring-2 focus-visible:ring-blue-400">
+        <img src="../assets/images/Diet logo 2.png" alt="Diet of the Word Church Logo" class="w-12 h-12 object-contain">
+      </a>
+      <!-- Desktop Nav -->
+      <div class="hidden lg:flex items-center space-x-8">
+        <a href="../index.html" class="text-blue-600 font-medium relative group nav-link">
+          <svg class="w-5 h-5 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+          </svg>
+          Home
+          <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-600"></span>
+        </a>
+        <a href="../about.html" class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium relative group nav-link">
+          <svg class="w-5 h-5 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          About
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="../leadership.html" class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium relative group nav-link">
+          <svg class="w-5 h-5 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m9-4a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          Leadership
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <div class="relative">
+          <button id="ministries-dropdown-btn" class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium flex items-center space-x-1 focus:outline-none">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+            <span>Ministries</span>
+            <svg id="ministries-arrow" class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div id="ministries-dropdown" class="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible transition-all duration-200 transform origin-top-left scale-95">
+            <div class="py-2">
+              <a href="toddlers.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150">
+                <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+                Toddlers
+              </a>
+              <a href="sunday-school.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150">
+                <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                </svg>
+                Sunday School
+              </a>
+              <a href="teenagers.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150">
+                <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                </svg>
+                Teenagers
+              </a>
+              <a href="youth.html" class="block px-4 py-2 text-blue-600 bg-blue-50 font-medium">
+                <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                </svg>
+                Youth
+              </a>
+              <a href="adults.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150">
+                <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                </svg>
+                Adults
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href="../devotions.html" class="nav-link flex items-center gap-2"><svg class="w-5 h-5 text-purple-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 20h9M12 4v16m0 0H3"/></svg>Devotions</a>
+        <a href="../sermons.html" class="nav-link flex items-center gap-2"><svg class="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-6m0 0V6m0 6h6m-6 0H6"/></svg>Sermons</a>
+        <a href="../events.html" class="nav-link flex items-center gap-2"><svg class="w-5 h-5 text-purple-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Events</a>
+        <a href="../gallery.html" class="nav-link flex items-center gap-2"><svg class="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7zm0 0l7 7 4-4 5 5"/></svg>Gallery</a>
+        <a href="../giving.html" class="nav-link flex items-center gap-2"><svg class="w-5 h-5 text-purple-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 1.343-3 3 0 1.657 1.343 3 3 3s3-1.343 3-3c0-1.657-1.343-3-3-3zm0 0V4m0 7v7m0 0H9m3 0h3"/></svg>Giving</a>
+        <a href="../contact.html" class="nav-link flex items-center gap-2"><svg class="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 12a4 4 0 01-8 0m8 0a4 4 0 00-8 0m8 0V8a4 4 0 00-8 0v4m8 0v4a4 4 0 01-8 0v-4"/></svg>Contact</a>
+        <a href="../prayer-requests.html" class="nav-link flex items-center gap-2"><svg class="w-5 h-5 text-purple-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>Prayer Requests</a>
+      </div>
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="md:hidden flex items-center px-2 py-1 border rounded text-black border-gray-300 hover:bg-blue-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 transition" aria-label="Open menu">
+        <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </nav>
+    <!-- Mobile Nav & Overlay -->
+    <div id="mobile-overlay" class="fixed inset-0 bg-black bg-opacity-40 z-40 hidden transition-opacity duration-300"></div>
+    <div id="mobile-menu" class="md:hidden fixed top-0 right-0 w-80 max-w-full h-full bg-white/80 shadow-2xl border-l border-blue-100 z-50 transform translate-x-full transition-transform duration-300">
+      <button id="mobile-menu-close" class="absolute top-4 right-4 text-gray-700 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 rounded-full bg-white/80 p-2 shadow" aria-label="Close menu">
+        <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <ul class="flex flex-col gap-2 p-8 font-semibold text-gray-700 mt-12 overflow-y-auto max-h-screen">
+        <li><a href="../index.html" class="block py-2 nav-link flex items-center gap-2"><svg class="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l9-9 9 9M4 10v10a1 1 0 001 1h3m10-11v10a1 1 0 01-1 1h-3m-6 0h6"/></svg>Home</a></li>
+        <li><a href="../about.html" class="block py-2 nav-link flex items-center gap-2"><svg class="w-5 h-5 text-purple-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z"/></svg>About</a></li>
+        <li><a href="../leadership.html" class="block py-2 nav-link flex items-center gap-2"><svg class="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m9-4a4 4 0 11-8 0 4 4 0 018 0z"/></svg>Leadership</a></li>
+        <li>
+          <button class="flex items-center gap-2 w-full py-2 nav-link" aria-haspopup="true" aria-expanded="false" onclick="document.getElementById('mobile-ministries').classList.toggle('hidden')">
+            <svg class="w-5 h-5 text-purple-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7h18M3 12h18M3 17h18"/></svg>Ministries
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <ul id="mobile-ministries" class="ml-4 mt-1 hidden">
+            <li><a href="adults.html" class="block py-2 nav-link">Adults</a></li>
+            <li><a href="youth.html" class="block py-2 nav-link">Youth</a></li>
+            <li><a href="teenagers.html" class="block py-2 nav-link">Teenagers</a></li>
+            <li><a href="sunday-school.html" class="block py-2 nav-link">Sunday School</a></li>
+            <li><a href="toddlers.html" class="block py-2 nav-link">Toddlers</a></li>
+          </ul>
+        </li>
+        <li><a href="../devotions.html" class="block py-2 nav-link flex items-center gap-2"><svg class="w-5 h-5 text-purple-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 20h9M12 4v16m0 0H3"/></svg>Devotions</a></li>
+        <li><a href="../sermons.html" class="block py-2 nav-link flex items-center gap-2"><svg class="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-6m0 0V6m0 6h6m-6 0H6"/></svg>Sermons</a></li>
+        <li><a href="../events.html" class="block py-2 nav-link flex items-center gap-2"><svg class="w-5 h-5 text-purple-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Events</a></li>
+        <li><a href="../gallery.html" class="block py-2 nav-link flex items-center gap-2"><svg class="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7zm0 0l7 7 4-4 5 5"/></svg>Gallery</a></li>
+        <li><a href="../giving.html" class="block py-2 nav-link flex items-center gap-2"><svg class="w-5 h-5 text-purple-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 1.343-3 3 0 1.657 1.343 3 3 3s3-1.343 3-3c0-1.657-1.343-3-3-3zm0 0V4m0 7v7m0 0H9m3 0h3"/></svg>Giving</a></li>
+        <li><a href="../contact.html" class="block py-2 nav-link flex items-center gap-2"><svg class="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 12a4 4 0 01-8 0m8 0a4 4 0 00-8 0m8 0V8a4 4 0 00-8 0v4m8 0v4a4 4 0 01-8 0v-4"/></svg>Contact</a></li>
+        <li><a href="../prayer-requests.html" class="block py-2 nav-link flex items-center gap-2"><svg class="w-5 h-5 text-purple-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>Prayer Requests</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Main Content with top padding for fixed header -->
+  <main class="pt-20">
+
+  <!-- Hero Section -->
+  <section class="relative min-h-[50vh] flex items-center justify-center bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1200&q=80');">
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-purple-800/80 to-blue-400/60"></div>
+    <div class="container mx-auto px-4 py-20 text-center relative z-10 flex flex-col items-center fade-in-up">
+      <h1 class="text-5xl md:text-6xl font-extrabold mb-4 leading-tight text-white drop-shadow-xl tracking-wide uppercase">Youth Ministry</h1>
+      <p class="text-xl md:text-2xl text-blue-100 mb-6 max-w-3xl mx-auto font-medium">Raising a generation of passionate, Christ-centered youth equipped to lead and serve in church and society.</p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="#programs" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+          Explore Programs
+        </a>
+        <a href="../contact.html" class="inline-block bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white font-bold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 border border-white/30">
+          Join Youth Group
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ministry Overview Section -->
+  <section class="container mx-auto px-4 py-20">
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-blue-900 mb-6 fade-in-up">Welcome to Youth Ministry</h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8 fade-in-up"></div>
+      <p class="text-lg text-gray-800 leading-relaxed fade-in-up">
+        Our Youth Ministry is designed to engage young people ages 13-25 in a dynamic, faith-filled community where they can grow spiritually, build lasting friendships, and discover their God-given purpose. We believe in the power of young people to change the world for Christ.
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+      <div class="bg-white rounded-2xl shadow-lg p-8 text-center group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up">
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-200 transition-colors duration-300">
+          <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-blue-900 mb-4">Dynamic Worship</h3>
+        <p class="text-gray-800">Contemporary worship experiences that connect young hearts to God through music, prayer, and authentic expression of faith.</p>
+      </div>
+      
+      <div class="bg-white rounded-2xl shadow-lg p-8 text-center group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.1s;">
+        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-purple-200 transition-colors duration-300">
+          <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-blue-900 mb-4">Authentic Community</h3>
+        <p class="text-gray-800">Build genuine friendships with peers who share your faith and understand the unique challenges of being a young Christian today.</p>
+      </div>
+      
+      <div class="bg-white rounded-2xl shadow-lg p-8 text-center group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.2s;">
+        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-green-200 transition-colors duration-300">
+          <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-blue-900 mb-4">Leadership Development</h3>
+        <p class="text-gray-800">Discover and develop your God-given gifts and talents through leadership opportunities, mentoring, and hands-on ministry experience.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs & Activities Section -->
+  <section id="programs" class="bg-gray-50 py-20">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-blue-900 text-center mb-2 fade-in-up">Our Programs & Activities</h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-12 fade-in-up"></div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Youth Bible Study -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up">
+          <div class="h-48 bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
+            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-blue-900 mb-3">Youth Bible Study</h3>
+            <p class="text-gray-800 mb-4">Interactive Bible study sessions designed specifically for young people, addressing real-life issues through God's Word.</p>
+            <ul class="text-sm text-gray-800 space-y-1 mb-4">
+              <li>• Sunday Youth Bible Study (9:00 AM)</li>
+              <li>• Wednesday Evening Study (6:30 PM)</li>
+              <li>• Small Group Discussions</li>
+            </ul>
+            <a href="../contact.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
+              Join Bible Study
+            </a>
+          </div>
+        </div>
+        
+        <!-- Youth Worship Team -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.1s;">
+          <div class="h-48 bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">
+            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+            </svg>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-blue-900 mb-3">Youth Worship Team</h3>
+            <p class="text-gray-800 mb-4">Express your musical talents and lead others in worship through our youth worship team. All skill levels welcome!</p>
+            <ul class="text-sm text-gray-800 space-y-1 mb-4">
+              <li>• Contemporary Worship Music</li>
+              <li>• Instrumental & Vocal Training</li>
+              <li>• Sunday Youth Service</li>
+            </ul>
+            <a href="../contact.html" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
+              Join Worship Team
+            </a>
+          </div>
+        </div>
+        
+        <!-- Youth Outreach -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.2s;">
+          <div class="h-48 bg-gradient-to-br from-green-600 to-teal-600 flex items-center justify-center">
+            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-blue-900 mb-3">Youth Outreach</h3>
+            <p class="text-gray-800 mb-4">Make a difference in your community through various outreach programs and mission opportunities.</p>
+            <ul class="text-sm text-gray-800 space-y-1 mb-4">
+              <li>• Community Service Projects</li>
+              <li>• School Outreach Programs</li>
+              <li>• Mission Trips & Camps</li>
+            </ul>
+            <a href="../contact.html" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
+              Get Involved
+            </a>
+          </div>
+        </div>
+        
+        <!-- Youth Leadership -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.3s;">
+          <div class="h-48 bg-gradient-to-br from-blue-700 to-indigo-700 flex items-center justify-center">
+            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+            </svg>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-blue-900 mb-3">Youth Leadership</h3>
+            <p class="text-gray-800 mb-4">Develop leadership skills through our youth leadership program, including mentoring and ministry opportunities.</p>
+            <ul class="text-sm text-gray-800 space-y-1 mb-4">
+              <li>• Youth Council Positions</li>
+              <li>• Peer Mentoring Program</li>
+              <li>• Ministry Team Leadership</li>
+            </ul>
+            <a href="../contact.html" class="inline-block bg-blue-700 hover:bg-blue-800 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
+              Apply for Leadership
+            </a>
+          </div>
+        </div>
+        
+        <!-- Youth Events -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.4s;">
+          <div class="h-48 bg-gradient-to-br from-pink-600 to-rose-600 flex items-center justify-center">
+            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-blue-900 mb-3">Youth Events</h3>
+            <p class="text-gray-800 mb-4">Fun, faith-filled events that bring youth together for fellowship, worship, and spiritual growth.</p>
+            <ul class="text-sm text-gray-800 space-y-1 mb-4">
+              <li>• Monthly Youth Nights</li>
+              <li>• Quarterly Retreats</li>
+              <li>• Annual Youth Conference</li>
+            </ul>
+            <a href="../events.html" class="inline-block bg-pink-600 hover:bg-pink-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
+              View Events
+            </a>
+          </div>
+        </div>
+        
+        <!-- Youth Mentoring -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.5s;">
+          <div class="h-48 bg-gradient-to-br from-amber-600 to-orange-600 flex items-center justify-center">
+            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+            </svg>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-blue-900 mb-3">Youth Mentoring</h3>
+            <p class="text-gray-800 mb-4">Connect with caring adult mentors who will walk alongside you in your faith journey and life decisions.</p>
+            <ul class="text-sm text-gray-800 space-y-1 mb-4">
+              <li>• One-on-One Mentoring</li>
+              <li>• Life Skills Development</li>
+              <li>• Career & Education Guidance</li>
+            </ul>
+            <a href="../contact.html" class="inline-block bg-amber-600 hover:bg-amber-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
+              Find a Mentor
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership Team Section -->
+  <section class="container mx-auto px-4 py-20">
+    <h2 class="text-3xl md:text-4xl font-extrabold text-blue-900 text-center mb-2 fade-in-up">Youth Ministry Leadership</h2>
+    <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-12 fade-in-up"></div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Youth Pastor -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 text-center group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Pastor David Kimani" class="w-24 h-24 rounded-full mx-auto mb-6 object-cover border-4 border-blue-200">
+        <h3 class="text-xl font-bold text-blue-900 mb-2">Pastor David Kimani</h3>
+        <p class="text-blue-600 font-semibold mb-4">Youth Pastor</p>
+        <p class="text-gray-800 mb-4">Pastor David has a passion for youth ministry and loves helping young people discover their identity in Christ and their purpose in life.</p>
+        <a href="../contact.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
+          Contact Pastor David
+        </a>
+      </div>
+      
+      <!-- Youth Coordinator -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 text-center group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.1s;">
+        <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Grace Akinyi" class="w-24 h-24 rounded-full mx-auto mb-6 object-cover border-4 border-pink-200">
+        <h3 class="text-xl font-bold text-blue-900 mb-2">Grace Akinyi</h3>
+        <p class="text-blue-600 font-semibold mb-4">Youth Ministry Coordinator</p>
+        <p class="text-gray-800 mb-4">Grace coordinates all youth activities and events, ensuring every young person feels welcome and connected in our ministry.</p>
+        <a href="../contact.html" class="inline-block bg-pink-600 hover:bg-pink-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
+          Contact Grace
+        </a>
+      </div>
+      
+      <!-- Worship Leader -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 text-center group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.2s;">
+        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="James Ochieng" class="w-24 h-24 rounded-full mx-auto mb-6 object-cover border-4 border-purple-200">
+        <h3 class="text-xl font-bold text-blue-900 mb-2">James Ochieng</h3>
+        <p class="text-blue-600 font-semibold mb-4">Youth Worship Leader</p>
+        <p class="text-gray-800 mb-4">James leads our youth worship team and helps young musicians develop their talents for God's glory.</p>
+        <a href="../contact.html" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
+          Contact James
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="bg-gray-50 py-20">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-blue-900 text-center mb-2 fade-in-up">What Our Youth Say</h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-12 fade-in-up"></div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white rounded-2xl shadow-lg p-8 group hover:shadow-2xl transition-all duration-300 fade-in-up">
+          <div class="flex items-center mb-4">
+            <img src="https://randomuser.me/api/portraits/women/23.jpg" alt="Sarah Muthoni" class="w-12 h-12 rounded-full object-cover mr-4" />
+            <div>
+              <h4 class="font-bold text-blue-900">Sarah Muthoni</h4>
+              <p class="text-blue-700 text-sm">Youth Group Member, Age 16</p>
+            </div>
+          </div>
+          <p class="text-gray-800 italic">"Youth ministry has been a game-changer for me. I've found my best friends here and learned so much about my faith. The worship team has helped me discover my musical gifts."</p>
+        </div>
+        
+        <div class="bg-white rounded-2xl shadow-lg p-8 group hover:shadow-2xl transition-all duration-300 fade-in-up" style="transition-delay:0.1s;">
+          <div class="flex items-center mb-4">
+            <img src="https://randomuser.me/api/portraits/men/34.jpg" alt="Michael Njoroge" class="w-12 h-12 rounded-full object-cover mr-4" />
+            <div>
+              <h4 class="font-bold text-blue-900">Michael Njoroge</h4>
+              <p class="text-blue-700 text-sm">Youth Leader, Age 19</p>
+            </div>
+          </div>
+          <p class="text-gray-800 italic">"Being part of the youth leadership team has taught me so much about serving others and leading with humility. Pastor David has been an amazing mentor to me."</p>
+        </div>
+        
+        <div class="bg-white rounded-2xl shadow-lg p-8 group hover:shadow-2xl transition-all duration-300 fade-in-up" style="transition-delay:0.2s;">
+          <div class="flex items-center mb-4">
+            <img src="https://randomuser.me/api/portraits/women/56.jpg" alt="Faith Wambui" class="w-12 h-12 rounded-full object-cover mr-4" />
+            <div>
+              <h4 class="font-bold text-blue-900">Faith Wambui</h4>
+              <p class="text-blue-700 text-sm">Bible Study Leader, Age 17</p>
+            </div>
+          </div>
+          <p class="text-gray-800 italic">"The Bible study sessions have helped me understand God's Word in a way that relates to my daily life. I love how we can ask questions and discuss real issues we face as young people."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Call to Action -->
+  <section class="bg-gradient-to-br from-blue-900 via-purple-800 to-blue-700 text-white py-20">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-6 fade-in-up">Ready to Join the Youth Movement?</h2>
+      <p class="text-xl text-white mb-10 max-w-3xl mx-auto fade-in-up">Be part of an exciting community where you can grow in faith, make amazing friends, and discover your God-given purpose.</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 group fade-in-up">
+          <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Contact Us</h3>
+          <p class="text-white mb-6">Have questions about youth ministry? We'd love to hear from you and help you get connected.</p>
+          <a href="../contact.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 transform hover:scale-105">
+            Send Message
+          </a>
+        </div>
+        
+        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 group fade-in-up" style="transition-delay:0.1s;">
+          <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Join Youth Group</h3>
+          <p class="text-white mb-6">Find a program or activity that interests you and start your journey with our youth ministry.</p>
+          <a href="../contact.html" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 transform hover:scale-105">
+            Get Started
+          </a>
+        </div>
+        
+        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 group fade-in-up" style="transition-delay:0.2s;">
+          <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Upcoming Events</h3>
+          <p class="text-white mb-6">Check out our exciting upcoming events, retreats, and activities designed specifically for youth.</p>
+          <a href="../events.html" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 transform hover:scale-105">
+            View Events
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <script src="/assets/js/components.js"></script>
+  <script>
+    // Animate fade-in-up elements on scroll
+    function animateFadeInUp() {
+      document.querySelectorAll('.fade-in-up').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 40) {
+          el.classList.add('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', animateFadeInUp);
+    window.addEventListener('DOMContentLoaded', animateFadeInUp);
+
+    // Mobile menu functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      
+      if (btn && menu) {
+        btn.addEventListener('click', function() {
+          menu.classList.toggle('hidden');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

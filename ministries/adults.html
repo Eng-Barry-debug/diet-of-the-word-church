@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adults Ministry | Diet of the Word Church</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .fade-in-up { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1); }
+    .fade-in-up.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <!-- Header Navigation Component -->
+  <header id="main-header" class="bg-white/80 backdrop-blur border-b border-blue-100 shadow transition-shadow duration-300 sticky top-0 z-50">
+    <nav class="container mx-auto flex items-center justify-between px-4 py-4">
+      <!-- Logo/Brand -->
+      <a href="../index.html" class="flex items-center gap-3 text-blue-900 font-extrabold text-2xl tracking-wide focus-visible:ring-2 focus-visible:ring-blue-400">
+        <img src="../assets/images/Diet logo 2.png" alt="Diet of the Word Church Logo" class="w-12 h-12 object-contain">
+      </a>
+      <!-- Desktop Nav -->
+      <div class="hidden lg:flex items-center space-x-8">
+        <a href="../index.html" class="text-blue-600 font-medium relative group nav-link">Home</a>
+        <a href="../about.html" class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium relative group nav-link">About</a>
+        <div class="relative">
+          <button id="ministries-dropdown-btn" class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium flex items-center space-x-1 focus:outline-none">
+            <span>Ministries</span>
+            <svg id="ministries-arrow" class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div id="ministries-dropdown" class="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible transition-all duration-200 transform origin-top-left scale-95">
+            <div class="py-2">
+              <a href="toddlers.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150">Toddlers</a>
+              <a href="sunday-school.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150">Sunday School</a>
+              <a href="teenagers.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150">Teenagers</a>
+              <a href="youth.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150">Youth</a>
+              <a href="adults.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150">Adults</a>
+            </div>
+          </div>
+        </div>
+        <a href="../leadership.html" class="nav-link">Leadership</a>
+        <a href="../devotions.html" class="nav-link">Devotions</a>
+        <a href="../sermons.html" class="nav-link">Sermons</a>
+        <a href="../events.html" class="nav-link">Events</a>
+        <a href="../gallery.html" class="nav-link">Gallery</a>
+        <a href="../giving.html" class="nav-link">Giving</a>
+        <a href="../contact.html" class="nav-link">Contact</a>
+        <a href="../prayer-requests.html" class="nav-link">Prayer Requests</a>
+      </div>
+      <!-- Mobile Menu Button and nav omitted for brevity, but should be included as in header.html -->
+    </nav>
+  </header>
+
+  <!-- Main Content with top padding for fixed header -->
+  <main class="pt-20">
+
+  <!-- Hero Section -->
+  <section class="relative min-h-[50vh] flex items-center justify-center bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80');">
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-purple-800/80 to-blue-400/60"></div>
+    <div class="container mx-auto px-4 py-20 text-center relative z-10 flex flex-col items-center fade-in-up">
+      <h1 class="text-5xl md:text-6xl font-extrabold mb-4 leading-tight text-white drop-shadow-xl tracking-wide uppercase">Adults Ministry</h1>
+      <p class="text-xl md:text-2xl text-blue-100 mb-6 max-w-3xl mx-auto font-medium">Empowering adults to grow in faith, build authentic community, and serve with purpose at every stage of life's journey.</p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="#programs" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+          Explore Programs
+        </a>
+        <a href="../contact.html" class="inline-block bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white font-bold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 border border-white/30">
+          Get Connected
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ministry Overview Section -->
+  <section class="container mx-auto px-4 py-20">
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-blue-900 mb-6 fade-in-up">Welcome to Adults Ministry</h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8 fade-in-up"></div>
+      <p class="text-lg text-gray-800 leading-relaxed fade-in-up">
+        Our Adults Ministry is designed to meet the unique spiritual needs of adults at every stage of life. Whether you're a young professional, a parent, an empty nester, or a senior, we have programs and opportunities tailored to help you grow in your faith, build meaningful relationships, and discover your God-given purpose.
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+      <div class="bg-white rounded-2xl shadow-lg p-8 text-center group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up">
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-200 transition-colors duration-300">
+          <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-blue-900 mb-4">Biblical Teaching</h3>
+        <p class="text-gray-800">Deep, relevant Bible study that applies God's Word to real-life situations and challenges we face as adults.</p>
+      </div>
+      
+      <div class="bg-white rounded-2xl shadow-lg p-8 text-center group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.1s;">
+        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-purple-200 transition-colors duration-300">
+          <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-blue-900 mb-4">Authentic Community</h3>
+        <p class="text-gray-800">Build genuine relationships with other adults who share your faith and understand your life stage.</p>
+      </div>
+      
+      <div class="bg-white rounded-2xl shadow-lg p-8 text-center group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.2s;">
+        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-green-200 transition-colors duration-300">
+          <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-blue-900 mb-4">Purposeful Service</h3>
+        <p class="text-gray-800">Discover and use your spiritual gifts to serve others and make a meaningful impact in our church and community.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs & Activities Section -->
+  <section id="programs" class="bg-gray-50 py-20">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-blue-900 text-center mb-2 fade-in-up">Our Programs & Activities</h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-12 fade-in-up"></div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Bible Study Groups -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up">
+          <div class="h-48 bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
+            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-blue-900 mb-3">Bible Study Groups</h3>
+            <p class="text-gray-800 mb-4">Join a small group to study God's Word, pray together, and build lasting friendships. Groups meet weekly in various locations.</p>
+            <ul class="text-sm text-gray-800 space-y-1 mb-4">
+              <li>• Tuesday Evening Groups (7:00 PM)</li>
+              <li>• Wednesday Morning Groups (10:00 AM)</li>
+              <li>• Thursday Evening Groups (7:30 PM)</li>
+            </ul>
+            <a href="../contact.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
+              Join a Group
+            </a>
+          </div>
+        </div>
+        
+        <!-- Prayer Ministry -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.1s;">
+          <div class="h-48 bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">
+            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            </svg>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-blue-900 mb-3">Prayer Ministry</h3>
+            <p class="text-gray-800 mb-4">Be part of our prayer warriors who intercede for the church, community, and world. Join prayer meetings and prayer chains.</p>
+            <ul class="text-sm text-gray-800 space-y-1 mb-4">
+              <li>• Sunday Prayer Team (8:00 AM)</li>
+              <li>• Wednesday Prayer Meeting (6:00 PM)</li>
+              <li>• 24/7 Prayer Chain</li>
+            </ul>
+            <a href="../contact.html" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
+              Join Prayer Team
+            </a>
+          </div>
+        </div>
+        
+        <!-- Outreach & Missions -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.2s;">
+          <div class="h-48 bg-gradient-to-br from-green-600 to-teal-600 flex items-center justify-center">
+            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-blue-900 mb-3">Outreach & Missions</h3>
+            <p class="text-gray-800 mb-4">Serve our community through various outreach programs and participate in local and international missions.</p>
+            <ul class="text-sm text-gray-800 space-y-1 mb-4">
+              <li>• Community Food Bank</li>
+              <li>• Homeless Ministry</li>
+              <li>• International Missions Trips</li>
+            </ul>
+            <a href="../contact.html" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
+              Get Involved
+            </a>
+          </div>
+        </div>
+        
+        <!-- Men's Ministry -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.3s;">
+          <div class="h-48 bg-gradient-to-br from-blue-700 to-indigo-700 flex items-center justify-center">
+            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+            </svg>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-blue-900 mb-3">Men's Ministry</h3>
+            <p class="text-gray-800 mb-4">Connect with other men for fellowship, accountability, and spiritual growth. Monthly breakfasts and quarterly retreats.</p>
+            <ul class="text-sm text-gray-800 space-y-1 mb-4">
+              <li>• Saturday Men's Breakfast (8:00 AM)</li>
+              <li>• Monthly Bible Study</li>
+              <li>• Quarterly Retreats</li>
+            </ul>
+            <a href="../contact.html" class="inline-block bg-blue-700 hover:bg-blue-800 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
+              Join Men's Group
+            </a>
+          </div>
+        </div>
+        
+        <!-- Women's Ministry -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.4s;">
+          <div class="h-48 bg-gradient-to-br from-pink-600 to-rose-600 flex items-center justify-center">
+            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+            </svg>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-blue-900 mb-3">Women's Ministry</h3>
+            <p class="text-gray-800 mb-4">Build relationships with other women through Bible study, fellowship, and service opportunities.</p>
+            <ul class="text-sm text-gray-800 space-y-1 mb-4">
+              <li>• Tuesday Women's Bible Study (10:00 AM)</li>
+              <li>• Monthly Ladies' Luncheon</li>
+              <li>• Annual Women's Conference</li>
+            </ul>
+            <a href="../contact.html" class="inline-block bg-pink-600 hover:bg-pink-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
+              Join Women's Group
+            </a>
+          </div>
+        </div>
+        
+        <!-- Senior Adults -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.5s;">
+          <div class="h-48 bg-gradient-to-br from-amber-600 to-orange-600 flex items-center justify-center">
+            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-blue-900 mb-3">Senior Adults</h3>
+            <p class="text-gray-800 mb-4">Stay active and connected through our senior adult programs, including day trips, Bible study, and fellowship.</p>
+            <ul class="text-sm text-gray-800 space-y-1 mb-4">
+              <li>• Golden Years Bible Study</li>
+              <li>• Monthly Day Trips</li>
+              <li>• Senior Fellowship Luncheons</li>
+            </ul>
+            <a href="../contact.html" class="inline-block bg-amber-600 hover:bg-amber-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
+              Join Senior Group
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership Team Section -->
+  <section class="container mx-auto px-4 py-20">
+    <h2 class="text-3xl md:text-4xl font-extrabold text-blue-900 text-center mb-2 fade-in-up">Ministry Leadership</h2>
+    <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-12 fade-in-up"></div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Ministry Director -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 text-center group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up">
+        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Pastor John Kamau" class="w-24 h-24 rounded-full mx-auto mb-6 object-cover border-4 border-blue-200">
+        <h3 class="text-xl font-bold text-blue-900 mb-2">Pastor John Kamau</h3>
+        <p class="text-blue-600 font-semibold mb-4">Adults Ministry Director</p>
+        <p class="text-gray-800 mb-4">Pastor John leads our adults ministry with passion and wisdom, helping adults grow in their faith and find their purpose in Christ.</p>
+        <a href="../contact.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
+          Contact Pastor John
+        </a>
+      </div>
+      
+      <!-- Women's Ministry Leader -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 text-center group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.1s;">
+        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Wanjiku" class="w-24 h-24 rounded-full mx-auto mb-6 object-cover border-4 border-pink-200">
+        <h3 class="text-xl font-bold text-blue-900 mb-2">Sarah Wanjiku</h3>
+        <p class="text-blue-600 font-semibold mb-4">Women's Ministry Coordinator</p>
+        <p class="text-gray-800 mb-4">Sarah has a heart for women's ministry and creates opportunities for women to grow spiritually and build meaningful relationships.</p>
+        <a href="../contact.html" class="inline-block bg-pink-600 hover:bg-pink-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
+          Contact Sarah
+        </a>
+      </div>
+      
+      <!-- Men's Ministry Leader -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 text-center group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.2s;">
+        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Michael Ochieng" class="w-24 h-24 rounded-full mx-auto mb-6 object-cover border-4 border-blue-200">
+        <h3 class="text-xl font-bold text-blue-900 mb-2">Michael Ochieng</h3>
+        <p class="text-blue-600 font-semibold mb-4">Men's Ministry Coordinator</p>
+        <p class="text-gray-800 mb-4">Michael leads our men's ministry with integrity and encourages men to be strong spiritual leaders in their families and communities.</p>
+        <a href="../contact.html" class="inline-block bg-blue-700 hover:bg-blue-800 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
+          Contact Michael
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="bg-gray-50 py-20">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-blue-900 text-center mb-2 fade-in-up">What Our Adults Say</h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-12 fade-in-up"></div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white rounded-2xl shadow-lg p-8 group hover:shadow-2xl transition-all duration-300 fade-in-up">
+          <div class="flex items-center mb-4">
+            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Grace Muthoni" class="w-12 h-12 rounded-full object-cover mr-4" />
+            <div>
+              <h4 class="font-bold text-blue-900">Grace Muthoni</h4>
+              <p class="text-blue-800 text-sm">Women's Bible Study Member</p>
+            </div>
+          </div>
+          <p class="text-gray-800 italic">"The women's Bible study has been a lifeline for me. I've grown so much in my faith and made wonderful friends who support me through life's challenges."</p>
+        </div>
+        
+        <div class="bg-white rounded-2xl shadow-lg p-8 group hover:shadow-2xl transition-all duration-300 fade-in-up" style="transition-delay:0.1s;">
+          <div class="flex items-center mb-4">
+            <img src="https://randomuser.me/api/portraits/men/78.jpg" alt="David Kimani" class="w-12 h-12 rounded-full object-cover mr-4" />
+            <div>
+              <h4 class="font-bold text-blue-900">David Kimani</h4>
+              <p class="text-blue-800 text-sm">Men's Ministry Member</p>
+            </div>
+          </div>
+          <p class="text-gray-800 italic">"The men's ministry has helped me become a better husband and father. The accountability and fellowship have been transformative in my spiritual journey."</p>
+        </div>
+        
+        <div class="bg-white rounded-2xl shadow-lg p-8 group hover:shadow-2xl transition-all duration-300 fade-in-up" style="transition-delay:0.2s;">
+          <div class="flex items-center mb-4">
+            <img src="https://randomuser.me/api/portraits/women/89.jpg" alt="Esther Njeri" class="w-12 h-12 rounded-full object-cover mr-4" />
+            <div>
+              <h4 class="font-bold text-blue-900">Esther Njeri</h4>
+              <p class="text-blue-800 text-sm">Outreach Team Member</p>
+            </div>
+          </div>
+          <p class="text-gray-800 italic">"Being part of the outreach ministry has given me a sense of purpose. Serving others has deepened my understanding of God's love and grace."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Call to Action -->
+  <section class="bg-gradient-to-br from-blue-900 via-purple-800 to-blue-700 text-white py-20">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-6 fade-in-up">Ready to Get Connected?</h2>
+      <p class="text-xl text-white mb-10 max-w-3xl mx-auto fade-in-up">Join our adults ministry and discover a community where you can grow in faith, build meaningful relationships, and serve with purpose.</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 group fade-in-up">
+          <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Contact Us</h3>
+          <p class="text-white mb-6">Have questions about our adults ministry? We'd love to hear from you and help you get connected.</p>
+          <a href="../contact.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 transform hover:scale-105">
+            Send Message
+          </a>
+        </div>
+        
+        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 group fade-in-up" style="transition-delay:0.1s;">
+          <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Join a Group</h3>
+          <p class="text-white mb-6">Find a Bible study group, prayer team, or ministry opportunity that fits your schedule and interests.</p>
+          <a href="../contact.html" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 transform hover:scale-105">
+            Find Your Group
+          </a>
+        </div>
+        
+        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 group fade-in-up" style="transition-delay:0.2s;">
+          <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Attend an Event</h3>
+          <p class="text-white mb-6">Join us for upcoming events, retreats, and special programs designed specifically for adults.</p>
+          <a href="../events.html" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 transform hover:scale-105">
+            View Events
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <script src="/assets/js/components.js"></script>
+  <script>
+    // Animate fade-in-up elements on scroll
+    function animateFadeInUp() {
+      document.querySelectorAll('.fade-in-up').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 40) {
+          el.classList.add('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', animateFadeInUp);
+    window.addEventListener('DOMContentLoaded', animateFadeInUp);
+
+    // Highlight active nav link
+    document.addEventListener('DOMContentLoaded', function () {
+      var path = window.location.pathname.split('/').pop();
+      document.querySelectorAll('.nav-link').forEach(function(link) {
+        if (link.getAttribute('href') === path) {
+          link.classList.add('active');
+        }
+      });
+    });
+    // Sticky shadow on scroll
+    window.addEventListener('scroll', function () {
+      const header = document.getElementById('main-header');
+      if (window.scrollY > 10) {
+        header.classList.add('shadow-lg');
+      } else {
+        header.classList.remove('shadow-lg');
+      }
+    });
+    // Mobile menu slide-in/out and overlay
+    document.addEventListener('DOMContentLoaded', function () {
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('mobile-overlay');
+      const closeBtn = document.getElementById('mobile-menu-close');
+      if (btn && menu && overlay && closeBtn) {
+        btn.addEventListener('click', function () {
+          menu.classList.remove('translate-x-full');
+          overlay.classList.remove('hidden');
+          setTimeout(() => overlay.classList.add('opacity-100'), 10);
+        });
+        closeBtn.addEventListener('click', function () {
+          menu.classList.add('translate-x-full');
+          overlay.classList.remove('opacity-100');
+          setTimeout(() => overlay.classList.add('hidden'), 300);
+        });
+        overlay.addEventListener('click', function () {
+          menu.classList.add('translate-x-full');
+          overlay.classList.remove('opacity-100');
+          setTimeout(() => overlay.classList.add('hidden'), 300);
+        });
+      }
+    });
+    // Ministries dropdown functionality
+    document.addEventListener('DOMContentLoaded', function () {
+      const dropdownBtn = document.getElementById('ministries-dropdown-btn');
+      const dropdown = document.getElementById('ministries-dropdown');
+      const arrow = document.getElementById('ministries-arrow');
+      if (dropdownBtn && dropdown && arrow) {
+        dropdownBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          const isOpen = dropdown.classList.contains('opacity-100');
+          if (isOpen) {
+            dropdown.classList.remove('opacity-100', 'visible', 'scale-100');
+            dropdown.classList.add('opacity-0', 'invisible', 'scale-95');
+            arrow.classList.remove('rotate-180');
+          } else {
+            dropdown.classList.remove('opacity-0', 'invisible', 'scale-95');
+            dropdown.classList.add('opacity-100', 'visible', 'scale-100');
+            arrow.classList.add('rotate-180');
+          }
+        });
+        document.addEventListener('click', function(e) {
+          if (!dropdownBtn.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.classList.remove('opacity-100', 'visible', 'scale-100');
+            dropdown.classList.add('opacity-0', 'invisible', 'scale-95');
+            arrow.classList.remove('rotate-180');
+          }
+        });
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') {
+            dropdown.classList.remove('opacity-100', 'visible', 'scale-100');
+            dropdown.classList.add('opacity-0', 'invisible', 'scale-95');
+            arrow.classList.remove('rotate-180');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

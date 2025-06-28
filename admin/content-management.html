@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content Management | Admin | Diet of the Word Church</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+  <link href="/assets/css/custom.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+  <div id="admin-header"></div>
+  <div class="flex flex-1">
+    <div id="admin-sidebar"></div>
+    <main class="flex-1 p-8">
+      <h1 class="text-2xl font-bold text-blue-900 mb-8">Content Management</h1>
+      <button class="btn mb-4">Add New Page</button>
+      <div class="overflow-x-auto">
+        <table class="min-w-full bg-white rounded-xl shadow">
+          <thead>
+            <tr class="bg-blue-100 text-blue-900">
+              <th class="py-3 px-4 text-left">Title</th>
+              <th class="py-3 px-4 text-left">Type</th>
+              <th class="py-3 px-4 text-left">Last Updated</th>
+              <th class="py-3 px-4 text-left">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b">
+              <td class="py-3 px-4">Homepage</td>
+              <td class="py-3 px-4">Public</td>
+              <td class="py-3 px-4">2024-04-10</td>
+              <td class="py-3 px-4 flex gap-2">
+                <button class="btn-outline">Edit</button>
+                <button class="btn-danger">Delete</button>
+              </td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-3 px-4">Sermons</td>
+              <td class="py-3 px-4">Public</td>
+              <td class="py-3 px-4">2024-04-09</td>
+              <td class="py-3 px-4 flex gap-2">
+                <button class="btn-outline">Edit</button>
+                <button class="btn-danger">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4">Devotions</td>
+              <td class="py-3 px-4">Public</td>
+              <td class="py-3 px-4">2024-04-08</td>
+              <td class="py-3 px-4 flex gap-2">
+                <button class="btn-outline">Edit</button>
+                <button class="btn-danger">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+  <script src="/assets/js/components.js"></script>
+  <script src="/assets/js/content.js"></script>
+</body>
+</html>

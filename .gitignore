@@ -1,0 +1,11 @@
+node_modules/
+.env
+.env.*
+dist/
+build/
+.DS_Store
+*.log
+assets/images/
+assets/videos/
+assets/audio/
+assets/documents/ 

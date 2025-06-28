@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leadership | Diet of the Word Church</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .fade-in-up { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1); }
+    .fade-in-up.visible { opacity: 1; transform: none; }
+    .divider-gradient { background: linear-gradient(90deg, #6366f1 0%, #2563eb 50%, #a21caf 100%); height: 4px; border-radius: 2px; }
+    .icon-gradient { background: linear-gradient(135deg, #6366f1 0%, #2563eb 60%, #a21caf 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .leader-img { transition: transform 0.5s cubic-bezier(.4,0,.2,1), box-shadow 0.5s cubic-bezier(.4,0,.2,1); }
+    .group:hover .leader-img, .group:focus-within .leader-img { transform: scale(1.05); box-shadow: 0 10px 32px 0 rgba(30,64,175,0.18); z-index: 2; }
+  </style>
+</head>
+<body class="bg-white text-black">
+  <!-- Static Navigation Bar -->
+  <header id="main-header" class="bg-white/80 backdrop-blur border-b border-blue-100 shadow transition-shadow duration-300 sticky top-0 z-50">
+    <nav class="container mx-auto flex items-center justify-between px-4 py-4">
+      <!-- Logo/Brand -->
+      <a href="index.html" class="flex items-center gap-3 text-blue-900 font-extrabold text-2xl tracking-wide focus-visible:ring-2 focus-visible:ring-blue-400">
+        <img src="assets/images/Diet logo 2.png" alt="Diet of the Word Church Logo" class="w-12 h-12 object-contain">
+      </a>
+      <!-- Desktop Nav -->
+      <div class="hidden lg:flex items-center space-x-8">
+        <a href="index.html" class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium relative group">
+          <svg class="w-5 h-5 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+          </svg>
+          Home
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        
+        <a href="about.html" class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium relative group">
+          <svg class="w-5 h-5 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          About
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        
+        <a href="leadership.html" class="text-blue-600 font-medium relative group">
+          <svg class="w-5 h-5 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m9-4a4 4 0 11-8 0 4 4 0 018 0z"></path>
+          </svg>
+          Leadership
+          <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-600"></span>
+        </a>
+        
+        <div class="relative">
+          <button id="ministries-dropdown-btn" class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium flex items-center space-x-1 focus:outline-none">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+            <span>Ministries</span>
+            <svg id="ministries-arrow" class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div id="ministries-dropdown" class="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible transition-all duration-200 transform origin-top-left scale-95">
+            <div class="py-2">
+              <a href="ministries/toddlers.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150">
+                <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                </svg>
+                Toddlers
+              </a>
+              <a href="ministries/sunday-school.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150">
+                <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                </svg>
+                Sunday School
+              </a>
+              <a href="ministries/teenagers.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150">
+                <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+                Teenagers
+              </a>
+              <a href="ministries/youth.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150">
+                <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+                Youth
+              </a>
+              <a href="ministries/adults.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150">
+                <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+                Adults
+              </a>
+            </div>
+          </div>
+        </div>
+        <li><a href="devotions.html" class="nav-link flex items-center gap-2"><svg class="w-5 h-5 text-purple-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 20h9M12 4v16m0 0H3"/></svg>Devotions</a></li>
+        <li><a href="sermons.html" class="nav-link flex items-center gap-2"><svg class="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-6m0 0V6m0 6h6m-6 0H6"/></svg>Sermons</a></li>
+        <li><a href="events.html" class="nav-link flex items-center gap-2"><svg class="w-5 h-5 text-purple-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Events</a></li>
+        <li><a href="gallery.html" class="nav-link flex items-center gap-2"><svg class="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7zm0 0l7 7 4-4 5 5"/></svg>Gallery</a></li>
+        <li><a href="giving.html" class="nav-link flex items-center gap-2"><svg class="w-5 h-5 text-purple-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 1.343-3 3 0 1.657 1.343 3 3 3s3-1.343 3-3c0-1.657-1.343-3-3-3zm0 0V4m0 7v7m0 0H9m3 0h3"/></svg>Giving</a></li>
+        <li><a href="contact.html" class="nav-link flex items-center gap-2"><svg class="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 12a4 4 0 01-8 0m8 0a4 4 0 00-8 0m8 0V8a4 4 0 00-8 0v4m8 0v4a4 4 0 01-8 0v-4"/></svg>Contact</a></li>
+        <li><a href="prayer-requests.html" class="nav-link flex items-center gap-2"><svg class="w-5 h-5 text-purple-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>Prayer Requests</a></li>
+      </div>
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="md:hidden flex items-center px-2 py-1 border rounded text-black border-gray-300 hover:bg-blue-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 transition" aria-label="Open menu">
+        <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </nav>
+    <!-- Mobile Nav & Overlay -->
+    <div id="mobile-overlay" class="fixed inset-0 bg-black bg-opacity-40 z-40 hidden transition-opacity duration-300"></div>
+    <div id="mobile-menu" class="md:hidden fixed top-0 right-0 w-80 max-w-full h-full bg-white/80 shadow-2xl border-l border-blue-100 z-50 transform translate-x-full transition-transform duration-300">
+      <button id="mobile-menu-close" class="absolute top-4 right-4 text-gray-700 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 rounded-full bg-white/80 p-2 shadow" aria-label="Close menu">
+        <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <ul class="flex flex-col gap-2 p-8 font-semibold text-gray-700 mt-12 overflow-y-auto max-h-screen">
+        <li><a href="index.html" class="block py-2 nav-link flex items-center gap-2"><svg class="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l9-9 9 9M4 10v10a1 1 0 001 1h3m10-11v10a1 1 0 01-1 1h-3m-6 0h6"/></svg>Home</a></li>
+        <li><a href="about.html" class="block py-2 nav-link flex items-center gap-2"><svg class="w-5 h-5 text-purple-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z"/></svg>About</a></li>
+        <li><a href="leadership.html" class="block py-2 nav-link flex items-center gap-2"><svg class="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m9-4a4 4 0 11-8 0 4 4 0 018 0z"/></svg>Leadership</a></li>
+        <li>
+          <button class="flex items-center gap-2 w-full py-2 nav-link" aria-haspopup="true" aria-expanded="false" onclick="document.getElementById('mobile-ministries').classList.toggle('hidden')">
+            <svg class="w-5 h-5 text-purple-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7h18M3 12h18M3 17h18"/></svg>Ministries
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <ul id="mobile-ministries" class="ml-4 mt-1 hidden">
+            <li><a href="ministries/adults.html" class="block py-2 nav-link">Adults</a></li>
+            <li><a href="ministries/youth.html" class="block py-2 nav-link">Youth</a></li>
+            <li><a href="ministries/teenagers.html" class="block py-2 nav-link">Teenagers</a></li>
+            <li><a href="ministries/sunday-school.html" class="block py-2 nav-link">Sunday School</a></li>
+            <li><a href="ministries/toddlers.html" class="block py-2 nav-link">Toddlers</a></li>
+          </ul>
+        </li>
+        <li><a href="devotions.html" class="block py-2 nav-link flex items-center gap-2"><svg class="w-5 h-5 text-purple-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 20h9M12 4v16m0 0H3"/></svg>Devotions</a></li>
+        <li><a href="sermons.html" class="block py-2 nav-link flex items-center gap-2"><svg class="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-6m0 0V6m0 6h6m-6 0H6"/></svg>Sermons</a></li>
+        <li><a href="events.html" class="block py-2 nav-link flex items-center gap-2"><svg class="w-5 h-5 text-purple-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Events</a></li>
+        <li><a href="gallery.html" class="block py-2 nav-link flex items-center gap-2"><svg class="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7zm0 0l7 7 4-4 5 5"/></svg>Gallery</a></li>
+        <li><a href="giving.html" class="block py-2 nav-link flex items-center gap-2"><svg class="w-5 h-5 text-purple-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 1.343-3 3 0 1.657 1.343 3 3 3s3-1.343 3-3c0-1.657-1.343-3-3-3zm0 0V4m0 7v7m0 0H9m3 0h3"/></svg>Giving</a></li>
+        <li><a href="contact.html" class="block py-2 nav-link flex items-center gap-2"><svg class="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 12a4 4 0 01-8 0m8 0a4 4 0 00-8 0m8 0V8a4 4 0 00-8 0v4m8 0v4a4 4 0 01-8 0v-4"/></svg>Contact</a></li>
+        <li><a href="prayer-requests.html" class="block py-2 nav-link flex items-center gap-2"><svg class="w-5 h-5 text-purple-700" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>Prayer Requests</a></li>
+      </ul>
+    </div>
+    <style>
+      .nav-link {
+        position: relative;
+        padding-bottom: 2px;
+        transition: color 0.2s;
+      }
+      .nav-link:after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0; right: 0; bottom: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #6366f1 0%, #a21caf 100%);
+        border-radius: 2px;
+        opacity: 0;
+        transform: scaleX(0.6);
+        transition: opacity 0.2s, transform 0.2s;
+      }
+      .nav-link:hover:after, .nav-link:focus-visible:after {
+        opacity: 1;
+        transform: scaleX(1);
+      }
+      .nav-link.active:after {
+        opacity: 1;
+        transform: scaleX(1);
+      }
+    </style>
+    <script>
+      // Highlight active nav link
+      document.addEventListener('DOMContentLoaded', function () {
+        var path = window.location.pathname;
+        document.querySelectorAll('.nav-link').forEach(function(link) {
+          if (link.getAttribute('href') === path) {
+            link.classList.add('active');
+          }
+        });
+      });
+      // Sticky shadow on scroll
+      window.addEventListener('scroll', function () {
+        const header = document.getElementById('main-header');
+        if (window.scrollY > 10) {
+          header.classList.add('shadow-lg');
+        } else {
+          header.classList.remove('shadow-lg');
+        }
+      });
+      // Mobile menu slide-in/out and overlay
+      document.addEventListener('DOMContentLoaded', function () {
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const overlay = document.getElementById('mobile-overlay');
+        const closeBtn = document.getElementById('mobile-menu-close');
+        if (btn && menu && overlay && closeBtn) {
+          btn.addEventListener('click', function () {
+            menu.classList.remove('translate-x-full');
+            overlay.classList.remove('hidden');
+            setTimeout(() => overlay.classList.add('opacity-100'), 10);
+          });
+          closeBtn.addEventListener('click', function () {
+            menu.classList.add('translate-x-full');
+            overlay.classList.remove('opacity-100');
+            setTimeout(() => overlay.classList.add('hidden'), 300);
+          });
+          overlay.addEventListener('click', function () {
+            menu.classList.add('translate-x-full');
+            overlay.classList.remove('opacity-100');
+            setTimeout(() => overlay.classList.add('hidden'), 300);
+          });
+        }
+      });
+      // Ministries dropdown functionality
+      document.addEventListener('DOMContentLoaded', function () {
+        const dropdownBtn = document.getElementById('ministries-dropdown-btn');
+        const dropdown = document.getElementById('ministries-dropdown');
+        const arrow = document.getElementById('ministries-arrow');
+        
+        if (dropdownBtn && dropdown && arrow) {
+          dropdownBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Toggle dropdown
+            const isOpen = dropdown.classList.contains('opacity-100');
+            
+            if (isOpen) {
+              // Close dropdown
+              dropdown.classList.remove('opacity-100', 'visible', 'scale-100');
+              dropdown.classList.add('opacity-0', 'invisible', 'scale-95');
+              arrow.classList.remove('rotate-180');
+            } else {
+              // Open dropdown
+              dropdown.classList.remove('opacity-0', 'invisible', 'scale-95');
+              dropdown.classList.add('opacity-100', 'visible', 'scale-100');
+              arrow.classList.add('rotate-180');
+            }
+          });
+          
+          // Close dropdown when clicking outside
+          document.addEventListener('click', function(e) {
+            if (!dropdownBtn.contains(e.target) && !dropdown.contains(e.target)) {
+              dropdown.classList.remove('opacity-100', 'visible', 'scale-100');
+              dropdown.classList.add('opacity-0', 'invisible', 'scale-95');
+              arrow.classList.remove('rotate-180');
+            }
+          });
+          
+          // Close dropdown on escape key
+          document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+              dropdown.classList.remove('opacity-100', 'visible', 'scale-100');
+              dropdown.classList.add('opacity-0', 'invisible', 'scale-95');
+              arrow.classList.remove('rotate-180');
+            }
+          });
+        }
+      });
+    </script>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-[45vh] flex items-center justify-center bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80');">
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-purple-800/80 to-blue-400/60"></div>
+    <div class="container mx-auto px-4 py-20 text-center relative z-10 flex flex-col items-center fade-in-up">
+      <h1 class="text-5xl md:text-6xl font-extrabold mb-4 leading-tight text-white drop-shadow-xl tracking-wide uppercase">Our Leadership</h1>
+      <p class="text-xl md:text-2xl text-blue-100 mb-6 max-w-2xl mx-auto font-medium">Guided by faith, united in vision, committed to serving with excellence and humility.</p>
+      <div class="flex flex-col sm:flex-row gap-4 mt-4">
+        <a href="#philosophy" class="inline-block bg-gradient-to-r from-blue-700 via-purple-600 to-blue-900 hover:from-purple-700 hover:to-blue-950 text-white font-bold px-8 py-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-purple-400 text-lg uppercase tracking-wider">Our Philosophy</a>
+        <a href="#team" class="inline-block bg-white/20 backdrop-blur-sm border-2 border-white/30 text-white font-bold px-8 py-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-white/50 text-lg uppercase tracking-wider hover:bg-white/30">Meet the Team</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership Philosophy Section -->
+  <section id="philosophy" class="container mx-auto px-4 py-20">
+    <div class="max-w-3xl mx-auto text-center mb-12 fade-in-up">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-blue-900 mb-4 tracking-widest uppercase">Our Leadership Philosophy</h2>
+      <div class="divider-gradient mx-auto mb-6"></div>
+      <p class="text-lg md:text-xl text-gray-700 mb-6">At Diet of the Word Church, we believe leadership is a sacred trust. Our leaders are called to serve, inspire, and equip others to fulfill God's purpose. We value integrity, humility, vision, and a heart for people. Every decision is prayerfully made, every action rooted in love, and every leader accountable to God and the church family.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
+        <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center group hover:scale-105 hover:shadow-2xl transition-transform duration-300">
+          <svg class="w-12 h-12 mb-4 text-blue-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3zm0 0V4m0 8v8m8-8a8 8 0 11-16 0 8 8 0 0116 0z"/></svg>
+          <h3 class="font-bold text-lg mb-2 text-blue-900 uppercase tracking-wide">Servant Leadership</h3>
+          <p class="text-gray-600">We lead by serving, following Christ's example of humility and sacrificial love.</p>
+        </div>
+        <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center group hover:scale-105 hover:shadow-2xl transition-transform duration-300">
+          <svg class="w-12 h-12 mb-4 text-purple-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a5 5 0 00-10 0v2a2 2 0 00-2 2v7a2 2 0 002 2h10a2 2 0 002-2v-7a2 2 0 00-2-2z"/></svg>
+          <h3 class="font-bold text-lg mb-2 text-purple-900 uppercase tracking-wide">Vision & Integrity</h3>
+          <p class="text-gray-600">We pursue God's vision with integrity, transparency, and unwavering faith.</p>
+        </div>
+        <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center group hover:scale-105 hover:shadow-2xl transition-transform duration-300">
+          <svg class="w-12 h-12 mb-4 text-blue-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          <h3 class="font-bold text-lg mb-2 text-blue-900 uppercase tracking-wide">Empowering Others</h3>
+          <p class="text-gray-600">We equip and empower every member to discover and use their God-given gifts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Senior Pastor/Bishop Profile Section -->
+  <section id="senior-leader" class="container mx-auto px-4 py-20">
+    <div class="max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl p-10 md:p-16 flex flex-col md:flex-row items-center gap-10 fade-in-up">
+      <div class="flex-shrink-0 flex justify-center w-full md:w-auto">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Bishop Samuel Mwangi" class="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-4 border-blue-200 shadow-xl leader-img" />
+      </div>
+      <div class="flex-1 text-center md:text-left">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-blue-900 mb-2">Bishop Samuel Mwangi</h2>
+        <p class="text-xl text-blue-700 font-semibold mb-4">Lead Pastor & Visionary</p>
+        <p class="text-gray-700 mb-6">Bishop Samuel Mwangi has faithfully served as the Lead Pastor of Diet of the Word Church for over 15 years. With a passion for teaching God's Word and shepherding God's people, he is known for his wisdom, humility, and unwavering commitment to the spiritual growth of the church family. Bishop Samuel is a mentor to many, a visionary leader, and a servant at heart.</p>
+        <div class="bg-blue-50 border-l-4 border-blue-700 p-6 rounded-xl shadow-inner mb-4">
+          <p class="italic text-blue-900 text-lg">"My greatest joy is seeing lives transformed by the power of God's Word. Our leadership team is here to serve, guide, and walk with you on your journey of faith. Welcome to Diet of the Word Church – a place to belong, grow, and make a difference."</p>
+          <div class="mt-4 text-blue-700 font-bold">— Bishop Samuel Mwangi</div>
+        </div>
+        <a href="mailto:info@dietwordchurch.org" class="inline-block mt-2 bg-gradient-to-r from-blue-700 to-purple-700 hover:from-purple-700 hover:to-blue-900 text-white font-semibold px-8 py-3 rounded-full shadow transition-all duration-300 transform hover:scale-105 focus-visible:ring-2 focus-visible:ring-blue-400">Contact Bishop</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership Team -->
+  <section id="team" class="container mx-auto px-4 py-20">
+    <h2 class="text-center text-blue-900 text-3xl md:text-4xl font-extrabold tracking-widest uppercase mb-2 fade-in-up">Meet Our Leadership Team</h2>
+    <div class="divider-gradient mx-auto mb-10 fade-in-up"></div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+      <!-- Associate Pastor -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center text-center group transition-transform duration-300 hover:scale-105 hover:shadow-2xl focus-within:scale-105 focus-within:shadow-2xl fade-in-up">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Pastor Grace Wanjiku" class="w-28 h-28 rounded-full object-cover border-4 border-purple-200 mb-4 leader-img" />
+        <h3 class="text-xl font-bold text-purple-900 mb-1">Pastor Grace Wanjiku</h3>
+        <p class="text-purple-700 font-semibold mb-2">Associate Pastor</p>
+        <p class="text-gray-600">Grace leads discipleship, outreach, and women's ministry, equipping members to grow in faith and serve the community.</p>
+      </div>
+      <!-- Elder -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center text-center group transition-transform duration-300 hover:scale-105 hover:shadow-2xl focus-within:scale-105 focus-within:shadow-2xl fade-in-up" style="transition-delay:0.1s;">
+        <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Elder Michael Otieno" class="w-28 h-28 rounded-full object-cover border-4 border-blue-200 mb-4 leader-img" />
+        <h3 class="text-xl font-bold text-blue-900 mb-1">Elder Michael Otieno</h3>
+        <p class="text-blue-700 font-semibold mb-2">Elder</p>
+        <p class="text-gray-600">Michael provides pastoral care, prayer, and support to individuals and families in the church.</p>
+      </div>
+      <!-- Youth Pastor -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center text-center group transition-transform duration-300 hover:scale-105 hover:shadow-2xl focus-within:scale-105 focus-within:shadow-2xl fade-in-up" style="transition-delay:0.2s;">
+        <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Pastor David Kimani" class="w-28 h-28 rounded-full object-cover border-4 border-green-200 mb-4 leader-img" />
+        <h3 class="text-xl font-bold text-green-900 mb-1">Pastor David Kimani</h3>
+        <p class="text-green-700 font-semibold mb-2">Youth Pastor</p>
+        <p class="text-gray-600">David inspires and mentors the next generation, leading youth services, camps, and discipleship programs.</p>
+      </div>
+      <!-- Worship Leader -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center text-center group transition-transform duration-300 hover:scale-105 hover:shadow-2xl focus-within:scale-105 focus-within:shadow-2xl fade-in-up" style="transition-delay:0.3s;">
+        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Mary Njeri" class="w-28 h-28 rounded-full object-cover border-4 border-pink-200 mb-4 leader-img" />
+        <h3 class="text-xl font-bold text-pink-900 mb-1">Mary Njeri</h3>
+        <p class="text-pink-700 font-semibold mb-2">Worship Leader</p>
+        <p class="text-gray-600">Mary leads the worship ministry, cultivating a culture of passionate, Spirit-filled praise and worship.</p>
+      </div>
+      <!-- Children's Ministry Director -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center text-center group transition-transform duration-300 hover:scale-105 hover:shadow-2xl focus-within:scale-105 focus-within:shadow-2xl fade-in-up" style="transition-delay:0.4s;">
+        <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Esther Muthoni" class="w-28 h-28 rounded-full object-cover border-4 border-yellow-200 mb-4 leader-img" />
+        <h3 class="text-xl font-bold text-yellow-900 mb-1">Esther Muthoni</h3>
+        <p class="text-yellow-700 font-semibold mb-2">Children's Ministry Director</p>
+        <p class="text-gray-600">Esther oversees all children's programs, ensuring a safe, fun, and faith-filled environment for kids to grow.</p>
+      </div>
+      <!-- Outreach & Missions Coordinator -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center text-center group transition-transform duration-300 hover:scale-105 hover:shadow-2xl focus-within:scale-105 focus-within:shadow-2xl fade-in-up" style="transition-delay:0.5s;">
+        <img src="https://randomuser.me/api/portraits/men/77.jpg" alt="Peter Kariuki" class="w-28 h-28 rounded-full object-cover border-4 border-indigo-200 mb-4 leader-img" />
+        <h3 class="text-xl font-bold text-indigo-900 mb-1">Peter Kariuki</h3>
+        <p class="text-indigo-700 font-semibold mb-2">Outreach & Missions Coordinator</p>
+        <p class="text-gray-600">Peter mobilizes the church for local and global outreach, missions, and community service projects.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Organizational Structure Section -->
+  <section class="container mx-auto px-4 py-20">
+    <h2 class="text-center text-blue-900 text-3xl md:text-4xl font-extrabold tracking-widest uppercase mb-2 fade-in-up">Our Organizational Structure</h2>
+    <div class="divider-gradient mx-auto mb-10 fade-in-up"></div>
+    <div class="max-w-6xl mx-auto">
+      <!-- Top Level - Bishop -->
+      <div class="flex justify-center mb-8 fade-in-up">
+        <div class="bg-gradient-to-r from-blue-700 to-purple-700 text-white rounded-2xl shadow-2xl p-6 text-center max-w-md">
+          <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-white/20 flex items-center justify-center">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m9-4a4 4 0 11-8 0 4 4 0 018 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-1">Bishop Samuel Mwangi</h3>
+          <p class="text-blue-100 font-semibold">Lead Pastor & Visionary</p>
+        </div>
+      </div>
+      
+      <!-- Connecting Line -->
+      <div class="flex justify-center mb-8">
+        <div class="w-1 h-8 bg-gradient-to-b from-blue-700 to-purple-700"></div>
+      </div>
+      
+      <!-- Second Level - Associate Pastors & Elders -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 fade-in-up" style="transition-delay:0.1s;">
+        <div class="bg-white rounded-xl shadow-lg p-6 text-center border-l-4 border-purple-500">
+          <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-purple-100 flex items-center justify-center">
+            <svg class="w-8 h-8 text-purple-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+            </svg>
+          </div>
+          <h4 class="font-bold text-purple-900 mb-1">Pastor Grace Wanjiku</h4>
+          <p class="text-purple-700 text-sm font-semibold">Associate Pastor</p>
+          <p class="text-gray-600 text-xs mt-2">Discipleship & Outreach</p>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-lg p-6 text-center border-l-4 border-blue-500">
+          <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-blue-100 flex items-center justify-center">
+            <svg class="w-8 h-8 text-blue-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+            </svg>
+          </div>
+          <h4 class="font-bold text-blue-900 mb-1">Elder Michael Otieno</h4>
+          <p class="text-blue-700 text-sm font-semibold">Elder</p>
+          <p class="text-gray-600 text-xs mt-2">Pastoral Care</p>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-lg p-6 text-center border-l-4 border-green-500">
+          <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-green-100 flex items-center justify-center">
+            <svg class="w-8 h-8 text-green-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+            </svg>
+          </div>
+          <h4 class="font-bold text-green-900 mb-1">Pastor David Kimani</h4>
+          <p class="text-green-700 text-sm font-semibold">Youth Pastor</p>
+          <p class="text-gray-600 text-xs mt-2">Youth Ministry</p>
+        </div>
+      </div>
+      
+      <!-- Third Level - Ministry Leaders -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 fade-in-up" style="transition-delay:0.2s;">
+        <div class="bg-white rounded-xl shadow-lg p-6 text-center border-l-4 border-pink-500">
+          <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-pink-100 flex items-center justify-center">
+            <svg class="w-8 h-8 text-pink-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
+            </svg>
+          </div>
+          <h4 class="font-bold text-pink-900 mb-1">Mary Njeri</h4>
+          <p class="text-pink-700 text-sm font-semibold">Worship Leader</p>
+          <p class="text-gray-600 text-xs mt-2">Worship Ministry</p>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-lg p-6 text-center border-l-4 border-yellow-500">
+          <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-yellow-100 flex items-center justify-center">
+            <svg class="w-8 h-8 text-yellow-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            </svg>
+          </div>
+          <h4 class="font-bold text-yellow-900 mb-1">Esther Muthoni</h4>
+          <p class="text-yellow-700 text-sm font-semibold">Children's Director</p>
+          <p class="text-gray-600 text-xs mt-2">Children's Ministry</p>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-lg p-6 text-center border-l-4 border-indigo-500">
+          <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-indigo-100 flex items-center justify-center">
+            <svg class="w-8 h-8 text-indigo-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
+            </svg>
+          </div>
+          <h4 class="font-bold text-indigo-900 mb-1">Peter Kariuki</h4>
+          <p class="text-indigo-700 text-sm font-semibold">Outreach Coordinator</p>
+          <p class="text-gray-600 text-xs mt-2">Missions & Outreach</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="container mx-auto px-4 py-20">
+    <h2 class="text-center text-blue-900 text-3xl md:text-4xl font-extrabold tracking-widest uppercase mb-2 fade-in-up">What Our Members Say</h2>
+    <div class="divider-gradient mx-auto mb-10 fade-in-up"></div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Testimonial 1 -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 group hover:scale-105 hover:shadow-2xl transition-transform duration-300 fade-in-up">
+        <div class="flex items-center mb-4">
+          <img src="https://randomuser.me/api/portraits/women/23.jpg" alt="Sarah Kamau" class="w-12 h-12 rounded-full object-cover mr-4" />
+          <div>
+            <h4 class="font-bold text-blue-900">Sarah Kamau</h4>
+            <p class="text-blue-700 text-sm">Member since 2018</p>
+          </div>
+        </div>
+        <p class="text-gray-700 italic">"Our leadership team truly embodies servant leadership. Bishop Samuel's wisdom and Pastor Grace's compassion have been instrumental in my spiritual growth. They make everyone feel valued and heard."</p>
+      </div>
+      
+      <!-- Testimonial 2 -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 group hover:scale-105 hover:shadow-2xl transition-transform duration-300 fade-in-up" style="transition-delay:0.1s;">
+        <div class="flex items-center mb-4">
+          <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="James Ochieng" class="w-12 h-12 rounded-full object-cover mr-4" />
+          <div>
+            <h4 class="font-bold text-blue-900">James Ochieng</h4>
+            <p class="text-blue-700 text-sm">Youth Ministry Volunteer</p>
+          </div>
+        </div>
+        <p class="text-gray-700 italic">"Pastor David's dedication to our youth is incredible. He has a unique ability to connect with young people and guide them in their faith journey. The youth ministry has transformed under his leadership."</p>
+      </div>
+      
+      <!-- Testimonial 3 -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 group hover:scale-105 hover:shadow-2xl transition-transform duration-300 fade-in-up" style="transition-delay:0.2s;">
+        <div class="flex items-center mb-4">
+          <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="Grace Wambui" class="w-12 h-12 rounded-full object-cover mr-4" />
+          <div>
+            <h4 class="font-bold text-blue-900">Grace Wambui</h4>
+            <p class="text-blue-700 text-sm">Children's Ministry Parent</p>
+          </div>
+        </div>
+        <p class="text-gray-700 italic">"Esther and the children's ministry team create such a loving environment for our kids. My children look forward to Sunday school every week. The leadership here truly cares about every family."</p>
+      </div>
+      
+      <!-- Testimonial 4 -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 group hover:scale-105 hover:shadow-2xl transition-transform duration-300 fade-in-up" style="transition-delay:0.3s;">
+        <div class="flex items-center mb-4">
+          <img src="https://randomuser.me/api/portraits/men/89.jpg" alt="Michael Njoroge" class="w-12 h-12 rounded-full object-cover mr-4" />
+          <div>
+            <h4 class="font-bold text-blue-900">Michael Njoroge</h4>
+            <p class="text-blue-700 text-sm">Outreach Team Member</p>
+          </div>
+        </div>
+        <p class="text-gray-700 italic">"Peter's vision for outreach and missions has inspired our entire church to be more engaged in serving our community. The leadership here doesn't just talk about serving—they lead by example."</p>
+      </div>
+      
+      <!-- Testimonial 5 -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 group hover:scale-105 hover:shadow-2xl transition-transform duration-300 fade-in-up" style="transition-delay:0.4s;">
+        <div class="flex items-center mb-4">
+          <img src="https://randomuser.me/api/portraits/women/34.jpg" alt="Faith Akinyi" class="w-12 h-12 rounded-full object-cover mr-4" />
+          <div>
+            <h4 class="font-bold text-blue-900">Faith Akinyi</h4>
+            <p class="text-blue-700 text-sm">Worship Team Member</p>
+          </div>
+        </div>
+        <p class="text-gray-700 italic">"Mary's leadership in worship ministry has created such a beautiful atmosphere of praise. She has a gift for bringing out the best in everyone and leading us into God's presence."</p>
+      </div>
+      
+      <!-- Testimonial 6 -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 group hover:scale-105 hover:shadow-2xl transition-transform duration-300 fade-in-up" style="transition-delay:0.5s;">
+        <div class="flex items-center mb-4">
+          <img src="https://randomuser.me/api/portraits/men/56.jpg" alt="Robert Mwangi" class="w-12 h-12 rounded-full object-cover mr-4" />
+          <div>
+            <h4 class="font-bold text-blue-900">Robert Mwangi</h4>
+            <p class="text-blue-700 text-sm">Elder Michael's Care Group</p>
+          </div>
+        </div>
+        <p class="text-gray-700 italic">"Elder Michael's pastoral care has been a blessing during difficult times. His wisdom, prayer support, and genuine concern for people make him an invaluable part of our leadership team."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="bg-gradient-to-br from-blue-900 via-purple-800 to-blue-700 text-white py-20">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-6 fade-in-up">Connect With Our Leadership</h2>
+      <p class="text-xl text-blue-100 mb-10 max-w-3xl mx-auto fade-in-up">Ready to get involved? Our leadership team is here to welcome you, answer your questions, and help you find your place in our church family.</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <!-- Contact Leadership -->
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 group fade-in-up">
+          <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Contact Leadership</h3>
+          <p class="text-blue-100 mb-6">Have questions or need pastoral care? Reach out to our leadership team directly.</p>
+          <a href="contact.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 transform hover:scale-105">
+            Send Message
+          </a>
+        </div>
+        
+        <!-- Join a Ministry -->
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 group fade-in-up" style="transition-delay:0.1s;">
+          <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Join a Ministry</h3>
+          <p class="text-blue-100 mb-6">Discover your gifts and find your place in one of our vibrant ministry teams.</p>
+          <a href="index.html#ministries" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 transform hover:scale-105">
+            Explore Ministries
+          </a>
+        </div>
+        
+        <!-- Attend Services -->
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 group fade-in-up" style="transition-delay:0.2s;">
+          <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Attend Services</h3>
+          <p class="text-blue-100 mb-6">Join us for worship, fellowship, and spiritual growth every Sunday.</p>
+          <a href="index.html#services" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 transform hover:scale-105">
+            Service Times
+          </a>
+        </div>
+      </div>
+      
+      <div class="mt-12 fade-in-up" style="transition-delay:0.3s;">
+        <p class="text-blue-100 mb-6">Or connect with us on social media for daily inspiration and updates</p>
+        <div class="flex justify-center space-x-4">
+          <a href="#" class="w-12 h-12 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center transition-colors duration-300 transform hover:scale-110">
+            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 4.557c-.883.392-1.832.58-2.828.775 1.017-.609 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+            </svg>
+          </a>
+          <a href="#" class="w-12 h-12 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center transition-colors duration-300 transform hover:scale-110">
+            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+            </svg>
+          </a>
+          <a href="#" class="w-12 h-12 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center transition-colors duration-300 transform hover:scale-110">
+            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.746-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-r from-blue-900 via-purple-900 to-blue-800 text-white py-10 mt-20">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="text-center md:text-left">
+        <div class="font-extrabold text-lg tracking-wide mb-2">Diet of the Word Church</div>
+        <div class="text-blue-200 text-sm">Nairobi, Kenya</div>
+        <div class="text-blue-200 text-sm">&copy; 2025 Diet of the Word Church. All rights reserved.</div>
+      </div>
+      <div class="flex flex-wrap gap-4 justify-center md:justify-end">
+        <a href="/about.html" class="hover:text-purple-300">About</a>
+        <a href="/leadership.html" class="hover:text-purple-300">Leadership</a>
+        <a href="/ministries/adults.html" class="hover:text-purple-300">Ministries</a>
+        <a href="/events.html" class="hover:text-purple-300">Events</a>
+        <a href="/gallery.html" class="hover:text-purple-300">Gallery</a>
+        <a href="/giving.html" class="hover:text-purple-300">Giving</a>
+        <a href="/contact.html" class="hover:text-purple-300">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Animate fade-in-up elements on scroll
+    function animateFadeInUp() {
+      document.querySelectorAll('.fade-in-up').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 40) {
+          el.classList.add('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', animateFadeInUp);
+    window.addEventListener('DOMContentLoaded', animateFadeInUp);
+  </script>
+</body>
+</html> 
