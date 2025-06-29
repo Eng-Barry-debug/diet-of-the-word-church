@@ -4,64 +4,319 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prayer Requests | Diet of the Word Church Admin</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="/assets/css/custom.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 text-gray-800 min-h-screen">
-  <!-- Admin Header -->
+<body class="bg-gradient-to-br from-blue-50 via-purple-50 to-white dark:from-gray-900 dark:via-blue-950 dark:to-gray-900 text-gray-800 dark:text-gray-100 min-h-screen flex flex-col transition-colors duration-300 relative overflow-x-hidden">
+  <!-- Animated Background -->
+  <div class="absolute inset-0 -z-10 pointer-events-none">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[80vw] h-[40vw] bg-gradient-to-br from-blue-200/40 via-purple-200/30 to-pink-100/20 rounded-full blur-3xl opacity-70 animate-pulse-slow"></div>
+    <div class="absolute bottom-0 right-0 w-1/3 h-1/3 bg-gradient-to-tr from-pink-200/40 via-blue-100/30 to-white/0 rounded-full blur-2xl opacity-60 animate-pulse-slow"></div>
+  </div>
   <div id="admin-header"></div>
-  <div class="flex">
+  <div id="breadcrumb"></div>
+  <!-- Topbar Quick Links -->
+  <nav class="flex gap-4 px-8 py-2 bg-white/80 dark:bg-gray-900/80 shadow rounded-b-xl mb-4 sticky top-20 z-30 items-center">
+    <button id="sidebar-hamburger" class="bg-blue-600 text-white rounded-full p-2 shadow-lg focus:outline-none mr-4 md:hidden" title="Open Sidebar" aria-label="Open Sidebar">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+    <a href="user-management.html" class="text-blue-700 font-semibold hover:underline">Users</a>
+    <a href="content-management.html" class="text-indigo-700 font-semibold hover:underline">Content</a>
+    <a href="donations.html" class="text-green-700 font-semibold hover:underline">Donations</a>
+    <a href="prayer-admin.html" class="text-pink-700 font-semibold hover:underline">Prayer Requests</a>
+  </nav>
+  <!-- Back to Dashboard Button -->
+  <div class="px-8 mb-4">
+    <a href="index.html" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-800 text-white font-bold px-4 py-2 rounded shadow transition mb-2">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+      Back to Dashboard
+    </a>
+  </div>
+  <div class="flex flex-1">
     <!-- Sidebar -->
-    <div id="admin-sidebar"></div>
+    <div id="admin-sidebar" class="sticky top-20 h-[calc(100vh-5rem)] z-20 transition-all duration-300">
+      <!-- Collapsible button -->
+      <button id="sidebar-toggle" class="absolute -right-4 top-4 bg-blue-600 text-white rounded-full p-1 shadow-lg focus:outline-none" title="Toggle Sidebar">
+        <svg id="sidebar-toggle-icon" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
     <!-- Main Content -->
-    <main class="flex-1 p-8">
-      <h1 class="text-3xl font-bold mb-8">Prayer Requests</h1>
-      <div class="overflow-x-auto bg-white rounded-lg shadow p-6">
-        <table class="min-w-full divide-y divide-gray-200">
+    <main class="flex-1 p-6 md:p-10 relative">
+      <!-- Animated Request Stats -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div class="glass-card p-5 flex items-center gap-4 animate-fade-in">
+          <div class="bg-blue-100 dark:bg-blue-900 p-3 rounded-full shadow-lg">
+            <svg class="w-6 h-6 text-blue-600 dark:text-blue-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 10c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+          </div>
+          <div>
+            <div class="text-2xl font-bold counter" data-count="32">0</div>
+            <div class="text-xs text-gray-500 dark:text-gray-400">Total Requests</div>
+          </div>
+        </div>
+        <div class="glass-card p-5 flex items-center gap-4 animate-fade-in delay-100">
+          <div class="bg-green-100 dark:bg-green-900 p-3 rounded-full shadow-lg">
+            <svg class="w-6 h-6 text-green-600 dark:text-green-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2l4-4"/></svg>
+          </div>
+          <div>
+            <div class="text-2xl font-bold counter" data-count="18">0</div>
+            <div class="text-xs text-gray-500 dark:text-gray-400">Prayed</div>
+          </div>
+        </div>
+        <div class="glass-card p-5 flex items-center gap-4 animate-fade-in delay-200">
+          <div class="bg-yellow-100 dark:bg-yellow-900 p-3 rounded-full shadow-lg">
+            <svg class="w-6 h-6 text-yellow-600 dark:text-yellow-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <div>
+            <div class="text-2xl font-bold counter" data-count="10">0</div>
+            <div class="text-xs text-gray-500 dark:text-gray-400">Pending</div>
+          </div>
+        </div>
+        <div class="glass-card p-5 flex items-center gap-4 animate-fade-in delay-300">
+          <div class="bg-red-100 dark:bg-red-900 p-3 rounded-full shadow-lg">
+            <svg class="w-6 h-6 text-red-600 dark:text-red-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M15 9v2a2 2 0 0 1-2 2H9"/></svg>
+          </div>
+          <div>
+            <div class="text-2xl font-bold counter" data-count="4">0</div>
+            <div class="text-xs text-gray-500 dark:text-gray-400">Deleted</div>
+          </div>
+        </div>
+      </div>
+      <!-- Filter/Search Bar -->
+      <div class="flex flex-col md:flex-row md:items-center gap-4 mb-6 animate-fade-in-up">
+        <input type="text" placeholder="Search requests..." class="w-full md:w-1/3 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-blue-400 outline-none transition" />
+        <select class="px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-blue-400 outline-none transition">
+          <option value="">All Statuses</option>
+          <option>Pending</option>
+          <option>Prayed</option>
+          <option>Deleted</option>
+        </select>
+        <button class="ml-auto bg-gradient-to-r from-blue-600 to-blue-400 text-white px-5 py-2 rounded-lg shadow hover:scale-105 transition-transform flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"/></svg>
+          Add Request
+        </button>
+      </div>
+      <!-- Requests Table -->
+      <div class="overflow-x-auto glass-card rounded-xl shadow-lg p-0 animate-fade-in-up">
+        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-800">
           <thead>
-            <tr>
-              <th class="px-4 py-2 text-left text-xs font-semibold text-gray-800 uppercase tracking-wider">Name</th>
-              <th class="px-4 py-2 text-left text-xs font-semibold text-gray-800 uppercase tracking-wider">Request</th>
-              <th class="px-4 py-2 text-left text-xs font-semibold text-gray-800 uppercase tracking-wider">Date</th>
-              <th class="px-4 py-2 text-left text-xs font-semibold text-gray-800 uppercase tracking-wider">Status</th>
-              <th class="px-4 py-2 text-left text-xs font-semibold text-gray-800 uppercase tracking-wider">Actions</th>
+            <tr class="bg-blue-50 dark:bg-gray-800">
+              <th class="px-4 py-3 text-left text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider"><input type="checkbox" /></th>
+              <th class="px-4 py-3 text-left text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">Name</th>
+              <th class="px-4 py-3 text-left text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">Request</th>
+              <th class="px-4 py-3 text-left text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">Date</th>
+              <th class="px-4 py-3 text-left text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">Status</th>
+              <th class="px-4 py-3 text-left text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">Actions</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-gray-100">
-            <tr>
+          <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+            <tr class="hover:bg-blue-50 dark:hover:bg-gray-800 transition">
+              <td class="px-4 py-3"><input type="checkbox" /></td>
               <td class="px-4 py-3 whitespace-nowrap">Alice Njeri</td>
               <td class="px-4 py-3 whitespace-nowrap">Pray for my family's health and unity.</td>
               <td class="px-4 py-3 whitespace-nowrap">2024-06-01</td>
-              <td class="px-4 py-3 whitespace-nowrap"><span class="inline-block px-2 py-1 text-xs bg-yellow-100 text-yellow-800 rounded">Pending</span></td>
-              <td class="px-4 py-3 whitespace-nowrap space-x-2">
-                <button class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-xs font-semibold transition-colors">Mark as Prayed</button>
-                <button class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-xs font-semibold transition-colors">Delete</button>
+              <td class="px-4 py-3 whitespace-nowrap"><span class="inline-block px-2 py-1 text-xs bg-yellow-100 dark:bg-yellow-800 text-yellow-800 dark:text-yellow-200 rounded">Pending</span></td>
+              <td class="px-4 py-3 whitespace-nowrap flex gap-2">
+                <button class="p-2 rounded hover:bg-green-100 dark:hover:bg-green-900 transition" title="Mark as Prayed"><svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></button>
+                <button class="p-2 rounded hover:bg-blue-100 dark:hover:bg-blue-900 transition" title="View"><svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M15 12h.01"/><path d="M12 15v.01"/></svg></button>
+                <button class="p-2 rounded hover:bg-red-100 dark:hover:bg-red-900 transition" title="Delete"><svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg></button>
               </td>
             </tr>
-            <tr>
+            <tr class="hover:bg-blue-50 dark:hover:bg-gray-800 transition">
+              <td class="px-4 py-3"><input type="checkbox" /></td>
               <td class="px-4 py-3 whitespace-nowrap">Peter Kimani</td>
               <td class="px-4 py-3 whitespace-nowrap">Guidance for my upcoming exams.</td>
               <td class="px-4 py-3 whitespace-nowrap">2024-05-30</td>
-              <td class="px-4 py-3 whitespace-nowrap"><span class="inline-block px-2 py-1 text-xs bg-green-100 text-green-800 rounded">Prayed</span></td>
-              <td class="px-4 py-3 whitespace-nowrap space-x-2">
-                <button class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-xs font-semibold transition-colors">Mark as Prayed</button>
-                <button class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-xs font-semibold transition-colors">Delete</button>
+              <td class="px-4 py-3 whitespace-nowrap"><span class="inline-block px-2 py-1 text-xs bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-200 rounded">Prayed</span></td>
+              <td class="px-4 py-3 whitespace-nowrap flex gap-2">
+                <button class="p-2 rounded hover:bg-green-100 dark:hover:bg-green-900 transition" title="Mark as Prayed"><svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></button>
+                <button class="p-2 rounded hover:bg-blue-100 dark:hover:bg-blue-900 transition" title="View"><svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M15 12h.01"/><path d="M12 15v.01"/></svg></button>
+                <button class="p-2 rounded hover:bg-red-100 dark:hover:bg-red-900 transition" title="Delete"><svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg></button>
               </td>
             </tr>
-            <tr>
+            <tr class="hover:bg-blue-50 dark:hover:bg-gray-800 transition">
+              <td class="px-4 py-3"><input type="checkbox" /></td>
               <td class="px-4 py-3 whitespace-nowrap">Faith Waweru</td>
               <td class="px-4 py-3 whitespace-nowrap">Strength and peace during a difficult season.</td>
               <td class="px-4 py-3 whitespace-nowrap">2024-05-28</td>
-              <td class="px-4 py-3 whitespace-nowrap"><span class="inline-block px-2 py-1 text-xs bg-yellow-100 text-yellow-800 rounded">Pending</span></td>
-              <td class="px-4 py-3 whitespace-nowrap space-x-2">
-                <button class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-xs font-semibold transition-colors">Mark as Prayed</button>
-                <button class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-xs font-semibold transition-colors">Delete</button>
+              <td class="px-4 py-3 whitespace-nowrap"><span class="inline-block px-2 py-1 text-xs bg-yellow-100 dark:bg-yellow-800 text-yellow-800 dark:text-yellow-200 rounded">Pending</span></td>
+              <td class="px-4 py-3 whitespace-nowrap flex gap-2">
+                <button class="p-2 rounded hover:bg-green-100 dark:hover:bg-green-900 transition" title="Mark as Prayed"><svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></button>
+                <button class="p-2 rounded hover:bg-blue-100 dark:hover:bg-blue-900 transition" title="View"><svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M15 12h.01"/><path d="M12 15v.01"/></svg></button>
+                <button class="p-2 rounded hover:bg-red-100 dark:hover:bg-red-900 transition" title="Delete"><svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg></button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
+      <!-- Bulk Actions Bar -->
+      <div class="fixed bottom-8 left-1/2 -translate-x-1/2 z-40 hidden" id="bulk-actions-bar">
+        <div class="bg-white dark:bg-gray-900 rounded-full shadow-lg flex items-center gap-4 px-6 py-3 animate-fade-in-up">
+          <span class="text-sm">2 requests selected</span>
+          <button class="bg-gradient-to-r from-blue-600 to-blue-400 text-white px-4 py-2 rounded-lg shadow hover:scale-105 transition-transform">Delete Selected</button>
+        </div>
+      </div>
+      <!-- View/Update Request Modal (placeholder) -->
+      <div id="request-modal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
+        <div class="glass-card w-full max-w-lg p-8 animate-fade-in-up relative">
+          <button class="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-2xl leading-none" onclick="document.getElementById('request-modal').classList.add('hidden')">&times;</button>
+          <h2 class="text-xl font-bold mb-4">Prayer Request Details</h2>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs text-gray-500 mb-1">Name</label>
+              <input type="text" class="w-full px-3 py-2 rounded border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800" value="Alice Njeri" />
+            </div>
+            <div>
+              <label class="block text-xs text-gray-500 mb-1">Request</label>
+              <textarea class="w-full px-3 py-2 rounded border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800" rows="4">Pray for my family's health and unity.</textarea>
+            </div>
+            <div>
+              <label class="block text-xs text-gray-500 mb-1">Status</label>
+              <select class="w-full px-3 py-2 rounded border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+                <option>Pending</option>
+                <option>Prayed</option>
+                <option>Deleted</option>
+              </select>
+            </div>
+            <div class="flex justify-end gap-2 mt-4">
+              <button class="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 px-4 py-2 rounded-lg" onclick="document.getElementById('request-modal').classList.add('hidden')">Cancel</button>
+              <button class="bg-gradient-to-r from-blue-600 to-blue-400 text-white px-4 py-2 rounded-lg shadow hover:scale-105 transition-transform">Save Changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Toast Notification (placeholder) -->
+      <div id="toast" class="fixed top-6 right-6 z-50 hidden">
+        <div class="glass-card text-white px-6 py-4 shadow-lg flex items-center gap-3 animate-fade-in bg-gradient-to-r from-green-500 to-blue-500">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+          <span>Action completed successfully!</span>
+        </div>
+      </div>
     </main>
   </div>
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 py-6 mt-8 animate-fade-in-up">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+        <span>&copy; 2024 Diet of the Word Church</span>
+        <span class="hidden md:inline">|</span>
+        <span>Admin Panel</span>
+      </div>
+      <div class="flex gap-4 text-gray-400">
+        <a href="#" class="hover:text-blue-600 transition">Privacy Policy</a>
+        <a href="#" class="hover:text-blue-600 transition">Terms</a>
+        <a href="#" class="hover:text-blue-600 transition">System Status</a>
+      </div>
+    </div>
+  </footer>
   <script src="/assets/js/components.js"></script>
+  <script>
+    // Animated counters
+    document.querySelectorAll('.counter').forEach(counter => {
+      const update = () => {
+        const target = +counter.getAttribute('data-count');
+        let count = +counter.innerText;
+        const inc = Math.ceil(target / 40);
+        if(count < target) {
+          counter.innerText = Math.min(count + inc, target);
+          setTimeout(update, 20);
+        } else {
+          counter.innerText = target;
+        }
+      };
+      update();
+    });
+    // Modal open/close (placeholder logic)
+    document.querySelectorAll('button').forEach(btn => {
+      if(btn.textContent.includes('View')) {
+        btn.onclick = () => document.getElementById('request-modal').classList.remove('hidden');
+      }
+    });
+    // Toast (placeholder)
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.querySelector('span').textContent = msg;
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 3000);
+    }
+    // Glassmorphism animation
+    document.querySelectorAll('.glass-card').forEach(card => {
+      card.classList.add('backdrop-blur-lg','bg-white/60','dark:bg-gray-900/60','border','border-white/30','dark:border-gray-800/40','shadow-2xl');
+    });
+    // Sidebar collapse logic
+    const sidebar = document.getElementById('admin-sidebar');
+    const toggleBtn = document.getElementById('sidebar-toggle');
+    if (sidebar && toggleBtn) {
+      let collapsed = false;
+      toggleBtn.onclick = () => {
+        collapsed = !collapsed;
+        sidebar.style.width = collapsed ? '3rem' : '';
+        sidebar.classList.toggle('overflow-hidden', collapsed);
+      };
+    }
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+      if (e.altKey && !e.shiftKey && !e.ctrlKey) {
+        switch (e.key.toLowerCase()) {
+          case 'u': window.location.href = 'user-management.html'; break;
+          case 'c': window.location.href = 'content-management.html'; break;
+          case 'd': window.location.href = 'donations.html'; break;
+          case 'p': window.location.href = 'prayer-admin.html'; break;
+          case 'b': window.location.href = 'index.html'; break;
+        }
+      }
+    });
+    // Sidebar mini mode toggle
+    const miniToggle = document.getElementById('sidebar-mini-toggle');
+    if (miniToggle && window.setSidebarMini) {
+      let mini = false;
+      miniToggle.onclick = () => {
+        mini = !mini;
+        window.setSidebarMini(mini);
+      };
+    }
+    // Multi-level breadcrumb logic
+    (function() {
+      const pageMap = {
+        'user-management.html': 'User Management',
+        'content-management.html': 'Content Management',
+        'donations.html': 'Donations',
+        'prayer-admin.html': 'Prayer Requests',
+        'index.html': 'Dashboard'
+      };
+      const file = window.location.pathname.split('/').pop();
+      let subpage = '';
+      // Detect subpage from hash or query string
+      if (window.location.hash) {
+        const hash = window.location.hash.replace('#', '').toLowerCase();
+        if (hash === 'view') subpage = 'View Request';
+        if (hash === 'add') subpage = 'Add Request';
+      } else if (window.location.search) {
+        const params = new URLSearchParams(window.location.search);
+        if (params.has('view')) subpage = 'View Request';
+        if (params.has('add')) subpage = 'Add Request';
+      }
+      let breadcrumbHtml = '<nav class="text-sm text-gray-600 mb-4 flex items-center gap-2" aria-label="Breadcrumb">';
+      breadcrumbHtml += '<ol class="list-reset flex items-center space-x-2">';
+      breadcrumbHtml += '<li><a href="index.html" class="hover:text-blue-700 font-semibold">Dashboard</a></li>';
+      if (file !== 'index.html') {
+        breadcrumbHtml += '<li><span class="mx-2">/</span></li>';
+        breadcrumbHtml += `<li><a href="prayer-admin.html" class="hover:text-blue-700 font-semibold">${pageMap[file]}</a></li>`;
+      }
+      if (subpage) {
+        breadcrumbHtml += '<li><span class="mx-2">/</span></li>';
+        breadcrumbHtml += `<li class="text-blue-900 font-bold" aria-current="page">${subpage}</li>`;
+      } else {
+        breadcrumbHtml += '<li><span class="mx-2">/</span></li>';
+        breadcrumbHtml += `<li class="text-blue-900 font-bold" aria-current="page">${pageMap[file]}</li>`;
+      }
+      breadcrumbHtml += '</ol></nav>';
+      document.getElementById('breadcrumb').innerHTML = breadcrumbHtml;
+    })();
+    // Hamburger button logic
+    const hamburger = document.getElementById('sidebar-hamburger');
+    if (hamburger && window.openSidebar) {
+      hamburger.onclick = window.openSidebar;
+    }
+  </script>
 </body>
 </html>
