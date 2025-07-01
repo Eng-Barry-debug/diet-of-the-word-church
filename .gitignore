@@ -5,7 +5,7 @@ dist/
 build/
 .DS_Store
 *.log
-assets/images/
+# assets/images/
 assets/videos/
 assets/audio/
-assets/documents/ 
+assets/documents/
