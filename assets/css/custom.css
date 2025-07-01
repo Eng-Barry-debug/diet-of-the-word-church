@@ -990,4 +990,65 @@
     box-shadow: none !important;
     border: 1px solid #000 !important;
   }
+}
+
+/* Navbar Hover/Underline and Animation Styles */
+.nav-link-ani {
+  position: relative;
+  padding-bottom: 2px;
+  color: #fff;
+  transition: color 0.2s, font-weight 0.2s;
+  font-weight: 500;
+  outline: none;
+}
+.nav-link-ani:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #f472b6 0%, #a78bfa 50%, #38bdf8 100%);
+  border-radius: 2px;
+  opacity: 0;
+  transform: scaleX(0.6);
+  transition: opacity 0.4s, transform 0.4s;
+}
+.nav-link-ani:hover:after, .nav-link-ani:focus-visible:after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+.nav-link-ani.active:after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+.nav-link-ani:hover, .nav-link-ani:focus-visible {
+  color: #fbbf24;
+  font-weight: 700;
+  text-shadow: 0 2px 8px #f472b6cc;
+}
+.mega-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  color: #374151;
+  border-radius: 0.75rem;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  font-weight: 500;
+  background: transparent;
+}
+.mega-link:hover, .mega-link:focus-visible {
+  background: #f0f7ff;
+  color: #a21caf;
+  transform: translateX(4px) scale(1.03);
+}
+
+/* Ministries Mega Menu Workaround for group-hover/focus */
+.group:hover #ministries-mega,
+.group:focus-within #ministries-mega {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: scale(1) !important;
+  pointer-events: auto !important;
+  z-index: 9999;
 } 
