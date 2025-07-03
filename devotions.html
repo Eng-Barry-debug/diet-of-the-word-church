@@ -59,67 +59,68 @@
         </li>
       </ul>
       <!-- Mobile Menu Button -->
-      <button id="mobile-menu-btn" class="md:hidden flex items-center px-2 py-1 border rounded text-white border-pink-200 hover:bg-pink-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-400 transition" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
+      <button id="mobile-menu-btn" class="md:hidden flex items-center px-2 py-1 border rounded text-white border-pink-200 bg-black hover:bg-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-400 transition" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
         <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
     </nav>
     <!-- Mobile Nav & Overlay -->
     <div id="mobile-overlay" class="fixed inset-0 bg-black bg-opacity-40 z-40 hidden transition-opacity duration-300" tabindex="-1" aria-hidden="true"></div>
-    <div id="mobile-menu" class="md:hidden fixed top-0 right-0 w-full max-w-full h-full bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100/90 backdrop-blur-2xl shadow-2xl border-l border-pink-200 z-50 transform translate-x-full transition-transform duration-500 rounded-l-2xl" role="menu" aria-label="Mobile navigation" tabindex="-1">
-      <button id="mobile-menu-close" class="absolute top-4 right-4 text-pink-700 hover:text-pink-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-400 rounded-full bg-white/80 p-2 shadow" aria-label="Close menu">
+    <div id="mobile-menu" class="md:hidden fixed top-0 right-0 w-full max-w-xs h-full bg-black text-white backdrop-blur-2xl shadow-2xl border-l-4 border-indigo-400 z-50 transform translate-x-full transition-transform duration-500 rounded-l-2xl flex flex-col" role="menu" aria-label="Mobile navigation" tabindex="-1">
+      <button id="mobile-menu-close" class="absolute top-4 right-4 text-white hover:text-pink-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-400 rounded-full bg-black p-2 shadow-lg border border-pink-400" aria-label="Close menu">
         <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
-      <ul class="flex flex-col gap-2 p-8 font-semibold text-pink-900 overflow-y-auto max-h-screen" role="menubar">
-        <li role="none"><a href="index.html" class="block py-2 nav-link-ani flex items-center gap-2" role="menuitem" tabindex="0">Home</a></li>
-        <li role="none"><a href="about.html" class="block py-2 nav-link-ani flex items-center gap-2" role="menuitem" tabindex="0">About</a></li>
-        <li role="none"><a href="leadership.html" class="block py-2 nav-link-ani flex items-center gap-2" role="menuitem" tabindex="0">Leadership</a></li>
-        <li role="none">
-          <button class="flex items-center gap-2 w-full py-2 nav-link-ani" aria-haspopup="true" aria-expanded="false" aria-controls="mobile-ministries" onclick="document.getElementById('mobile-ministries').classList.toggle('hidden')" role="menuitem" tabindex="0">
-            Ministries
-            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-          </button>
-          <ul id="mobile-ministries" class="ml-4 mt-1 hidden" role="menu" aria-label="Ministries submenu">
-            <li role="none"><a href="ministries/adults.html" class="block py-2 nav-link-ani flex items-center gap-2" role="menuitem" tabindex="-1"><svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>Adults</a></li>
-            <li role="none"><a href="ministries/youth.html" class="block py-2 nav-link-ani flex items-center gap-2" role="menuitem" tabindex="-1"><svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Youth</a></li>
-            <li role="none"><a href="ministries/teenagers.html" class="block py-2 nav-link-ani flex items-center gap-2" role="menuitem" tabindex="-1"><svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"/></svg>Teenagers</a></li>
-            <li role="none"><a href="ministries/sunday-school.html" class="block py-2 nav-link-ani flex items-center gap-2" role="menuitem" tabindex="-1"><svg class="w-4 h-4 text-yellow-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="3"/></svg>Sunday School</a></li>
-            <li role="none"><a href="ministries/toddlers.html" class="block py-2 nav-link-ani flex items-center gap-2" role="menuitem" tabindex="-1"><svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/></svg>Toddlers</a></li>
-          </ul>
-        </li>
-        <li role="none"><a href="devotions.html" class="block py-2 nav-link-ani flex items-center gap-2" role="menuitem" tabindex="0">Devotions</a></li>
-        <li role="none"><a href="sermons.html" class="block py-2 nav-link-ani flex items-center gap-2" role="menuitem" tabindex="0">Sermons</a></li>
-        <li role="none"><a href="events.html" class="block py-2 nav-link-ani flex items-center gap-2" role="menuitem" tabindex="0">Events</a></li>
-        <li role="none"><a href="gallery.html" class="block py-2 nav-link-ani flex items-center gap-2" role="menuitem" tabindex="0">Gallery</a></li>
-        <li role="none"><a href="contact.html" class="block py-2 nav-link-ani flex items-center gap-2" role="menuitem" tabindex="0">Contact</a></li>
-        <li role="none"><a href="prayer-requests.html" class="block py-2 nav-link-ani flex items-center gap-2" role="menuitem" tabindex="0">Prayer Requests</a></li>
-        <li role="none"><a href="giving.html" class="ml-2 px-4 py-2 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-blue-600 text-white font-semibold shadow-xl hover:from-pink-600 hover:to-blue-800 transition-all duration-500 flex items-center gap-2 animate-give-glow focus-visible:ring-2 focus-visible:ring-pink-400" role="menuitem" tabindex="0">
-          <svg class="w-5 h-5 animate-give-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 1.343-3 3 0 1.657 1.343 3 3 3s3-1.343 3-3c0-1.657-1.343-3-3-3zm0 0V4m0 7v7m0 0H9m3 0h3"/></svg>
-          Give
-        </a></li>
-        <li role="none">
-          <button class="ml-2 p-2 rounded-full bg-white/30 hover:bg-pink-100 transition shadow focus-visible:ring-2 focus-visible:ring-pink-400 animate-bell" aria-label="Notifications">
-            <svg class="w-6 h-6 text-pink-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 7.165 6 9.388 6 12v2.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
-        </button>
-        </li>
-      </ul>
+      <div class="flex-1 flex flex-col justify-center">
+        <ul class="flex flex-col gap-6 px-8 py-16 font-bold text-white text-lg tracking-wide overflow-y-auto max-h-screen" role="menubar">
+          <li role="none"><a href="index.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">Home</a></li>
+          <li role="none"><a href="about.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">About</a></li>
+          <li role="none"><a href="leadership.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">Leadership</a></li>
+          <li role="none" class="pt-2 pb-2 border-t border-pink-400">
+            <button class="flex items-center gap-2 w-full py-3 nav-link-ani text-left text-white hover:text-pink-400" aria-haspopup="true" aria-expanded="false" aria-controls="mobile-ministries" onclick="document.getElementById('mobile-ministries').classList.toggle('hidden')" role="menuitem" tabindex="0">
+              Ministries
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <ul id="mobile-ministries" class="ml-4 mt-1 hidden" role="menu" aria-label="Ministries submenu">
+              <li role="none"><a href="ministries/adults.html" class="block py-2 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="-1">Adults</a></li>
+              <li role="none"><a href="ministries/youth.html" class="block py-2 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="-1">Youth</a></li>
+              <li role="none"><a href="ministries/teenagers.html" class="block py-2 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="-1">Teenagers</a></li>
+              <li role="none"><a href="ministries/sunday-school.html" class="block py-2 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="-1">Sunday School</a></li>
+              <li role="none"><a href="ministries/toddlers.html" class="block py-2 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="-1">Toddlers</a></li>
+            </ul>
+          </li>
+          <li role="none"><a href="devotions.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">Devotions</a></li>
+          <li role="none"><a href="sermons.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">Sermons</a></li>
+          <li role="none"><a href="events.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">Events</a></li>
+          <li role="none"><a href="gallery.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">Gallery</a></li>
+          <li role="none"><a href="contact.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">Contact</a></li>
+          <li role="none"><a href="prayer-requests.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">Prayer Requests</a></li>
+          <li role="none"><a href="giving.html" class="block py-3 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-blue-600 text-white font-semibold shadow-xl hover:from-pink-600 hover:to-blue-800 transition-all duration-500 flex items-center gap-2 animate-give-glow focus-visible:ring-2 focus-visible:ring-pink-400 mt-4" role="menuitem" tabindex="0">Give</a></li>
+        </ul>
+      </div>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="relative min-h-[60vh] flex items-center justify-center bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1200&q=80');">
-    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/85 via-purple-800/75 to-blue-600/65"></div>
-    <div class="container mx-auto px-4 py-20 text-center relative z-10 flex flex-col items-center fade-in-up">
-      <h1 class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight text-white drop-shadow-2xl tracking-wide uppercase">Daily Devotions</h1>
-      <p class="text-xl md:text-2xl text-white mb-8 max-w-4xl mx-auto font-bold leading-relaxed" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">Nourish your soul with daily biblical insights, practical wisdom, and spiritual encouragement to strengthen your walk with Christ.</p>
-      <div class="flex flex-col sm:flex-row gap-4">
-        <a href="#featured" class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
-          Read Today's Devotion
-        </a>
-        <a href="#series" class="inline-block bg-white hover:bg-gray-100 text-blue-900 font-bold px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg border-2 border-white">
-          Explore Devotion Series
-        </a>
-      </div>
+  <!-- HERO SECTION: Modern, Professional, Interactive -->
+  <section class="relative bg-gradient-to-br from-blue-800 via-purple-700 to-pink-600 min-h-[55vh] flex items-center justify-center overflow-hidden shadow-2xl">
+    <div class="absolute inset-0 bg-hero-pattern opacity-10 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+    <div class="relative z-10 flex flex-col items-center justify-center w-full px-4 py-16 text-center animate-fade-in-up">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white drop-shadow-lg mb-4">Devotions</h1>
+      <p class="text-xl md:text-2xl text-blue-100 max-w-2xl mx-auto mb-8 font-medium drop-shadow-md">Daily inspiration and encouragement from God's Word to strengthen your faith journey.</p>
     </div>
+    <style>
+      @keyframes fadeInUpHero {
+        0% { opacity: 0; transform: translateY(40px); }
+        100% { opacity: 1; transform: none; }
+      }
+      .animate-fade-in-up {
+        opacity: 0;
+        animation: fadeInUpHero 1.2s cubic-bezier(.4,0,.2,1) 0.2s forwards;
+      }
+      .bg-hero-pattern {
+        background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="%23fff" fill-opacity="0.08"/></svg>');
+        background-repeat: repeat;
+      }
+    </style>
   </section>
 
   <!-- Featured Devotion Section -->

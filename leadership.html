@@ -101,17 +101,28 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="relative min-h-[45vh] flex items-center justify-center bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80');">
-    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-purple-800/80 to-blue-400/60"></div>
-    <div class="container mx-auto px-4 py-20 text-center relative z-10 flex flex-col items-center fade-in-up">
-      <h1 class="text-5xl md:text-6xl font-extrabold mb-4 leading-tight text-white drop-shadow-xl tracking-wide uppercase">Our Leadership</h1>
-      <p class="text-xl md:text-2xl text-blue-100 mb-6 max-w-2xl mx-auto font-medium">Guided by faith, united in vision, committed to serving with excellence and humility.</p>
-      <div class="flex flex-col sm:flex-row gap-4 mt-4">
-        <a href="#philosophy" class="inline-block bg-gradient-to-r from-blue-700 via-purple-600 to-blue-900 hover:from-purple-700 hover:to-blue-950 text-white font-bold px-8 py-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-purple-400 text-lg uppercase tracking-wider">Our Philosophy</a>
-        <a href="#team" class="inline-block bg-white/20 backdrop-blur-sm border-2 border-white/30 text-white font-bold px-8 py-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-white/50 text-lg uppercase tracking-wider hover:bg-white/30">Meet the Team</a>
-      </div>
+  <!-- HERO SECTION: Modern, Professional, Interactive -->
+  <section class="relative bg-gradient-to-br from-blue-800 via-purple-700 to-pink-600 min-h-[55vh] flex items-center justify-center overflow-hidden shadow-2xl">
+    <div class="absolute inset-0 bg-hero-pattern opacity-10 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+    <div class="relative z-10 flex flex-col items-center justify-center w-full px-4 py-16 text-center animate-fade-in-up">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white drop-shadow-lg mb-4">Leadership</h1>
+      <p class="text-xl md:text-2xl text-blue-100 max-w-2xl mx-auto mb-8 font-medium drop-shadow-md">Meet the dedicated leaders guiding our church with vision, faith, and servant hearts.</p>
     </div>
+    <style>
+      @keyframes fadeInUpHero {
+        0% { opacity: 0; transform: translateY(40px); }
+        100% { opacity: 1; transform: none; }
+      }
+      .animate-fade-in-up {
+        opacity: 0;
+        animation: fadeInUpHero 1.2s cubic-bezier(.4,0,.2,1) 0.2s forwards;
+      }
+      .bg-hero-pattern {
+        background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="%23fff" fill-opacity="0.08"/></svg>');
+        background-repeat: repeat;
+      }
+    </style>
   </section>
 
   <!-- Leadership Philosophy Section -->

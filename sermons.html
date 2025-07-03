@@ -98,53 +98,28 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="relative overflow-hidden min-h-[60vh] flex items-center justify-center" style="background: linear-gradient(135deg, #312e81 0%, #6366f1 40%, #a78bfa 80%, #f8fafc 100%);">
-    <!-- Subtle Floating Shapes -->
-    <div class="absolute inset-0 pointer-events-none z-0">
-      <div class="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-2xl animate-float" style="animation-delay:0s;"></div>
-      <div class="absolute bottom-10 right-20 w-40 h-40 bg-blue-200/10 rounded-full blur-2xl animate-float" style="animation-delay:1.5s;"></div>
-      <div class="absolute top-1/2 left-1/2 w-24 h-24 bg-purple-300/10 rounded-full blur-2xl animate-float" style="animation-delay:2.5s;"></div>
+  <!-- HERO SECTION: Modern, Professional, Interactive -->
+  <section class="relative bg-gradient-to-br from-blue-800 via-purple-700 to-pink-600 min-h-[55vh] flex items-center justify-center overflow-hidden shadow-2xl">
+    <div class="absolute inset-0 bg-hero-pattern opacity-10 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+    <div class="relative z-10 flex flex-col items-center justify-center w-full px-4 py-16 text-center animate-fade-in-up">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white drop-shadow-lg mb-4">Sermons</h1>
+      <p class="text-xl md:text-2xl text-blue-100 max-w-2xl mx-auto mb-8 font-medium drop-shadow-md">Listen to inspiring messages and teachings from our pastors and guest speakers. Be encouraged and equipped for your faith journey.</p>
     </div>
-    <div class="container mx-auto px-6 relative z-10 flex flex-col items-center justify-center text-center py-24">
-      <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight bg-gradient-to-r from-blue-200 via-white to-purple-300 bg-clip-text text-transparent drop-shadow-2xl animate-fade-in">Sermons & Teachings</h1>
-      <div class="w-24 h-1 bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 mx-auto mb-8 animate-fade-in"></div>
-      <p class="text-2xl md:text-3xl text-white/90 mb-10 font-medium animate-fade-in" style="animation-delay:0.2s;">Discover God's Word through powerful messages of hope, faith, and transformation.</p>
-      <a href="#featured-sermon" class="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 text-white font-bold text-lg shadow-xl hover:from-indigo-700 hover:to-blue-800 transition-all duration-500 animate-fade-in" style="animation-delay:0.3s;">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-5.197-3.027A1 1 0 008 9.027v5.946a1 1 0 001.555.832l5.197-3.027a1 1 0 000-1.664z"/></svg>
-        Watch Featured Sermon
-      </a>
-      <!-- Glassmorphism Search/Filter Bar -->
-      <form class="bg-white/20 backdrop-blur-xl rounded-2xl p-6 mt-12 flex flex-col md:flex-row gap-4 items-center justify-center shadow-2xl fade-in-up w-full max-w-3xl mx-auto" role="search" aria-label="Search sermons">
-        <div class="flex-1 w-full relative">
-          <label for="sermon-search" class="sr-only">Search sermons</label>
-          <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-indigo-200 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0118 0z"/>
-          </svg>
-          <input id="sermon-search" type="text" placeholder="Search sermons by title, speaker, or topic..." class="w-full pl-12 pr-4 py-3 bg-white/60 border border-blue-100 rounded-xl text-indigo-900 placeholder-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 transition-all duration-300" aria-label="Search sermons" />
-        </div>
-        <div class="flex gap-2 w-full md:w-auto">
-          <label for="speaker-filter" class="sr-only">Filter by speaker</label>
-          <select id="speaker-filter" class="px-4 py-3 bg-white/60 border border-blue-100 rounded-xl text-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-200 transition-all duration-300" aria-label="Filter by speaker">
-            <option value="" class="text-indigo-900">All Speakers</option>
-            <option value="bishop" class="text-indigo-900">Bishop John Doe</option>
-            <option value="pastor-jane" class="text-indigo-900">Pastor Jane Smith</option>
-            <option value="elder-michael" class="text-indigo-900">Elder Michael Brown</option>
-          </select>
-          <label for="topic-filter" class="sr-only">Filter by topic</label>
-          <select id="topic-filter" class="px-4 py-3 bg-white/60 border border-blue-100 rounded-xl text-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-200 transition-all duration-300" aria-label="Filter by topic">
-            <option value="" class="text-indigo-900">All Topics</option>
-            <option value="faith" class="text-indigo-900">Faith</option>
-            <option value="hope" class="text-indigo-900">Hope</option>
-            <option value="forgiveness" class="text-indigo-900">Forgiveness</option>
-          </select>
-        </div>
-      </form>
-    </div>
-    <!-- Back to Top Button -->
-    <button id="backToTop" aria-label="Back to top" class="fixed bottom-8 right-8 z-50 bg-gradient-to-r from-indigo-700 to-blue-600 text-white p-4 rounded-full shadow-lg opacity-0 pointer-events-none transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-400" tabindex="0">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
-    </button>
+    <style>
+      @keyframes fadeInUpHero {
+        0% { opacity: 0; transform: translateY(40px); }
+        100% { opacity: 1; transform: none; }
+      }
+      .animate-fade-in-up {
+        opacity: 0;
+        animation: fadeInUpHero 1.2s cubic-bezier(.4,0,.2,1) 0.2s forwards;
+      }
+      .bg-hero-pattern {
+        background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="%23fff" fill-opacity="0.08"/></svg>');
+        background-repeat: repeat;
+      }
+    </style>
   </section>
 
   <!-- Main Content -->

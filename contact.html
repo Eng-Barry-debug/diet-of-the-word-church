@@ -112,50 +112,28 @@
     </div>
   </div>
 
-  <!-- Hero Section -->
-  <section class="relative min-h-[65vh] flex items-center justify-center bg-cover bg-center bg-no-repeat overflow-hidden parallax-hero" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80');">
-    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/95 via-purple-900/90 to-blue-700/80"></div>
-    <!-- Animated SVG Wave -->
-    <svg class="absolute top-0 left-0 w-full h-full pointer-events-none z-0 opacity-30" viewBox="0 0 1440 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill="url(#hero-wave)" fill-opacity="1" d="M0,160L60,170.7C120,181,240,203,360,197.3C480,192,600,160,720,154.7C840,149,960,171,1080,186.7C1200,203,1320,213,1380,218.7L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
-      <defs>
-        <linearGradient id="hero-wave" x1="0" y1="0" x2="1440" y2="320" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#6366f1" />
-          <stop offset="0.5" stop-color="#2563eb" />
-          <stop offset="1" stop-color="#a21caf" />
-        </linearGradient>
-      </defs>
-    </svg>
-    <!-- Animated Floating Shapes -->
-    <div class="absolute inset-0 pointer-events-none z-0">
-      <div class="absolute top-10 left-1/4 w-10 h-10 bg-white/20 rounded-full floating" style="animation-delay: 0s;"></div>
-      <div class="absolute bottom-16 right-1/3 w-8 h-8 bg-purple-300/30 rounded-full floating" style="animation-delay: 1.2s;"></div>
-      <div class="absolute top-1/2 right-1/4 w-6 h-6 bg-blue-200/30 rounded-full floating" style="animation-delay: 2.1s;"></div>
-      <div class="absolute bottom-24 left-1/3 w-7 h-7 bg-gradient-to-br from-blue-400/30 to-purple-400/30 rounded-full floating" style="animation-delay: 2.7s;"></div>
-      <svg class="absolute top-1/3 left-1/2 w-8 h-8 text-white/30 floating" style="animation-delay: 1.7s;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2v20m10-10H2"/></svg>
-      <svg class="absolute bottom-10 right-1/4 w-6 h-6 text-white/20 floating" style="animation-delay: 2.3s;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+  <!-- HERO SECTION: Modern, Professional, Interactive -->
+  <section class="relative bg-gradient-to-br from-blue-800 via-purple-700 to-pink-600 min-h-[55vh] flex items-center justify-center overflow-hidden shadow-2xl">
+    <div class="absolute inset-0 bg-hero-pattern opacity-10 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+    <div class="relative z-10 flex flex-col items-center justify-center w-full px-4 py-16 text-center animate-fade-in-up">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white drop-shadow-lg mb-4">Contact Us</h1>
+      <p class="text-xl md:text-2xl text-blue-100 max-w-2xl mx-auto mb-8 font-medium drop-shadow-md">We would love to hear from you! Reach out with your questions, prayer requests, or to get connected.</p>
     </div>
-    <div class="container mx-auto px-4 py-24 text-center relative z-10 flex flex-col items-center fade-in-up animate-fade-in">
-      <h1 class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight text-white drop-shadow-2xl tracking-wide uppercase animate-text" style="text-shadow: 0 4px 24px rgba(0,0,0,0.7), 0 1px 2px rgba(0,0,0,0.8);">
-        Get In Touch With Us
-      </h1>
-      <p class="text-xl md:text-2xl text-white mb-8 max-w-2xl mx-auto font-medium animate-fade-in" style="animation-delay: 0.2s; text-shadow: 0 2px 12px rgba(0,0,0,0.7);">
-        We'd love to hear from you! Whether you have a question, a prayer request, or want to get involved, our team is here to help.
-      </p>
-      <a href="#contact-form" class="inline-block bg-gradient-to-r from-blue-700 via-purple-600 to-blue-900 hover:from-purple-700 hover:to-blue-950 text-white font-bold px-10 py-4 rounded-full shadow-2xl transition-all duration-500 transform hover:scale-110 active:scale-95 focus-visible:ring-4 focus-visible:ring-purple-400 text-lg uppercase tracking-wider hover:shadow-purple-500/25 animate-fade-in" style="animation-delay: 0.4s;">
-        Contact Us Now
-      </a>
-    </div>
-    <script>
-      // Parallax effect for hero background
-      document.addEventListener('scroll', function() {
-        const hero = document.querySelector('.parallax-hero');
-        if (hero) {
-          const offset = window.scrollY * 0.3;
-          hero.style.backgroundPosition = `center ${offset}px`;
-        }
-      });
-    </script>
+    <style>
+      @keyframes fadeInUpHero {
+        0% { opacity: 0; transform: translateY(40px); }
+        100% { opacity: 1; transform: none; }
+      }
+      .animate-fade-in-up {
+        opacity: 0;
+        animation: fadeInUpHero 1.2s cubic-bezier(.4,0,.2,1) 0.2s forwards;
+      }
+      .bg-hero-pattern {
+        background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="%23fff" fill-opacity="0.08"/></svg>');
+        background-repeat: repeat;
+      }
+    </style>
   </section>
 
   <!-- Contact Page Layout -->
