@@ -74,6 +74,19 @@
       background-clip: text;
       -webkit-background-clip: text;
     }
+    #mobile-menu {
+      background: #000 !important;
+      color: #fff !important;
+    }
+    #mobile-menu a {
+      color: #fff !important;
+    }
+    #mobile-menu a:hover {
+      color: #f472b6 !important;
+    }
+    #close-mobile-menu {
+      color: #fff !important;
+    }
   </style>
 </head>
 <body class="bg-white text-black">
@@ -350,6 +363,24 @@
       </div>
     </div>
   </footer>
+
+  <!-- Hamburger Menu for Mobile (hidden by default, shown on mobile) -->
+  <div id="mobile-menu" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black text-white transition-transform duration-300 transform translate-x-full" style="display: none;">
+    <button id="close-mobile-menu" class="absolute top-6 right-6 text-white text-3xl">&times;</button>
+    <nav class="flex flex-col gap-8 text-2xl font-bold">
+      <a href="index.html" class="hover:text-pink-400">Home</a>
+      <a href="about.html" class="hover:text-pink-400">About</a>
+      <a href="leadership.html" class="hover:text-pink-400">Leadership</a>
+      <a href="ministries/adults.html" class="hover:text-pink-400">Ministries</a>
+      <a href="devotions.html" class="hover:text-pink-400">Devotions</a>
+      <a href="sermons.html" class="hover:text-pink-400">Sermons</a>
+      <a href="events.html" class="hover:text-pink-400">Events</a>
+      <a href="gallery.html" class="hover:text-pink-400">Gallery</a>
+      <a href="contact.html" class="hover:text-pink-400">Contact</a>
+      <a href="prayer-requests.html" class="hover:text-pink-400">Prayer Requests</a>
+      <a href="giving.html" class="hover:text-pink-400">Give</a>
+    </nav>
+  </div>
 
   <script src="/assets/js/components.js"></script>
   <script>
