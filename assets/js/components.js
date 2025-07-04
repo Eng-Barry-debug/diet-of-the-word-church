@@ -78,9 +78,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function openMobileMenu() {
     lastFocusedElement = document.activeElement;
-    menu.classList.remove('translate-x-full');
-    overlay.classList.remove('hidden');
-    setTimeout(() => overlay.classList.add('opacity-100'), 10);
+    menu.classList.add('open');
+    overlay.classList.add('open');
+    btn.classList.add('open');
+    setTimeout(() => overlay.classList.remove('hidden'), 10);
     menu.setAttribute('aria-expanded', 'true');
     trapFocus(menu);
     // Focus first link
@@ -90,8 +91,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 100);
   }
   function closeMobileMenu() {
-    menu.classList.add('translate-x-full');
-    overlay.classList.remove('opacity-100');
+    menu.classList.remove('open');
+    overlay.classList.remove('open');
+    btn.classList.remove('open');
     setTimeout(() => overlay.classList.add('hidden'), 300);
     menu.setAttribute('aria-expanded', 'false');
     if (lastFocusedElement) lastFocusedElement.focus();
