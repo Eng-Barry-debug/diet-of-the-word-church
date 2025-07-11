@@ -74,19 +74,6 @@
       background-clip: text;
       -webkit-background-clip: text;
     }
-    #mobile-menu {
-      background: #000 !important;
-      color: #fff !important;
-    }
-    #mobile-menu a {
-      color: #fff !important;
-    }
-    #mobile-menu a:hover {
-      color: #f472b6 !important;
-    }
-    #close-mobile-menu {
-      color: #fff !important;
-    }
     /* Ken Burns Effect */
     .kenburns {
       animation: kenburns-zoom 16s linear infinite alternate;
@@ -110,140 +97,71 @@
     @keyframes spin-slow {
       100% { transform: rotate(360deg); }
     }
+    
+    /* Navigation Link Animations */
+    .nav-link-ani {
+      position: relative;
+      padding-bottom: 2px;
+      color: #fff;
+      transition: color 0.2s, font-weight 0.2s;
+      font-weight: 500;
+      outline: none;
+    }
+    .nav-link-ani:after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #f472b6 0%, #a78bfa 50%, #38bdf8 100%);
+      border-radius: 2px;
+      opacity: 0;
+      transform: scaleX(0.6);
+      transition: opacity 0.4s, transform 0.4s;
+    }
+    .nav-link-ani:hover:after, .nav-link-ani:focus-visible:after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+    .nav-link-ani.active:after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+    .nav-link-ani:hover, .nav-link-ani:focus-visible {
+      color: #fbbf24;
+      font-weight: 700;
+      text-shadow: 0 2px 8px #f472b6cc;
+    }
+    
+    /* Hamburger animation */
+    .group.open .top-bar {
+      transform: rotate(45deg) translateY(12px);
+    }
+    .group.open .middle-bar {
+      opacity: 0;
+    }
+    .group.open .bottom-bar {
+      transform: rotate(-45deg) translateY(-12px);
+    }
+    
+    /* Mobile menu fade/slide */
+    #mobile-menu.open {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    #mobile-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
   </style>
 </head>
 <body class="bg-white text-black">
+  <!-- Header Navigation Component (dynamically included) -->
+  <div id="header"></div>
   <!-- Skip to Content for Accessibility -->
   <a href="#main-content" class="sr-only focus:not-sr-only absolute top-2 left-2 z-50 bg-blue-700 text-white px-4 py-2 rounded shadow-lg transition-all duration-200">Skip to Content</a>
-  <!-- Modern, Colorful, Animated Navbar -->
-  <header id="main-header" class="bg-white/30 backdrop-blur-xl border-b border-blue-200 shadow-2xl transition-all duration-500 sticky top-0 z-50" style="background: rgba(30, 41, 59, 0.7);" role="banner">
-    <nav class="container mx-auto flex items-center justify-between px-4 py-3" aria-label="Main navigation" role="navigation">
-      <!-- Animated Logo/Brand -->
-      <a href="index.html" class="flex items-center gap-3 text-white font-extrabold text-2xl tracking-wide focus-visible:ring-2 focus-visible:ring-pink-400" tabindex="0">
-        <img src="assets/images/Diet logo 2.png" alt="Diet of the Word International Church Logo" class="w-20 h-20 object-contain drop-shadow-xl rounded-full">
-      </a>
-      <!-- Desktop Nav -->
-      <ul class="hidden lg:flex items-center space-x-7 font-medium" role="menubar">
-        <li role="none"><a href="index.html" class="nav-link-ani active" role="menuitem" tabindex="0">Home</a></li>
-        <li role="none"><a href="about.html" class="nav-link-ani" role="menuitem" tabindex="0">About</a></li>
-        <li role="none"><a href="leadership.html" class="nav-link-ani" role="menuitem" tabindex="0">Leadership</a></li>
-        <li style="position: relative;">
-          <a href="#" style="color: white; font-weight: bold; padding: 8px 16px; display: inline-block;">Ministries</a>
-          <ul style="display: none; position: absolute; left: 0; top: 100%; background: white; border: 1px solid #eee; border-radius: 8px; min-width: 180px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            <li><a href="ministries/toddlers.html" style="display: block; padding: 8px 16px;">Toddlers</a></li>
-            <li><a href="ministries/sunday-school.html" style="display: block; padding: 8px 16px;">Sunday School</a></li>
-            <li><a href="ministries/teenagers.html" style="display: block; padding: 8px 16px;">Teenagers</a></li>
-            <li><a href="ministries/youth.html" style="display: block; padding: 8px 16px;">Youth</a></li>
-            <li><a href="ministries/adults.html" style="display: block; padding: 8px 16px;">Adults</a></li>
-          </ul>
-          <script>
-            // Show dropdown on hover
-            const li = document.currentScript.parentElement;
-            li.addEventListener('mouseenter', () => li.querySelector('ul').style.display = 'block');
-            li.addEventListener('mouseleave', () => li.querySelector('ul').style.display = 'none');
-          </script>
-        </li>
-        <li role="none"><a href="devotions.html" class="nav-link-ani" role="menuitem" tabindex="0">Devotions</a></li>
-        <li role="none"><a href="sermons.html" class="nav-link-ani" role="menuitem" tabindex="0">Sermons</a></li>
-        <li role="none"><a href="events.html" class="nav-link-ani" role="menuitem" tabindex="0">Events</a></li>
-        <li role="none"><a href="gallery.html" class="nav-link-ani" role="menuitem" tabindex="0">Gallery</a></li>
-        <li role="none"><a href="contact.html" class="nav-link-ani" role="menuitem" tabindex="0">Contact</a></li>
-        <li role="none"><a href="prayer-requests.html" class="nav-link-ani" role="menuitem" tabindex="0">Prayer Requests</a></li>
-        <li role="none">
-          <a href="giving.html" class="ml-2 px-5 py-2 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-blue-600 text-white font-semibold shadow-xl hover:from-pink-600 hover:to-blue-800 transition-all duration-500 flex items-center gap-2 animate-give-glow focus-visible:ring-2 focus-visible:ring-pink-400" role="menuitem" tabindex="0">
-            <svg class="w-5 h-5 animate-give-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 1.343-3 3 0 1.657 1.343 3 3 3s3-1.343 3-3c0-1.657-1.343-3-3-3zm0 0V4m0 7v7m0 0H9m3 0h3"/></svg>
-            Give
-          </a>
-        </li>
-        <!-- Notification Bell -->
-        <li role="none">
-          <button class="ml-2 p-2 rounded-full bg-white/30 hover:bg-pink-100 transition shadow focus-visible:ring-2 focus-visible:ring-pink-400 animate-bell" aria-label="Notifications">
-            <svg class="w-6 h-6 text-pink-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 7.165 6 9.388 6 12v2.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
-          </button>
-        </li>
-      </ul>
-      <!-- Mobile Menu Button -->
-      <button id="mobile-menu-btn" class="md:hidden flex items-center px-2 py-1 border rounded text-white border-pink-200 bg-black hover:bg-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-400 transition" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
-        <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-      </button>
-    </nav>
-    <!-- Mobile Nav & Overlay -->
-    <div id="mobile-overlay" class="fixed inset-0 bg-black bg-opacity-40 z-40 hidden transition-opacity duration-300" tabindex="-1" aria-hidden="true"></div>
-    <div id="mobile-menu" class="md:hidden fixed top-0 right-0 w-full max-w-xs h-full bg-black text-white backdrop-blur-2xl shadow-2xl border-l-4 border-indigo-400 z-50 transform translate-x-full transition-transform duration-500 rounded-l-2xl flex flex-col" role="menu" aria-label="Mobile navigation" tabindex="-1">
-      <button id="mobile-menu-close" class="absolute top-4 right-4 text-white hover:text-pink-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-400 rounded-full bg-black p-2 shadow-lg border border-pink-400" aria-label="Close menu">
-        <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-      <div class="flex-1 flex flex-col justify-center">
-        <ul class="flex flex-col gap-6 px-8 py-16 font-bold text-white text-lg tracking-wide overflow-y-auto max-h-screen" role="menubar">
-          <li role="none"><a href="index.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">Home</a></li>
-          <li role="none"><a href="about.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">About</a></li>
-          <li role="none"><a href="leadership.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">Leadership</a></li>
-          <li role="none" class="pt-2 pb-2 border-t border-pink-400">
-            <button class="flex items-center gap-2 w-full py-3 nav-link-ani text-left text-white hover:text-pink-400" aria-haspopup="true" aria-expanded="false" aria-controls="mobile-ministries" onclick="document.getElementById('mobile-ministries').classList.toggle('hidden')" role="menuitem" tabindex="0">
-              Ministries
-              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-            </button>
-            <ul id="mobile-ministries" class="ml-4 mt-1 hidden" role="menu" aria-label="Ministries submenu">
-              <li role="none"><a href="ministries/adults.html" class="block py-2 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="-1">Adults</a></li>
-              <li role="none"><a href="ministries/youth.html" class="block py-2 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="-1">Youth</a></li>
-              <li role="none"><a href="ministries/teenagers.html" class="block py-2 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="-1">Teenagers</a></li>
-              <li role="none"><a href="ministries/sunday-school.html" class="block py-2 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="-1">Sunday School</a></li>
-              <li role="none"><a href="ministries/toddlers.html" class="block py-2 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="-1">Toddlers</a></li>
-            </ul>
-          </li>
-          <li role="none"><a href="devotions.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">Devotions</a></li>
-          <li role="none"><a href="sermons.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">Sermons</a></li>
-          <li role="none"><a href="events.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">Events</a></li>
-          <li role="none"><a href="gallery.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">Gallery</a></li>
-          <li role="none"><a href="contact.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">Contact</a></li>
-          <li role="none"><a href="prayer-requests.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">Prayer Requests</a></li>
-          <li role="none"><a href="giving.html" class="block py-3 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-blue-600 text-white font-semibold shadow-xl hover:from-pink-600 hover:to-blue-800 transition-all duration-500 flex items-center gap-2 animate-give-glow focus-visible:ring-2 focus-visible:ring-pink-400 mt-4" role="menuitem" tabindex="0">Give</a></li>
-        </ul>
-      </div>
-    </div>
-    <style>
-      .nav-link-ani {
-        position: relative;
-        padding-bottom: 2px;
-        color: #fff;
-        transition: color 0.2s, font-weight 0.2s;
-        font-weight: 500;
-        outline: none;
-      }
-      .nav-link-ani:after {
-        content: '';
-        display: block;
-        position: absolute;
-        left: 0; right: 0; bottom: 0;
-        height: 3px;
-        background: linear-gradient(90deg, #f472b6 0%, #a78bfa 50%, #38bdf8 100%);
-        border-radius: 2px;
-        opacity: 0;
-        transform: scaleX(0.6);
-        transition: opacity 0.4s, transform 0.4s;
-      }
-      .nav-link-ani:hover:after, .nav-link-ani:focus-visible:after {
-        opacity: 1;
-        transform: scaleX(1);
-      }
-      .nav-link-ani.active:after {
-        opacity: 1;
-        transform: scaleX(1);
-      }
-      .nav-link-ani:hover, .nav-link-ani:focus-visible {
-        color: #fbbf24;
-        font-weight: 700;
-        text-shadow: 0 2px 8px #f472b6cc;
-      }
-    </style>
-  </header>
-  <!-- Floating Contact Us Button -->
-  <a href="contact.html" class="fixed bottom-8 right-8 z-50 bg-gradient-to-r from-pink-500 to-blue-600 text-white font-bold px-6 py-3 rounded-full shadow-xl hover:scale-110 hover:from-pink-600 hover:to-blue-800 transition-all duration-300 flex items-center gap-2 animate-fade-in" style="box-shadow: 0 8px 32px 0 #f472b6aa;">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 10.5V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2h7"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 10.5l-9 5.25L3 10.5"/></svg>
-    Contact Us
-  </a>
   <!-- Modern Hero Section with Animated Image Carousel, Parallax, Ken Burns, Particles, and Animated Buttons -->
-  <section class="relative min-h-[70vh] flex flex-col justify-center items-center text-center bg-gradient-to-br from-indigo-900 via-indigo-600 to-blue-400 text-white overflow-hidden">
+  <section class="relative z-[1] min-h-[70vh] flex flex-col justify-center items-center text-center bg-gradient-to-br from-indigo-900 via-indigo-600 to-blue-400 text-white overflow-hidden">
     <!-- Animated Particles Overlay -->
     <canvas id="hero-particles" class="absolute inset-0 w-full h-full z-10 pointer-events-none"></canvas>
     <!-- Animated SVG/Lottie Overlay -->
@@ -255,24 +173,24 @@
     <!-- Animated Image Carousel with Parallax & Ken Burns -->
     <div id="hero-carousel" class="absolute inset-0 w-full h-full z-0">
       <div class="carousel-slide parallax kenburns absolute inset-0 opacity-100 transition-opacity duration-1000 flex items-center justify-center" style="background-image: url('assets/images/hero/aaron-burden-c333d6YEhi0-unsplash.jpg'); background-size: cover; background-position: center;">
-        <div class="carousel-caption absolute bottom-16 left-1/2 -translate-x-1/2 bg-black/50 text-white px-6 py-3 rounded-xl shadow-lg text-xl font-semibold max-w-lg w-full animate-fade-in-up">“A Place to Grow in Faith and Fellowship”</div>
+        <div class="carousel-caption absolute bottom-16 left-1/2 -translate-x-1/2 bg-black/50 text-white px-6 py-3 rounded-xl shadow-lg text-xl font-semibold max-w-lg w-full animate-fade-in-up">"A Place to Grow in Faith and Fellowship"</div>
       </div>
       <div class="carousel-slide parallax kenburns absolute inset-0 opacity-0 transition-opacity duration-1000 flex items-center justify-center" style="background-image: url('assets/images/hero/rosie-sun-rTwhmFSoXC8-unsplash.jpg'); background-size: cover; background-position: center;">
-        <div class="carousel-caption absolute bottom-16 left-1/2 -translate-x-1/2 bg-black/50 text-white px-6 py-3 rounded-xl shadow-lg text-xl font-semibold max-w-lg w-full animate-fade-in-up">“Worship, Serve, and Belong”</div>
+        <div class="carousel-caption absolute bottom-16 left-1/2 -translate-x-1/2 bg-black/50 text-white px-6 py-3 rounded-xl shadow-lg text-xl font-semibold max-w-lg w-full animate-fade-in-up">"Worship, Serve, and Belong"</div>
       </div>
       <div class="carousel-slide parallax kenburns absolute inset-0 opacity-0 transition-opacity duration-1000 flex items-center justify-center" style="background-image: url('assets/images/gallery/helena-lopes-e3OUQGT9bWU-unsplash.jpg'); background-size: cover; background-position: center;">
-        <div class="carousel-caption absolute bottom-16 left-1/2 -translate-x-1/2 bg-black/50 text-white px-6 py-3 rounded-xl shadow-lg text-xl font-semibold max-w-lg w-full animate-fade-in-up">“A Welcoming Community for All Generations”</div>
+        <div class="carousel-caption absolute bottom-16 left-1/2 -translate-x-1/2 bg-black/50 text-white px-6 py-3 rounded-xl shadow-lg text-xl font-semibold max-w-lg w-full animate-fade-in-up">"A Welcoming Community for All Generations"</div>
       </div>
       <div class="carousel-slide parallax kenburns absolute inset-0 opacity-0 transition-opacity duration-1000 flex items-center justify-center" style="background-image: url('assets/images/hero/vince-fleming-4I6VIZI79HE-unsplash.jpg'); background-size: cover; background-position: center;">
-        <div class="carousel-caption absolute bottom-16 left-1/2 -translate-x-1/2 bg-black/50 text-white px-6 py-3 rounded-xl shadow-lg text-xl font-semibold max-w-lg w-full animate-fade-in-up">“Rooted in the Word, Reaching the World”</div>
+        <div class="carousel-caption absolute bottom-16 left-1/2 -translate-x-1/2 bg-black/50 text-white px-6 py-3 rounded-xl shadow-lg text-xl font-semibold max-w-lg w-full animate-fade-in-up">"Rooted in the Word, Reaching the World"</div>
       </div>
       <div class="carousel-slide parallax kenburns absolute inset-0 opacity-0 transition-opacity duration-1000 flex items-center justify-center" style="background-image: url('assets/images/gallery/brooke-cagle-oTweoxMKdkA-unsplash.jpg'); background-size: cover; background-position: center;">
-        <div class="carousel-caption absolute bottom-16 left-1/2 -translate-x-1/2 bg-black/50 text-white px-6 py-3 rounded-xl shadow-lg text-xl font-semibold max-w-lg w-full animate-fade-in-up">“Experience God's Love, Share God's Light”</div>
+        <div class="carousel-caption absolute bottom-16 left-1/2 -translate-x-1/2 bg-black/50 text-white px-6 py-3 rounded-xl shadow-lg text-xl font-semibold max-w-lg w-full animate-fade-in-up">"Experience God's Love, Share God's Light"</div>
       </div>
       <!-- Overlay for readability -->
-      <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/80 via-indigo-700/60 to-blue-400/60"></div>
+      <div class="absolute inset-0 z-30 pointer-events-none" style="background: linear-gradient(135deg, rgba(63,81,181,0.7) 0%, rgba(123,31,162,0.7) 100%);"></div>
       <!-- Carousel Dots -->
-      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-30">
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-40">
         <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition" aria-label="Slide 1"></button>
         <button class="carousel-dot w-3 h-3 rounded-full bg-white/40 hover:bg-white transition" aria-label="Slide 2"></button>
         <button class="carousel-dot w-3 h-3 rounded-full bg-white/40 hover:bg-white transition" aria-label="Slide 3"></button>
@@ -280,14 +198,53 @@
         <button class="carousel-dot w-3 h-3 rounded-full bg-white/40 hover:bg-white transition" aria-label="Slide 5"></button>
       </div>
     </div>
-    <div class="relative z-40 py-24 px-4 max-w-2xl mx-auto">
+    <!-- Animated SVG Wave Overlay at Bottom -->
+    <div class="absolute bottom-0 left-0 w-full z-10 pointer-events-none" style="line-height:0">
+      <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-24 md:h-32 animate-wave-move">
+        <path fill="#fff" fill-opacity="0.15" d="M0,80 C360,120 1080,40 1440,80 L1440,120 L0,120 Z"></path>
+        <path fill="#fff" fill-opacity="0.10" d="M0,100 C400,60 1040,140 1440,100 L1440,120 L0,120 Z"></path>
+      </svg>
+    </div>
+    <div class="relative z-10 py-24 px-4 max-w-2xl mx-auto">
+      <div class="mb-4 animate-fade-in-up">
+        <span class="inline-block px-4 py-1 rounded-full bg-gradient-to-r from-yellow-400 via-pink-400 to-indigo-400 text-black font-bold text-lg shadow-lg tracking-widest uppercase">A Vibrant, Christ-Centered Community</span>
+      </div>
       <h1 class="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-yellow-300 via-pink-400 to-indigo-400 bg-clip-text text-transparent drop-shadow-lg animate-fade-in">Welcome to Diet of the Word International Church</h1>
       <p class="mt-6 text-xl md:text-2xl font-medium text-white/90 animate-fade-in-up">A Christ-centered community in Nairobi, Kenya, dedicated to worship, discipleship, and service. Join us as we grow in faith and share God's love with the world.</p>
+      <p class="mt-4 text-lg text-white/80 font-semibold animate-fade-in-up">— Pastor John Mwangi, Lead Pastor</p>
       <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up">
-        <a href="#service-times" class="cta-btn px-8 py-3 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-blue-600 text-white font-bold shadow-xl hover:from-pink-600 hover:to-blue-800 transition-all duration-500 text-lg">Join Us This Sunday</a>
-        <a href="#about" class="cta-btn px-8 py-3 rounded-full bg-white/20 border border-white/30 text-white font-bold shadow hover:bg-white/30 transition-all duration-500 text-lg">Learn More About Us</a>
+        <a href="#service-times" class="cta-btn px-8 py-3 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-blue-600 text-white font-bold shadow-xl hover:from-pink-600 hover:to-blue-800 transition-all duration-500 text-lg flex items-center gap-2 shine-btn" style="position:relative;overflow:hidden;">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m4 0h-1v4h-1"/></svg>
+          Join Us This Sunday
+          <span class="shine"></span>
+        </a>
+        <a href="#about" class="cta-btn px-8 py-3 rounded-full bg-white/20 border border-white/30 text-white font-bold shadow hover:bg-white/30 transition-all duration-500 text-lg flex items-center gap-2 shine-btn" style="position:relative;overflow:hidden;">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16h8M8 12h8m-8-4h8"/></svg>
+          Learn More About Us
+          <span class="shine"></span>
+        </a>
       </div>
     </div>
+    <style>
+      @keyframes wave-move {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-40px); }
+      }
+      .animate-wave-move { animation: wave-move 8s linear infinite alternate; }
+      .shine-btn .shine {
+        position: absolute;
+        top: 0; left: -75%;
+        width: 50%; height: 100%;
+        background: linear-gradient(120deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.2) 100%);
+        transform: skewX(-20deg);
+        pointer-events: none;
+        animation: shine-move 2.5s infinite;
+      }
+      @keyframes shine-move {
+        0% { left: -75%; }
+        100% { left: 120%; }
+      }
+    </style>
   </section>
 
   <!-- Carousel Script (4s interval) -->
@@ -346,35 +303,65 @@
     <div class="container mx-auto px-4">
       <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-indigo-900">Our Ministries</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        <div class="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 animate-fade-in-up">
-          <span class="text-5xl mb-4">👨‍👩‍👧‍👦</span>
-          <h3 class="text-xl font-bold mb-2">Adults</h3>
-          <p class="text-gray-600 mb-4">Empowering adults to grow in faith and serve the community.</p>
-          <a href="ministries/adults.html" class="text-indigo-600 font-semibold hover:underline">Learn More</a>
-            </div>
-        <div class="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 animate-fade-in-up">
-          <span class="text-5xl mb-4">🧑‍🎓</span>
-          <h3 class="text-xl font-bold mb-2">Youth</h3>
-          <p class="text-gray-600 mb-4">Inspiring young people to live out their faith and lead with purpose.</p>
-          <a href="ministries/youth.html" class="text-indigo-600 font-semibold hover:underline">Learn More</a>
+        <!-- Adults -->
+        <div class="bg-white rounded-2xl shadow-xl p-0 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 group overflow-hidden animate-fade-in-up">
+          <div class="w-full h-48 overflow-hidden relative">
+            <img src="assets/images/gallery/bruce-mars-8YG31Xn4dSw-unsplash.jpg" alt="Community Outreach" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/70 via-transparent to-transparent opacity-80"></div>
           </div>
-        <div class="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 animate-fade-in-up">
-          <span class="text-5xl mb-4">🧒</span>
-          <h3 class="text-xl font-bold mb-2">Teenagers</h3>
-          <p class="text-gray-600 mb-4">Guiding teenagers through their faith journey during crucial formative years.</p>
-          <a href="ministries/teenagers.html" class="text-indigo-600 font-semibold hover:underline">Learn More</a>
-            </div>
-        <div class="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 animate-fade-in-up">
-          <span class="text-5xl mb-4">👶</span>
-          <h3 class="text-xl font-bold mb-2">Toddlers</h3>
-          <p class="text-gray-600 mb-4">Creating a safe and loving environment for our youngest members to learn about God's love.</p>
-          <a href="ministries/toddlers.html" class="text-indigo-600 font-semibold hover:underline">Learn More</a>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <h3 class="text-xl font-bold mb-2 text-indigo-900">Adults</h3>
+            <p class="text-gray-600 mb-4">Serving our neighbors with love and compassion.</p>
+            <a href="ministries/adults.html" class="text-indigo-600 font-semibold hover:underline">Learn More</a>
           </div>
-        <div class="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 animate-fade-in-up">
-          <span class="text-5xl mb-4">📚</span>
-          <h3 class="text-xl font-bold mb-2">Sunday School</h3>
-          <p class="text-gray-600 mb-4">Nurturing children in faith and biblical truth from an early age.</p>
-          <a href="ministries/sunday-school.html" class="text-indigo-600 font-semibold hover:underline">Learn More</a>
+        </div>
+        <!-- Youth -->
+        <div class="bg-white rounded-2xl shadow-xl p-0 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 group overflow-hidden animate-fade-in-up">
+          <div class="w-full h-48 overflow-hidden relative">
+            <img src="assets/images/gallery/designecologist-y91FmfcmYYw-unsplash.jpg" alt="Youth Fellowship" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/70 via-transparent to-transparent opacity-80"></div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <h3 class="text-xl font-bold mb-2 text-indigo-900">Youth</h3>
+            <p class="text-gray-600 mb-4">Building faith and friendships among our youth.</p>
+            <a href="ministries/youth.html" class="text-indigo-600 font-semibold hover:underline">Learn More</a>
+          </div>
+        </div>
+        <!-- Teenagers -->
+        <div class="bg-white rounded-2xl shadow-xl p-0 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 group overflow-hidden animate-fade-in-up">
+          <div class="w-full h-48 overflow-hidden relative">
+            <img src="assets/images/gallery/dimitar-krastev-19lY7FMfWlo-unsplash.jpg" alt="Youth Ministry" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/70 via-transparent to-transparent opacity-80"></div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <h3 class="text-xl font-bold mb-2 text-indigo-900">Teenagers</h3>
+            <p class="text-gray-600 mb-4">Empowering young people to grow in faith.</p>
+            <a href="ministries/teenagers.html" class="text-indigo-600 font-semibold hover:underline">Learn More</a>
+          </div>
+        </div>
+        <!-- Toddlers -->
+        <div class="bg-white rounded-2xl shadow-xl p-0 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 group overflow-hidden animate-fade-in-up">
+          <div class="w-full h-48 overflow-hidden relative">
+            <img src="assets/images/gallery/helena-lopes-e3OUQGT9bWU-unsplash.jpg" alt="Prayer Time" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/70 via-transparent to-transparent opacity-80"></div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <h3 class="text-xl font-bold mb-2 text-indigo-900">Toddlers</h3>
+            <p class="text-gray-600 mb-4">Deep moments of prayer and spiritual connection.</p>
+            <a href="ministries/toddlers.html" class="text-indigo-600 font-semibold hover:underline">Learn More</a>
+          </div>
+        </div>
+        <!-- Sunday School -->
+        <div class="bg-white rounded-2xl shadow-xl p-0 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 group overflow-hidden animate-fade-in-up">
+          <div class="w-full h-48 overflow-hidden relative">
+            <img src="assets/images/gallery/priscilla-du-preez-XkKCui44iM0-unsplash.jpg" alt="Church Events" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/70 via-transparent to-transparent opacity-80"></div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <h3 class="text-xl font-bold mb-2 text-indigo-900">Sunday School</h3>
+            <p class="text-gray-600 mb-4">Celebrating special moments and milestones together.</p>
+            <a href="ministries/sunday-school.html" class="text-indigo-600 font-semibold hover:underline">Learn More</a>
+          </div>
         </div>
       </div>
     </div>
@@ -384,26 +371,47 @@
   <section id="events" class="py-16 bg-white">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-indigo-900">Upcoming Events</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-gradient-to-br from-indigo-600 via-purple-500 to-pink-400 text-white rounded-2xl shadow-xl p-8 flex flex-col items-start animate-fade-in-up">
-          <span class="text-2xl font-bold mb-2">15 December</span>
-          <h3 class="text-xl font-bold mb-2">Christmas Celebration</h3>
-          <p class="mb-4">Join us for a special Christmas service filled with music, drama, and the message of hope.</p>
-          <a href="#" class="mt-auto px-4 py-2 rounded-full bg-white/20 border border-white/30 text-white font-semibold shadow hover:bg-white/30 transition">Learn More →</a>
+      <!-- Featured Event -->
+      <div class="relative max-w-3xl mx-auto mb-12 animate-fade-in-up">
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+          <img src="assets/images/hero/rosie-sun-rTwhmFSoXC8-unsplash.jpg" alt="Christmas Celebration" class="w-full h-64 md:h-80 object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/80 via-transparent to-transparent"></div>
+          <div class="absolute top-4 left-4 bg-pink-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg z-10">FEATURED EVENT</div>
+          <div class="absolute bottom-4 left-4 z-10">
+            <h3 class="text-2xl md:text-3xl font-extrabold text-white drop-shadow mb-2">Christmas Celebration</h3>
+            <div class="flex items-center gap-3 mb-2">
+              <svg class="w-6 h-6 text-yellow-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              <span class="text-lg font-semibold text-white">15 December</span>
+            </div>
+            <p class="text-white/90 max-w-md mb-2">Join us for a special Christmas service filled with music, drama, and the message of hope.</p>
+            <div id="countdown" class="text-lg font-bold text-yellow-300 bg-black/60 px-4 py-2 rounded-full inline-block mt-2"></div>
+          </div>
         </div>
-        <div class="bg-gradient-to-br from-blue-600 via-indigo-500 to-purple-400 text-white rounded-2xl shadow-xl p-8 flex flex-col items-start animate-fade-in-up">
-          <span class="text-2xl font-bold mb-2">22 December</span>
-          <h3 class="text-xl font-bold mb-2">Youth Conference</h3>
-          <p class="mb-4">A special gathering for young people to grow in faith and build lasting friendships.</p>
-          <a href="#" class="mt-auto px-4 py-2 rounded-full bg-white/20 border border-white/30 text-white font-semibold shadow hover:bg-white/30 transition">Learn More →</a>
-        </div>
-        <div class="bg-gradient-to-br from-pink-600 via-yellow-500 to-indigo-400 text-white rounded-2xl shadow-xl p-8 flex flex-col items-start animate-fade-in-up">
-          <span class="text-2xl font-bold mb-2">29 December</span>
-          <h3 class="text-xl font-bold mb-2">New Year Service</h3>
-          <p class="mb-4">Start the new year with prayer, worship, and a message of hope for the future.</p>
-          <a href="#" class="mt-auto px-4 py-2 rounded-full bg-white/20 border border-white/30 text-white font-semibold shadow hover:bg-white/30 transition">Learn More →</a>
-        </div>
-        </div>
+      </div>
+      <script>
+      // Countdown Timer for Christmas Celebration (Dec 15, current year)
+      (function() {
+        function updateCountdown() {
+          var eventDate = new Date(new Date().getFullYear(), 11, 15, 9, 0, 0); // Dec is month 11
+          var now = new Date();
+          if (now > eventDate) eventDate.setFullYear(eventDate.getFullYear() + 1);
+          var diff = eventDate - now;
+          if (diff <= 0) {
+            document.getElementById('countdown').textContent = 'Happening Now!';
+            return;
+          }
+          var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          var hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+          var mins = Math.floor((diff / (1000 * 60)) % 60);
+          var secs = Math.floor((diff / 1000) % 60);
+          document.getElementById('countdown').textContent = days + 'd ' + hours + 'h ' + mins + 'm ' + secs + 's left';
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+      })();
+      </script>
+      <!-- Events Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="upcoming-events-grid"></div>
       <div class="text-center mt-8">
         <a href="events.html" class="inline-block px-8 py-3 rounded-full bg-gradient-to-r from-indigo-500 to-blue-400 text-white font-bold shadow hover:from-indigo-600 hover:to-blue-600 transition">View All Events</a>
       </div>
@@ -417,16 +425,29 @@
         <h2 class="text-3xl md:text-4xl font-bold mb-4 text-indigo-900">Join Us This Week</h2>
         <div class="mb-4">
           <h3 class="text-xl font-semibold">Sunday Worship</h3>
-          <p class="text-lg">Main Service: <span class="font-bold">9:00 AM</span> & <span class="font-bold">11:00 AM</span></p>
-                </div>
-        <div class="mb-4">
-          <h3 class="text-xl font-semibold">Wednesday Bible Study</h3>
-          <p class="text-lg">Adult Bible Study: <span class="font-bold">7:00 PM</span> (Weekly)</p>
-                </div>
-        <div class="mb-4">
-          <h3 class="text-xl font-semibold">Friday Youth Night</h3>
-          <p class="text-lg">Youth Ministry: <span class="font-bold">6:30 PM</span> (Weekly)</p>
+          <p class="text-lg">Main Service: <span class="font-bold">9:00 AM - 4:00 PM</span></p>
+        </div>
+        <div class="mb-6">
+          <h3 class="text-xl font-semibold text-purple-700">MID-WEEK SERVICE</h3>
+          <div class="space-y-3">
+            <div class="bg-white/50 rounded-lg p-3">
+              <h4 class="font-semibold text-blue-800">Tuesday</h4>
+              <p class="text-sm">Service: <span class="font-bold">9:00 AM - 6:00 PM</span></p>
+              <p class="text-sm">Revival: <span class="font-bold">6:00 PM - 9:00 PM</span></p>
             </div>
+            <div class="bg-white/50 rounded-lg p-3">
+              <h4 class="font-semibold text-blue-800">Wednesday</h4>
+              <p class="text-sm">Service: <span class="font-bold">9:00 AM - 6:00 PM</span></p>
+              <p class="text-sm">Revival: <span class="font-bold">6:00 PM - 9:00 PM</span></p>
+            </div>
+            <div class="bg-white/50 rounded-lg p-3">
+              <h4 class="font-semibold text-blue-800">Friday</h4>
+              <p class="text-sm">Service: <span class="font-bold">9:00 AM - 6:00 PM</span></p>
+              <p class="text-sm">Revival: <span class="font-bold">6:00 PM - 9:00 PM</span></p>
+              <p class="text-sm">Kesha: <span class="font-bold">10:00 PM - 4:00 AM</span></p>
+            </div>
+          </div>
+        </div>
             <div class="mt-6">
           <a href="#map" class="inline-block px-6 py-2 rounded-full bg-gradient-to-r from-indigo-500 to-blue-400 text-white font-semibold shadow hover:from-indigo-600 hover:to-blue-600 transition">Get Directions</a>
             </div>
@@ -438,31 +459,93 @@
   </section>
 
   <!-- Testimonials -->
-  <section id="testimonials" class="py-16 bg-white">
-    <div class="container mx-auto px-4">
+  <section id="testimonials" class="py-16 bg-gradient-to-br from-white via-blue-50 to-indigo-100 relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none opacity-20" style="background: url('data:image/svg+xml;utf8,<svg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'><circle cx=\'10\' cy=\'10\' r=\'1.5\' fill=\'%233b82f6\' fill-opacity=\'0.12\'/><circle cx=\'60\' cy=\'40\' r=\'1.5\' fill=\'%238b5cf6\' fill-opacity=\'0.12\'/><circle cx=\'80\' cy=\'80\' r=\'1.5\' fill=\'%23f472b6\' fill-opacity=\'0.12\'/><circle cx=\'30\' cy=\'70\' r=\'1.5\' fill=\'%233b82f6\' fill-opacity=\'0.12\'/></svg>'); background-repeat: repeat;"></div>
+    <div class="container mx-auto px-4 relative z-10">
       <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-indigo-900">What Our Members Say</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center text-center animate-fade-in-up">
-          <img src="assets/images/gallery/priscilla-du-preez-nF8xhLMmg0c-unsplash.jpg" alt="Sarah Mwangi" class="w-20 h-20 rounded-full mb-4 object-cover border-4 border-indigo-100" />
-          <h3 class="text-lg font-bold mb-1">Sarah Mwangi</h3>
-          <p class="text-indigo-500 mb-2">Member for 5 years</p>
-          <p class="text-gray-700 italic mb-2">"This church has become my second home. The teaching is biblical, the community is loving, and I've grown so much in my faith here."</p>
+      <div class="relative max-w-3xl mx-auto">
+        <div id="testimonial-carousel" class="overflow-hidden">
+          <div class="flex transition-transform duration-700" style="will-change: transform;" data-carousel-track>
+            <!-- Testimonial 1 -->
+            <div class="min-w-full px-4 flex flex-col items-center text-center">
+              <div class="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center animate-fade-in-up">
+                <img src="assets/images/gallery/priscilla-du-preez-nF8xhLMmg0c-unsplash.jpg" alt="Sarah Mwangi" class="w-20 h-20 rounded-full mb-4 object-cover border-4 border-indigo-100" />
+                <h3 class="text-lg font-bold mb-1">Sarah Mwangi</h3>
+                <p class="text-indigo-500 mb-2">Member for 5 years</p>
+                <p class="text-gray-700 italic mb-2">"This church has become my second home. The teaching is biblical, the community is loving, and I've grown so much in my faith here."</p>
+              </div>
             </div>
-        <div class="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center text-center animate-fade-in-up">
-          <img src="assets/images/gallery/naassom-azevedo-Q_Sei-TqSlc-unsplash.jpg" alt="David Ochieng" class="w-20 h-20 rounded-full mb-4 object-cover border-4 border-indigo-100" />
-          <h3 class="text-lg font-bold mb-1">David Ochieng</h3>
-          <p class="text-indigo-500 mb-2">Youth Leader</p>
-          <p class="text-gray-700 italic mb-2">"The youth ministry here is amazing! Our young people are growing in faith and developing leadership skills that will serve them for life."</p>
+            <!-- Testimonial 2 -->
+            <div class="min-w-full px-4 flex flex-col items-center text-center">
+              <div class="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center animate-fade-in-up">
+                <img src="assets/images/gallery/naassom-azevedo-Q_Sei-TqSlc-unsplash.jpg" alt="David Ochieng" class="w-20 h-20 rounded-full mb-4 object-cover border-4 border-indigo-100" />
+                <h3 class="text-lg font-bold mb-1">David Ochieng</h3>
+                <p class="text-indigo-500 mb-2">Youth Leader</p>
+                <p class="text-gray-700 italic mb-2">"The youth ministry here is amazing! Our young people are growing in faith and developing leadership skills that will serve them for life."</p>
+              </div>
+            </div>
+            <!-- Testimonial 3 -->
+            <div class="min-w-full px-4 flex flex-col items-center text-center">
+              <div class="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center animate-fade-in-up">
+                <img src="assets/images/gallery/helena-lopes-PGnqT0rXWLs-unsplash.jpg" alt="Mary Wanjiku" class="w-20 h-20 rounded-full mb-4 object-cover border-4 border-indigo-100" />
+                <h3 class="text-lg font-bold mb-1">Mary Wanjiku</h3>
+                <p class="text-indigo-500 mb-2">Community Outreach</p>
+                <p class="text-gray-700 italic mb-2">"I love how this church reaches out to the community. We're not just a building, but a family that serves others with God's love."</p>
+              </div>
+            </div>
           </div>
-        <div class="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center text-center animate-fade-in-up">
-          <img src="assets/images/gallery/helena-lopes-PGnqT0rXWLs-unsplash.jpg" alt="Mary Wanjiku" class="w-20 h-20 rounded-full mb-4 object-cover border-4 border-indigo-100" />
-          <h3 class="text-lg font-bold mb-1">Mary Wanjiku</h3>
-          <p class="text-indigo-500 mb-2">Community Outreach</p>
-          <p class="text-gray-700 italic mb-2">"I love how this church reaches out to the community. We're not just a building, but a family that serves others with God's love."</p>
-            </div>
+        </div>
+        <!-- Carousel Controls -->
+        <button id="testimonial-prev" aria-label="Previous" class="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-indigo-100 text-indigo-700 rounded-full shadow p-2 md:p-3 transition z-20"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg></button>
+        <button id="testimonial-next" aria-label="Next" class="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-indigo-100 text-indigo-700 rounded-full shadow p-2 md:p-3 transition z-20"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
+        <!-- Indicators -->
+        <div class="flex justify-center gap-2 mt-6">
+          <button class="w-3 h-3 rounded-full bg-indigo-300 hover:bg-indigo-500 transition" data-carousel-indicator="0"></button>
+          <button class="w-3 h-3 rounded-full bg-indigo-300 hover:bg-indigo-500 transition" data-carousel-indicator="1"></button>
+          <button class="w-3 h-3 rounded-full bg-indigo-300 hover:bg-indigo-500 transition" data-carousel-indicator="2"></button>
+        </div>
       </div>
     </div>
-    </section>
+  </section>
+  <script>
+    // Simple Testimonials Carousel
+    (function() {
+      const track = document.querySelector('[data-carousel-track]');
+      const slides = Array.from(track.children);
+      const prevBtn = document.getElementById('testimonial-prev');
+      const nextBtn = document.getElementById('testimonial-next');
+      const indicators = document.querySelectorAll('[data-carousel-indicator]');
+      let current = 0;
+      function updateCarousel(idx) {
+        track.style.transform = `translateX(-${idx * 100}%)`;
+        indicators.forEach((btn, i) => {
+          btn.classList.toggle('bg-indigo-500', i === idx);
+          btn.classList.toggle('bg-indigo-300', i !== idx);
+        });
+      }
+      prevBtn.addEventListener('click', () => {
+        current = (current - 1 + slides.length) % slides.length;
+        updateCarousel(current);
+      });
+      nextBtn.addEventListener('click', () => {
+        current = (current + 1) % slides.length;
+        updateCarousel(current);
+      });
+      indicators.forEach((btn, i) => {
+        btn.addEventListener('click', () => {
+          current = i;
+          updateCarousel(current);
+        });
+      });
+      // Auto-slide every 7 seconds
+      setInterval(() => {
+        current = (current + 1) % slides.length;
+        updateCarousel(current);
+      }, 7000);
+      // Initialize
+      updateCarousel(current);
+    })();
+  </script>
 
   <!-- Giving/Support Section -->
   <section id="giving" class="py-16 bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 text-indigo-900">
@@ -471,69 +554,78 @@
         <h2 class="text-3xl md:text-4xl font-bold mb-4">Support Our Mission</h2>
         <p class="text-lg mb-4">Your generosity helps us reach more people with the love and message of Christ. Thank you for partnering with us!</p>
         <a href="giving.html" class="inline-block mt-4 px-8 py-3 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-blue-600 text-white font-bold shadow-xl hover:from-pink-600 hover:to-blue-800 transition-all duration-500 text-lg">Give Now</a>
-            </div>
+      </div>
       <div class="flex-1 flex justify-center">
         <img src="assets/images/gallery/brooke-cagle-oTweoxMKdkA-unsplash.jpg" alt="Giving" class="rounded-3xl shadow-2xl w-full max-w-md object-cover border-4 border-indigo-100 animate-fade-in-up" />
       </div>
     </div>
-    </section>
+  </section>
 
   <!-- Footer -->
-  <footer class="bg-gradient-to-r from-blue-900 via-purple-900 to-blue-800 text-white py-12 mt-20">
-    <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8">
-      <!-- Logo and Mission -->
-      <div class="flex flex-col items-center md:items-start text-center md:text-left gap-3">
-        <img src="assets/images/Diet logo 2.png" alt="Diet of the Word International Church Logo" class="w-16 h-16 object-contain mb-2">
-        <div class="font-extrabold text-xl tracking-wide">Diet of the Word International Church</div>
-        <div class="text-blue-200 text-sm max-w-xs">Nourishing lives with the Word of God, building a Christ-centered community in Nairobi and beyond.</div>
+  <footer class="relative bg-gradient-to-br from-indigo-900 via-purple-800 to-blue-700 text-white pt-14 pb-8 mt-20 overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" style="background: url('data:image/svg+xml;utf8,<svg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'><circle cx=\'10\' cy=\'10\' r=\'1.5\' fill=\'%23fff\' fill-opacity=\'0.08\'/><circle cx=\'60\' cy=\'40\' r=\'1.5\' fill=\'%23fff\' fill-opacity=\'0.08\'/><circle cx=\'80\' cy=\'80\' r=\'1.5\' fill=\'%23fff\' fill-opacity=\'0.08\'/><circle cx=\'30\' cy=\'70\' r=\'1.5\' fill=\'%23fff\' fill-opacity=\'0.08\'/></svg>'); background-repeat: repeat;"></div>
+    <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-10 relative z-10">
+      <!-- About/Mission -->
+      <div class="flex flex-col items-center md:items-start gap-3 mb-8 md:mb-0">
+        <img src="assets/images/Diet logo 2.png" alt="Diet of the Word International Church Logo" class="w-16 h-16 object-contain mb-2 rounded-full border-2 border-yellow-400">
+        <div class="font-extrabold text-2xl tracking-wide text-yellow-300">Diet of the Word<br>International Church</div>
+        <div class="text-blue-100 text-sm max-w-xs mb-2">Nourishing lives with the Word of God, building a Christ-centered community in Nairobi and beyond.</div>
+        <div class="flex gap-2 mt-2">
+          <a href="https://wa.me/254700000000" target="_blank" aria-label="WhatsApp" class="hover:scale-110 transition"><svg class="w-7 h-7" fill="#25D366" viewBox="0 0 24 24"><path d="M12.004 2.003a9.994 9.994 0 0 0-8.47 15.47L2 22l4.646-1.53a9.994 9.994 0 1 0 5.358-18.467zm5.6 14.6c-.24.67-1.4 1.3-1.93 1.38-.5.08-1.1.12-1.77-.11-.41-.13-.94-.3-1.62-.59-2.85-1.23-4.7-4.13-4.84-4.33-.14-.2-1.16-1.54-1.16-2.94 0-1.4.74-2.08 1-2.36.26-.28.57-.35.76-.35.19 0 .38.01.54.01.17 0 .4-.06.63.48.24.57.81 1.97.88 2.12.07.15.12.33.02.53-.1.2-.15.32-.3.5-.15.18-.31.4-.44.54-.15.15-.3.31-.13.61.17.3.76 1.25 1.63 2.03 1.12.99 2.07 1.3 2.37 1.45.3.15.47.13.65-.08.18-.21.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.7.8 1.99.94.29.14.48.21.55.33.07.12.07.69-.17 1.36z"/></svg></a>
+          <a href="https://www.instagram.com/dietofthewordchurch/?hl=en" target="_blank" aria-label="Instagram" class="hover:scale-110 transition"><svg class="w-7 h-7" fill="#E1306C" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.241 1.308 3.608.058 1.266.069 1.646.069 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.974-2.241 1.246-3.608 1.308-1.266.058-1.646.069-4.85.069s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.974-.974-1.246-2.241-1.308-3.608.058-1.266.069-1.646.069-4.85s-.012-3.584-.07-4.85c-.062-1.366-.334-2.633-1.308-3.608-.974-.974-2.241-1.246-3.608-1.308C15.647.012 15.267 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm7.2-10.406a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg></a>
+          <a href="https://t.me/dietofthewordchurch" target="_blank" aria-label="Telegram" class="hover:scale-110 transition"><svg class="w-7 h-7" fill="#0088cc" viewBox="0 0 24 24"><path d="M9.04 16.56l-.39 3.67c.56 0 .8-.24 1.09-.53l2.62-2.5 5.44 3.98c1 .55 1.72.26 1.97-.92l3.58-16.7c.32-1.48-.54-2.06-1.5-1.7L2.2 9.3c-1.45.56-1.43 1.36-.25 1.7l4.6 1.44 10.7-6.74c.5-.32.96-.14.58.18z"/></svg></a>
+          <a href="https://web.facebook.com/dietofthewordchurch" target="_blank" aria-label="Facebook" class="hover:scale-110 transition"><svg class="w-7 h-7" fill="#1877F3" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.325 24h11.495v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0"/></svg></a>
+          <a href="https://www.youtube.com/@DietOfTheWordChurch" target="_blank" aria-label="YouTube" class="hover:scale-110 transition"><svg class="w-7 h-7" fill="#FF0000" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="https://www.tiktok.com/@dietofthewordchurch" target="_blank" aria-label="TikTok" class="hover:scale-110 transition"><svg class="w-7 h-7" fill="#000" viewBox="0 0 24 24"><path d="M12.75 2v12.25a2.25 2.25 0 1 1-2.25-2.25h1.5a.75.75 0 0 0 0-1.5h-1.5A3.75 3.75 0 1 0 14.25 16V7.5c.44.3.94.5 1.5.5a3 3 0 0 0 3-3V2h-1.5v3a1.5 1.5 0 0 1-1.5 1.5c-.56 0-1.06-.2-1.5-.5V2h-1.5z"/></svg></a>
+        </div>
       </div>
       <!-- Quick Links -->
       <div class="flex flex-col gap-2 text-center md:text-left">
-        <div class="font-bold mb-2 text-blue-100 uppercase tracking-wider">Quick Links</div>
-        <div class="flex flex-wrap gap-4 justify-center md:justify-start">
-        <a href="about.html" class="hover:text-purple-300">About</a>
-        <a href="leadership.html" class="hover:text-purple-300">Leadership</a>
-        <a href="ministries/adults.html" class="hover:text-purple-300">Ministries</a>
-        <a href="events.html" class="hover:text-purple-300">Events</a>
-        <a href="gallery.html" class="hover:text-purple-300">Gallery</a>
-        <a href="giving.html" class="hover:text-purple-300">Giving</a>
-        <a href="contact.html" class="hover:text-purple-300">Contact</a>
-          <a href="#" class="hover:text-purple-300">Privacy Policy</a>
-        </div>
+        <div class="font-bold mb-2 text-yellow-300 uppercase tracking-wider border-b-2 border-yellow-300 pb-1">Quick Links</div>
+        <ul class="space-y-1 text-blue-100 text-sm">
+          <li><a href="about.html" class="hover:text-yellow-300">About</a></li>
+          <li><a href="leadership.html" class="hover:text-yellow-300">Leadership</a></li>
+          <li><a href="ministries/adults.html" class="hover:text-yellow-300">Ministries</a></li>
+          <li><a href="events.html" class="hover:text-yellow-300">Events</a></li>
+          <li><a href="gallery.html" class="hover:text-yellow-300">Gallery</a></li>
+          <li><a href="giving.html" class="hover:text-yellow-300">Giving</a></li>
+          <li><a href="contact.html" class="hover:text-yellow-300">Contact</a></li>
+          <li><a href="#" class="hover:text-yellow-300">Privacy Policy</a></li>
+        </ul>
       </div>
-      <!-- Social & Copyright -->
-      <div class="flex flex-col items-center md:items-end gap-3">
-        <div class="flex gap-4 mb-2">
-          <a href="https://web.facebook.com/dietofthewordchurch" aria-label="Facebook" class="hover:text-blue-400" target="_blank"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.325 24h11.495v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0"/></svg></a>
-          <a href="https://twitter.com/dietchurchKE" aria-label="Twitter" class="hover:text-blue-400" target="_blank"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557a9.93 9.93 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724c-.951.564-2.005.974-3.127 1.195A4.916 4.916 0 0 0 16.616 3c-2.717 0-4.924 2.206-4.924 4.924 0 .386.044.763.127 1.124C7.728 8.807 4.1 6.884 1.671 3.965c-.423.724-.666 1.561-.666 2.475 0 1.708.87 3.216 2.188 4.099a4.904 4.904 0 0 1-2.229-.616c-.054 2.281 1.581 4.415 3.949 4.89a4.936 4.936 0 0 1-2.224.084c.627 1.956 2.444 3.377 4.6 3.417A9.867 9.867 0 0 1 0 21.543a13.94 13.94 0 0 0 7.548 2.212c9.058 0 14.009-7.513 14.009-14.009 0-.213-.005-.425-.014-.636A10.012 10.012 0 0 0 24 4.557z"/></svg></a>
-          <a href="https://www.instagram.com/dietofthewordchurch/?hl=en" aria-label="Instagram" class="hover:text-pink-400" target="_blank"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.241 1.308 3.608.058 1.266.069 1.646.069 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.974-2.241 1.246-3.608 1.308-1.266.058-1.646.069-4.85.069s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.974-.974-1.246-2.241-1.308-3.608.058-1.266.069-1.646.069-4.85s-.012-3.584-.07-4.85c-.062-1.366-.334-2.633-1.308-3.608-.974-.974-2.241-1.246-3.608-1.308C15.647.012 15.267 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm7.2-10.406a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg></a>
-          <a href="https://www.youtube.com/@DietOfTheWordChurch" aria-label="YouTube" class="hover:text-red-600" target="_blank"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      <!-- Ministries -->
+      <div class="flex flex-col gap-2 text-center md:text-left">
+        <div class="font-bold mb-2 text-yellow-300 uppercase tracking-wider border-b-2 border-yellow-300 pb-1">Ministries</div>
+        <ul class="space-y-1 text-blue-100 text-sm">
+          <li><a href="ministries/adults.html" class="hover:text-yellow-300">Adults</a></li>
+          <li><a href="ministries/youth.html" class="hover:text-yellow-300">Youth</a></li>
+          <li><a href="ministries/teenagers.html" class="hover:text-yellow-300">Teenagers</a></li>
+          <li><a href="ministries/sunday-school.html" class="hover:text-yellow-300">Sunday School</a></li>
+          <li><a href="ministries/toddlers.html" class="hover:text-yellow-300">Toddlers</a></li>
+        </ul>
         </div>
-        <div class="text-blue-200 text-sm">Nairobi, Kenya</div>
+      <!-- Stay Connected -->
+      <div class="flex flex-col gap-2 text-center md:text-left">
+        <div class="font-bold mb-2 text-yellow-300 uppercase tracking-wider border-b-2 border-yellow-300 pb-1">Stay Connected</div>
+        <ul class="space-y-1 text-blue-100 text-sm">
+          <li class="flex items-center gap-2"><svg class="w-5 h-5 text-yellow-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg> <a href="mailto:info@dietofthewordchurch.org" class="hover:text-yellow-300">info@dietofthewordchurch.org</a></li>
+          <li class="flex items-center gap-2"><svg class="w-5 h-5 text-yellow-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm0 12a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2zm14-12a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5a2 2 0 012-2h2zm0 12a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2a2 2 0 012-2h2z"/></svg> <span>+254 700 000 000</span></li>
+          <li class="flex items-center gap-2"><svg class="w-5 h-5 text-yellow-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8h2a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2v-8a2 2 0 012-2h2"/></svg> <span>Nairobi, Kenya</span></li>
+        </ul>
+      </div>
+        </div>
+    <div class="container mx-auto px-4 mt-10 border-t border-blue-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 relative z-10">
         <div class="text-blue-200 text-xs">&copy; 2025 Diet of the Word International Church. All rights reserved.</div>
+      <div class="flex gap-4 text-blue-200 text-xs">
+        <a href="#" class="hover:text-yellow-300">Privacy Policy</a>
+        <a href="#" class="hover:text-yellow-300">Terms of Service</a>
+        <a href="giving.html" class="hover:text-yellow-300">Donate</a>
+        <a href="contact.html" class="hover:text-yellow-300">Contact</a>
       </div>
     </div>
   </footer>
 
-  <!-- Hamburger Menu for Mobile (hidden by default, shown on mobile) -->
-  <div id="mobile-menu" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black text-white transition-transform duration-300 transform translate-x-full" style="display: none;">
-    <button id="close-mobile-menu" class="absolute top-6 right-6 text-white text-3xl">&times;</button>
-    <nav class="flex flex-col gap-8 text-2xl font-bold">
-      <a href="index.html" class="hover:text-pink-400">Home</a>
-      <a href="about.html" class="hover:text-pink-400">About</a>
-      <a href="leadership.html" class="hover:text-pink-400">Leadership</a>
-      <a href="ministries/adults.html" class="hover:text-pink-400">Ministries</a>
-      <a href="devotions.html" class="hover:text-pink-400">Devotions</a>
-      <a href="sermons.html" class="hover:text-pink-400">Sermons</a>
-      <a href="events.html" class="hover:text-pink-400">Events</a>
-      <a href="gallery.html" class="hover:text-pink-400">Gallery</a>
-      <a href="contact.html" class="hover:text-pink-400">Contact</a>
-      <a href="prayer-requests.html" class="hover:text-pink-400">Prayer Requests</a>
-      <a href="giving.html" class="hover:text-pink-400">Give</a>
-    </nav>
-  </div>
-
-  <script src="/assets/js/components.js"></script>
+  <script src="assets/js/components.js"></script>
   <script>
     // Animate fade-in-up elements on scroll
     function animateFadeInUp() {
@@ -546,6 +638,159 @@
     }
     window.addEventListener('scroll', animateFadeInUp);
     window.addEventListener('DOMContentLoaded', animateFadeInUp);
+
+    // Minimal JS for Ministries dropdown hover
+    document.addEventListener('DOMContentLoaded', function () {
+      var navItem = document.getElementById('ministries-nav-item');
+      var dropdown = document.getElementById('ministries-dropdown');
+      if (navItem && dropdown) {
+        navItem.addEventListener('mouseenter', function() {
+          dropdown.classList.remove('opacity-0', 'invisible');
+          dropdown.classList.add('opacity-100', 'visible');
+        });
+        navItem.addEventListener('mouseleave', function() {
+          dropdown.classList.add('opacity-0', 'invisible');
+          dropdown.classList.remove('opacity-100', 'visible');
+        });
+      }
+    });
+
+    // Event countdown timers for all event cards, and hide past events
+    function updateEventCountdowns() {
+      document.querySelectorAll('.event-card').forEach(function(card) {
+        const dateStr = card.getAttribute('data-date');
+        const eventDate = new Date(dateStr);
+        const now = new Date();
+        let diff = eventDate - now;
+        if (diff <= 0) {
+          card.style.display = 'none';
+        } else {
+          const countdown = card.querySelector('.event-countdown');
+          if (countdown) {
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const mins = Math.floor((diff / (1000 * 60)) % 60);
+            const secs = Math.floor((diff / 1000) % 60);
+            countdown.textContent = `${days}d ${hours}h ${mins}m ${secs}s`;
+          }
+        }
+      });
+    }
+    setInterval(updateEventCountdowns, 1000);
+    document.addEventListener('DOMContentLoaded', updateEventCountdowns);
+  </script>
+  <script src="assets/js/events-data.js"></script>
+  <script>
+    // Render Upcoming Events from shared data
+    function renderUpcomingEvents() {
+      if (!window.UPCOMING_EVENTS) return;
+      // Featured Event (only on events page)
+      const featuredTitle = document.getElementById('featured-event-title');
+      if (featuredTitle) {
+        const featured = window.UPCOMING_EVENTS[0];
+        featuredTitle.textContent = featured.title;
+        document.getElementById('featured-event-date').textContent = featured.date + ' ' + featured.time;
+        document.getElementById('featured-event-desc').textContent = featured.description;
+        document.getElementById('featured-event-img').src = featured.image;
+        document.getElementById('featured-event-countdown').setAttribute('data-date', featured.datetime);
+      }
+      // Events Grid
+      const grid = document.getElementById('upcoming-events-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      window.UPCOMING_EVENTS.forEach((event, i) => {
+        if (i === 0) return; // skip featured
+        const slug = event.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        grid.innerHTML += `
+          <div class="bg-white rounded-2xl shadow-lg p-8 flex flex-col group hover:shadow-2xl transition-transform duration-300 hover:scale-105 fade-in-up card-hover event-card" data-date="${event.datetime}" id="event-${slug}">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-${event.categoryColor}-900 font-bold uppercase tracking-wide">${event.title}</span>
+              <span class="ml-2 px-2 py-1 rounded-full text-xs font-bold bg-${event.categoryColor}-100 text-${event.categoryColor}-700">${event.category}</span>
+            </div>
+            <p class="text-sm text-gray-500 mb-1">${event.date} &bull; ${event.time}</p>
+            <div class="font-mono text-yellow-500 text-xs font-bold mb-2"><span class="event-countdown" data-date="${event.datetime}"></span> left</div>
+            <p class="mb-4">${event.description}</p>
+            <div class="flex flex-wrap gap-3 mt-auto">
+              <a href="events.html#event-${slug}" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-full transition">Learn More</a>
+            </div>
+          </div>
+        `;
+      });
+      // Smooth scroll to event if hash is present (only on events page)
+      if (window.location.hash.startsWith('#event-') && featuredTitle) {
+        setTimeout(() => {
+          const el = document.querySelector(window.location.hash);
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
+      }
+    }
+    document.addEventListener('DOMContentLoaded', renderUpcomingEvents);
+  </script>
+  <script>
+    fetch('components/header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header').innerHTML = data;
+        // --- Dropdown and mobile menu logic ---
+        // Mobile menu open/close logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileOverlay = document.getElementById('mobile-overlay');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        function openMobileMenu() {
+          mobileMenu.classList.remove('translate-x-full', 'opacity-0');
+          mobileMenu.classList.add('translate-x-0', 'opacity-100');
+          mobileOverlay.classList.remove('hidden', 'opacity-0');
+          mobileOverlay.classList.add('block', 'opacity-100');
+          mobileMenuBtn.setAttribute('aria-expanded', 'true');
+        }
+        function closeMobileMenu() {
+          mobileMenu.classList.add('translate-x-full', 'opacity-0');
+          mobileMenu.classList.remove('translate-x-0', 'opacity-100');
+          mobileOverlay.classList.add('hidden', 'opacity-0');
+          mobileOverlay.classList.remove('block', 'opacity-100');
+          mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        }
+        if (mobileMenuBtn && mobileMenu && mobileOverlay && mobileMenuClose) {
+          mobileMenuBtn.addEventListener('click', openMobileMenu);
+          mobileMenuClose.addEventListener('click', closeMobileMenu);
+          mobileOverlay.addEventListener('click', closeMobileMenu);
+        }
+        // Ministries dropdown: open on hover or click, close on outside click
+        const ministriesDropdown = document.getElementById('ministries-dropdown');
+        const ministriesLink = document.getElementById('ministries-link');
+        const ministriesMenu = document.getElementById('ministries-menu');
+        let ministriesOpen = false;
+        function openMinistriesMenu() {
+          ministriesMenu.classList.add('opacity-100', 'pointer-events-auto');
+          ministriesMenu.classList.remove('opacity-0', 'pointer-events-none');
+          ministriesOpen = true;
+        }
+        function closeMinistriesMenu() {
+          ministriesMenu.classList.remove('opacity-100', 'pointer-events-auto');
+          ministriesMenu.classList.add('opacity-0', 'pointer-events-none');
+          ministriesOpen = false;
+        }
+        if (ministriesLink && ministriesDropdown && ministriesMenu) {
+          ministriesLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (ministriesOpen) {
+              closeMinistriesMenu();
+            } else {
+              openMinistriesMenu();
+            }
+          });
+          // Also open on hover for desktop
+          ministriesDropdown.addEventListener('mouseenter', openMinistriesMenu);
+          ministriesDropdown.addEventListener('mouseleave', closeMinistriesMenu);
+          // Close on outside click
+          document.addEventListener('click', function(e) {
+            if (!ministriesDropdown.contains(e.target)) {
+              closeMinistriesMenu();
+            }
+          });
+        }
+      });
   </script>
 </body>
 </html>

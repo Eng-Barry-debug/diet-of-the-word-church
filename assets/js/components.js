@@ -18,8 +18,19 @@ function loadComponent(selector, url) {
   }
 }
 
+function highlightActiveNav() {
+  var path = window.location.pathname.split('/').pop();
+  if (!path) path = 'index.html';
+  document.querySelectorAll('a.nav-link-ani').forEach(function(link) {
+    var href = link.getAttribute('href');
+    if (href === path || (href.replace('.html', '.php') === path) || (href.replace('.php', '.html') === path)) {
+      link.classList.add('active');
+    }
+  });
+}
+
 // Main site components
-loadComponent('#header', 'components/header.html');
+// loadComponent('#header', 'components/header.html', highlightActiveNav);
 loadComponent('#footer', 'components/footer.html');
 
 // Admin components
@@ -28,13 +39,8 @@ loadComponent('#admin-sidebar', '/components/admin-sidebar.html');
 
 // === Navigation Accessibility & Interactivity Enhancements ===
 document.addEventListener('DOMContentLoaded', function () {
-  // Highlight active nav link
-  var path = window.location.pathname.split('/').pop();
-  document.querySelectorAll('.nav-link').forEach(function(link) {
-    if (link.getAttribute('href') === path) {
-      link.classList.add('active');
-    }
-  });
+  // Highlight active nav link for .html and .php pages (desktop & mobile)
+  // This function is now called after header is loaded
 
   // Sticky shadow on scroll
   const header = document.getElementById('main-header');

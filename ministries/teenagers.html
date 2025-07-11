@@ -6,158 +6,633 @@
   <title>Teenagers Ministry | Diet of the Word Church</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/custom.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
   <style>
     .fade-in-up { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1); }
     .fade-in-up.visible { opacity: 1; transform: none; }
+    .fredoka { font-family: 'Fredoka One', cursive; }
+  </style>
+  <style>
+  /* Advanced Lesson Resources Section Styles */
+  #lesson-resources-section {
+    background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(80, 80, 180, 0.08);
+    padding: 2.5em 1.5em 2em 1.5em;
+    margin: 3em auto 2em auto;
+    max-width: 1100px;
+    position: relative;
+  }
+  #lesson-resources-section .section-title {
+    font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    font-size: 2.2em;
+    font-weight: 800;
+    color: #3b3b7a;
+    text-align: center;
+    margin-bottom: 1.2em;
+    letter-spacing: 1px;
+  }
+  .lesson-layout {
+    display: flex;
+    gap: 2em;
+  }
+  .lesson-sidebar {
+    min-width: 180px;
+    max-width: 220px;
+    background: #e0e7ff;
+    border-radius: 14px;
+    padding: 1.2em 1em;
+    box-shadow: 0 2px 12px rgba(99,102,241,0.07);
+    height: fit-content;
+    margin-bottom: 1em;
+  }
+  .lesson-sidebar-title {
+    font-weight: 700;
+    color: #6366f1;
+    margin-bottom: 0.7em;
+    font-size: 1.1em;
+  }
+  .lesson-filter-btn {
+    display: block;
+    width: 100%;
+    background: #fff;
+    color: #3b3b7a;
+    border: none;
+    border-radius: 12px;
+    padding: 0.5em 0.9em;
+    font-weight: 600;
+    font-size: 1em;
+    cursor: pointer;
+    margin-bottom: 0.5em;
+    text-align: left;
+    transition: background 0.2s, color 0.2s;
+  }
+  .lesson-filter-btn.active, .lesson-filter-btn:hover {
+    background: #6366f1;
+    color: #fff;
+  }
+  .lesson-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5em;
+    flex: 1;
+  }
+  @media (max-width: 900px) {
+    .lesson-layout {
+      flex-direction: column;
+    }
+    .lesson-sidebar {
+      max-width: 100%;
+      min-width: 0;
+      margin-bottom: 1.5em;
+    }
+    .lesson-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .featured-lesson {
+    grid-column: span 2;
+    background: linear-gradient(90deg, #6366f1 0%, #818cf8 100%);
+    color: #fff;
+    box-shadow: 0 6px 32px rgba(99,102,241,0.13);
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 2em 2em 2em 2.5em;
+    border-radius: 20px;
+    margin-bottom: 1.5em;
+    overflow: hidden;
+    animation: fadeInUp 0.7s;
+  }
+  .featured-lesson .lesson-icon {
+    font-size: 3.2em;
+    margin-right: 1.5em;
+    filter: drop-shadow(0 2px 8px #fff6);
+  }
+  .featured-lesson .lesson-title {
+    font-size: 1.5em;
+    font-weight: 900;
+    color: #fff;
+  }
+  .featured-lesson .lesson-category.lesson-tag {
+    background: #fbbf24;
+    color: #fff;
+    margin-left: 1em;
+  }
+  .featured-lesson .lesson-teacher {
+    position: absolute;
+    top: 1.2em;
+    right: 2em;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+  .featured-lesson .teacher-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #fff;
+    object-fit: cover;
+    border: 2px solid #fbbf24;
+  }
+  .lesson-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(99, 102, 241, 0.09);
+    overflow: hidden;
+    position: relative;
+    border-left: 8px solid #6366f1;
+    cursor: pointer;
+    transition: transform 0.18s, box-shadow 0.18s, border-color 0.3s;
+    animation: fadeInUp 0.7s;
+  }
+  .lesson-card:hover {
+    transform: translateY(-3px) scale(1.018);
+    box-shadow: 0 8px 32px rgba(99, 102, 241, 0.13);
+  }
+  .lesson-card .lesson-header {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 1.1em 1.3em;
+    font-size: 1.13em;
+    font-weight: 700;
+    color: #3b3b7a;
+    background: none;
+    border-bottom: none;
+  }
+  .lesson-card .lesson-icon {
+    font-size: 2.1em;
+    margin-right: 0.2em;
+    filter: drop-shadow(0 2px 4px #b3b3e6);
+    transition: transform 0.2s;
+  }
+  .lesson-card .lesson-title {
+    flex: 1;
+    font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    font-size: 1.13em;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+  }
+  .lesson-card .lesson-category.lesson-tag {
+    background: #fbbf24;
+    color: #fff;
+    border-radius: 12px;
+    padding: 0.2em 0.9em;
+    font-size: 0.93em;
+    font-weight: 700;
+    margin-left: 0.5em;
+    box-shadow: 0 1px 4px rgba(251, 191, 36, 0.13);
+  }
+  .lesson-card .lesson-teacher {
+    position: absolute;
+    top: 1.1em;
+    right: 1.2em;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+  .lesson-card .teacher-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #e0e7ff;
+    object-fit: cover;
+    border: 2px solid #fbbf24;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  /* Category color borders */
+  .lesson-card[data-category="Faith"] { border-left-color: #6366f1; }
+  .lesson-card[data-category="Life Skills"] { border-left-color: #10b981; }
+  .lesson-card[data-category="Purpose"] { border-left-color: #f59e42; }
+  .lesson-card[data-category="Relationships"] { border-left-color: #f43f5e; }
+  .lesson-card[data-category="Wellbeing"] { border-left-color: #06b6d4; }
+  /* Modal Styles */
+  .lesson-modal-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(60, 60, 100, 0.25);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeInUp 0.3s;
+  }
+  .lesson-modal {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 8px 48px rgba(99,102,241,0.18);
+    max-width: 480px;
+    width: 95vw;
+    padding: 2em 1.5em 1.5em 1.5em;
+    position: relative;
+    animation: fadeInUp 0.4s;
+  }
+  .lesson-modal .close-modal {
+    position: absolute;
+    top: 1em;
+    right: 1.2em;
+    font-size: 1.5em;
+    color: #6366f1;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+  }
+  .lesson-modal .lesson-title {
+    font-size: 1.3em;
+    font-weight: 800;
+    color: #3b3b7a;
+    margin-bottom: 0.5em;
+  }
+  .lesson-modal .lesson-category.lesson-tag {
+    background: #fbbf24;
+    color: #fff;
+    border-radius: 12px;
+    padding: 0.2em 0.9em;
+    font-size: 0.93em;
+    font-weight: 700;
+    margin-left: 0.5em;
+    box-shadow: 0 1px 4px rgba(251, 191, 36, 0.13);
+  }
+  .lesson-modal .lesson-scripture {
+    font-weight: 700;
+    color: #4338ca;
+    margin-bottom: 0.5em;
+  }
+  .lesson-modal .lesson-summary {
+    margin-bottom: 0.7em;
+    font-style: italic;
+  }
+  .lesson-modal .lesson-questions ul {
+    margin: 0.3em 0 0.7em 1.2em;
+    padding: 0;
+    list-style: disc inside;
+  }
+  .lesson-modal .lesson-activity {
+    background: #e0e7ff;
+    color: #3b3b7a;
+    border-radius: 10px;
+    padding: 0.5em 1em;
+    margin-top: 0.7em;
+    font-weight: 600;
+    box-shadow: 0 1px 4px rgba(99, 102, 241, 0.07);
+  }
+  .lesson-modal .lesson-teacher {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-bottom: 1em;
+  }
+  .lesson-modal .teacher-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #e0e7ff;
+    object-fit: cover;
+    border: 2px solid #fbbf24;
+  }
+  #no-lessons-message {
+    font-size: 1.1em;
+    font-style: italic;
+    color: #888;
+    margin-top: 2em;
+  }
+  .lesson-footer {
+    margin-top: 2.5em;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #6366f1;
+    letter-spacing: 1px;
+    background: #e0e7ff;
+    border-radius: 12px;
+    padding: 0.7em 0;
+    box-shadow: 0 1px 8px rgba(99, 102, 241, 0.07);
+  }
+  @media (max-width: 600px) {
+    #lesson-resources-section {
+      padding: 1.2em 0.2em 1.2em 0.2em;
+      max-width: 98vw;
+    }
+    .lesson-layout {
+      flex-direction: column;
+      gap: 1em;
+    }
+    .lesson-sidebar {
+      max-width: 100%;
+      min-width: 0;
+      margin-bottom: 1.5em;
+    }
+    .lesson-grid {
+      grid-template-columns: 1fr;
+      gap: 1em;
+    }
+    .featured-lesson {
+      grid-column: span 1;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1.2em 1em;
+    }
+  }
+  </style>
+  <style>
+  /* Lesson Resources Section Styles */
+  #lesson-resources-section {
+    background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(80, 80, 180, 0.08);
+    padding: 2.5em 1.5em 2em 1.5em;
+    margin: 3em auto 2em auto;
+    max-width: 800px;
+  }
+  #lesson-resources-section .section-title {
+    font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    font-size: 2.2em;
+    font-weight: 800;
+    color: #3b3b7a;
+    text-align: center;
+    margin-bottom: 1.2em;
+    letter-spacing: 1px;
+  }
+  .lesson-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7em;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5em;
+  }
+  #lesson-search {
+    padding: 0.7em 1.2em;
+    border-radius: 24px;
+    border: 1.5px solid #b3b3e6;
+    font-size: 1em;
+    width: 220px;
+    transition: border 0.2s;
+    outline: none;
+  }
+  #lesson-search:focus {
+    border: 2px solid #6366f1;
+    background: #f0f4ff;
+  }
+  #lesson-filters {
+    display: flex;
+    gap: 0.5em;
+  }
+  .lesson-filter-btn {
+    background: #e0e7ff;
+    color: #3b3b7a;
+    border: none;
+    border-radius: 18px;
+    padding: 0.5em 1.1em;
+    font-weight: 600;
+    font-size: 0.98em;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.07);
+  }
+  .lesson-filter-btn:hover, .lesson-filter-btn:focus {
+    background: #6366f1;
+    color: #fff;
+  }
+  #show-all-lessons, #collapse-all-lessons {
+    background: #6366f1;
+    color: #fff;
+    border: none;
+    border-radius: 18px;
+    padding: 0.5em 1.1em;
+    font-weight: 600;
+    font-size: 0.98em;
+    cursor: pointer;
+    margin-left: 0.3em;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.07);
+  }
+  #show-all-lessons:hover, #collapse-all-lessons:hover {
+    background: #4338ca;
+  }
+  .lesson-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2em;
+  }
+  .lesson-item {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(99, 102, 241, 0.09);
+    overflow: hidden;
+    transition: transform 0.15s, box-shadow 0.15s;
+    position: relative;
+  }
+  .lesson-item:hover {
+    transform: translateY(-2px) scale(1.012);
+    box-shadow: 0 6px 24px rgba(99, 102, 241, 0.13);
+  }
+  .lesson-header {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    cursor: pointer;
+    padding: 1.1em 1.3em;
+    font-size: 1.18em;
+    font-weight: 700;
+    color: #3b3b7a;
+    background: linear-gradient(90deg, #e0e7ff 0%, #f8fafc 100%);
+    border-bottom: 1px solid #e0e7ff;
+    transition: background 0.2s, color 0.2s;
+    outline: none;
+  }
+  .lesson-header.open, .lesson-header:focus {
+    background: #6366f1;
+    color: #fff;
+  }
+  .lesson-icon {
+    font-size: 2.1em;
+    margin-right: 0.2em;
+    filter: drop-shadow(0 2px 4px #b3b3e6);
+    transition: transform 0.2s;
+  }
+  .lesson-header:hover .lesson-icon, .lesson-header.open .lesson-icon {
+    transform: scale(1.18) rotate(-6deg);
+  }
+  .lesson-title {
+    flex: 1;
+    font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    font-size: 1.13em;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+  }
+  .lesson-category.lesson-tag {
+    background: #fbbf24;
+    color: #fff;
+    border-radius: 12px;
+    padding: 0.2em 0.9em;
+    font-size: 0.93em;
+    font-weight: 700;
+    margin-left: 0.5em;
+    box-shadow: 0 1px 4px rgba(251, 191, 36, 0.13);
+    transition: background 0.2s, color 0.2s;
+  }
+  .lesson-header.open .lesson-category.lesson-tag {
+    background: #fff;
+    color: #6366f1;
+  }
+  .lesson-toggle {
+    font-size: 1.3em;
+    margin-left: 0.7em;
+    transition: transform 0.2s;
+  }
+  .lesson-header.open .lesson-toggle {
+    transform: rotate(180deg);
+  }
+  .lesson-body {
+    background: #f8fafc;
+    padding: 1.1em 1.5em 1.2em 3.2em;
+    font-size: 1.04em;
+    color: #444;
+    line-height: 1.7;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.4, 0.2, 0.2, 1);
+    border-left: 4px solid #6366f1;
+  }
+  .lesson-scripture {
+    font-weight: 700;
+    color: #4338ca;
+    margin-bottom: 0.5em;
+  }
+  .lesson-summary {
+    margin-bottom: 0.7em;
+    font-style: italic;
+  }
+  .lesson-questions ul {
+    margin: 0.3em 0 0.7em 1.2em;
+    padding: 0;
+    list-style: disc inside;
+  }
+  .lesson-activity {
+    background: #e0e7ff;
+    color: #3b3b7a;
+    border-radius: 10px;
+    padding: 0.5em 1em;
+    margin-top: 0.7em;
+    font-weight: 600;
+    box-shadow: 0 1px 4px rgba(99, 102, 241, 0.07);
+  }
+  #no-lessons-message {
+    font-size: 1.1em;
+    font-style: italic;
+    color: #888;
+    margin-top: 2em;
+  }
+  .lesson-footer {
+    margin-top: 2.5em;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #6366f1;
+    letter-spacing: 1px;
+    background: #e0e7ff;
+    border-radius: 12px;
+    padding: 0.7em 0;
+    box-shadow: 0 1px 8px rgba(99, 102, 241, 0.07);
+  }
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    #lesson-resources-section {
+      padding: 1.2em 0.2em 1.2em 0.2em;
+      max-width: 98vw;
+    }
+    .lesson-header, .lesson-body {
+      padding-left: 1em !important;
+      padding-right: 1em !important;
+    }
+    .lesson-body {
+      font-size: 0.98em;
+    }
+    .lesson-footer {
+      font-size: 1em;
+    }
+    #lesson-search {
+      width: 100%;
+      min-width: 0;
+    }
+    .lesson-accordion {
+      gap: 0.7em;
+    }
+  }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
+  <!-- Skip to Content for Accessibility -->
+  <a href="#main-content" class="sr-only focus:not-sr-only absolute top-2 left-2 z-50 bg-blue-700 text-white px-4 py-2 rounded shadow-lg transition-all duration-200">Skip to Content</a>
   <!-- Header Navigation Component -->
-  <header id="main-header" class="bg-white/30 backdrop-blur-xl border-b border-blue-200 shadow-2xl transition-all duration-500 sticky top-0 z-50" style="background: rgba(30, 41, 59, 0.7);" role="banner">
-    <nav class="container mx-auto flex items-center justify-between px-4 py-3" aria-label="Main navigation" role="navigation">
-      <!-- Logo/Brand -->
-      <a href="../index.html" class="flex items-center gap-3 text-white font-extrabold text-2xl tracking-wide focus-visible:ring-2 focus-visible:ring-pink-400" tabindex="0">
-        <img src="../assets/images/Diet logo 2.png" alt="Diet of the Word Church Logo" class="w-20 h-20 object-contain drop-shadow-xl rounded-full">
-      </a>
-      <!-- Desktop Nav -->
-      <ul class="hidden lg:flex items-center space-x-7 font-medium" role="menubar">
-        <li role="none"><a href="../index.html" class="nav-link-ani" role="menuitem" tabindex="0">Home</a></li>
-        <li role="none"><a href="../about.html" class="nav-link-ani" role="menuitem" tabindex="0">About</a></li>
-        <li role="none"><a href="../leadership.html" class="nav-link-ani" role="menuitem" tabindex="0">Leadership</a></li>
-        <li style="position: relative;">
-          <a href="#" style="color: white; font-weight: bold; padding: 8px 16px; display: inline-block;">Ministries</a>
-          <ul style="display: none; position: absolute; left: 0; top: 100%; background: white; border: 1px solid #eee; border-radius: 8px; min-width: 180px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            <li><a href="toddlers.html" style="display: block; padding: 8px 16px;">Toddlers</a></li>
-            <li><a href="sunday-school.html" style="display: block; padding: 8px 16px;">Sunday School</a></li>
-            <li><a href="teenagers.html" style="display: block; padding: 8px 16px;">Teenagers</a></li>
-            <li><a href="youth.html" style="display: block; padding: 8px 16px;">Youth</a></li>
-            <li><a href="adults.html" style="display: block; padding: 8px 16px;">Adults</a></li>
-          </ul>
-          <script>
-            // Show dropdown on hover
-            const li = document.currentScript.parentElement;
-            li.addEventListener('mouseenter', () => li.querySelector('ul').style.display = 'block');
-            li.addEventListener('mouseleave', () => li.querySelector('ul').style.display = 'none');
-          </script>
-        </li>
-        <li role="none"><a href="../devotions.html" class="nav-link-ani" role="menuitem" tabindex="0">Devotions</a></li>
-        <li role="none"><a href="../sermons.html" class="nav-link-ani" role="menuitem" tabindex="0">Sermons</a></li>
-        <li role="none"><a href="../events.html" class="nav-link-ani" role="menuitem" tabindex="0">Events</a></li>
-        <li role="none"><a href="../gallery.html" class="nav-link-ani" role="menuitem" tabindex="0">Gallery</a></li>
-        <li role="none"><a href="../contact.html" class="nav-link-ani" role="menuitem" tabindex="0">Contact</a></li>
-        <li role="none"><a href="../prayer-requests.html" class="nav-link-ani" role="menuitem" tabindex="0">Prayer Requests</a></li>
-        <li role="none">
-          <a href="../giving.html" class="ml-2 px-5 py-2 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-blue-600 text-white font-semibold shadow-xl hover:from-pink-600 hover:to-blue-800 transition-all duration-500 flex items-center gap-2 animate-give-glow focus-visible:ring-2 focus-visible:ring-pink-400" role="menuitem" tabindex="0">
-            <svg class="w-5 h-5 animate-give-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 1.343-3 3 0 1.657 1.343 3 3 3s3-1.343 3-3c0-1.657-1.343-3-3-3zm0 0V4m0 7v7m0 0H9m3 0h3"/></svg>
-            Give
-          </a>
-        </li>
-        <!-- Notification Bell -->
-        <li role="none">
-          <button class="ml-2 p-2 rounded-full bg-white/30 hover:bg-pink-100 transition shadow focus-visible:ring-2 focus-visible:ring-pink-400 animate-bell" aria-label="Notifications">
-            <svg class="w-6 h-6 text-pink-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 7.165 6 9.388 6 12v2.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
-          </button>
-        </li>
-      </ul>
-      <!-- Modern Hamburger Menu Button -->
-      <button id="mobile-menu-btn" class="md:hidden flex items-center justify-center w-12 h-12 rounded-full bg-black/70 hover:bg-black/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-400 group transition-all duration-300" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
-        <span class="relative w-7 h-7 flex flex-col justify-center items-center">
-          <span class="hamburger-bar top-bar block w-7 h-1 bg-white rounded transition-all duration-300 group-[.open]:rotate-45 group-[.open]:translate-y-3"></span>
-          <span class="hamburger-bar middle-bar block w-7 h-1 bg-white rounded mt-1.5 mb-1.5 transition-all duration-300 group-[.open]:opacity-0"></span>
-          <span class="hamburger-bar bottom-bar block w-7 h-1 bg-white rounded transition-all duration-300 group-[.open]:-rotate-45 group-[.open]:-translate-y-3"></span>
-        </span>
-      </button>
-    </nav>
-    <!-- Mobile Nav & Overlay -->
-    <div id="mobile-overlay" class="fixed inset-0 bg-black bg-opacity-40 z-40 hidden opacity-0 transition-opacity duration-300" tabindex="-1" aria-hidden="true"></div>
-    <div id="mobile-menu" class="md:hidden fixed top-0 right-0 w-full max-w-xs h-full bg-black/95 text-white backdrop-blur-2xl shadow-2xl border-l-4 border-indigo-400 z-50 transform translate-x-full opacity-0 transition-all duration-500 rounded-l-2xl flex flex-col" role="menu" aria-label="Mobile navigation" tabindex="-1">
-      <button id="mobile-menu-close" class="absolute top-4 right-4 text-white hover:text-pink-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-400 rounded-full bg-black p-2 shadow-lg border border-pink-400" aria-label="Close menu">
-        <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-      <div class="flex-1 flex flex-col justify-center">
-        <ul class="flex flex-col gap-6 px-8 py-16 font-bold text-white text-lg tracking-wide overflow-y-auto max-h-screen" role="menubar">
-          <li role="none"><a href="../index.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">Home</a></li>
-          <li role="none"><a href="../about.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">About</a></li>
-          <li role="none"><a href="../leadership.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">Leadership</a></li>
-          <li role="none" class="pt-2 pb-2 border-t border-pink-400">
-            <button class="flex items-center gap-2 w-full py-3 nav-link-ani text-left text-white hover:text-pink-400" aria-haspopup="true" aria-expanded="false" aria-controls="mobile-ministries" onclick="document.getElementById('mobile-ministries').classList.toggle('hidden')" role="menuitem" tabindex="0">
-              Ministries
-              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-            </button>
-            <ul id="mobile-ministries" class="ml-4 mt-1 hidden" role="menu" aria-label="Ministries submenu">
-              <li role="none"><a href="adults.html" class="block py-2 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="-1">Adults</a></li>
-              <li role="none"><a href="youth.html" class="block py-2 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="-1">Youth</a></li>
-              <li role="none"><a href="teenagers.html" class="block py-2 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="-1">Teenagers</a></li>
-              <li role="none"><a href="sunday-school.html" class="block py-2 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="-1">Sunday School</a></li>
-              <li role="none"><a href="toddlers.html" class="block py-2 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="-1">Toddlers</a></li>
-            </ul>
-          </li>
-          <li role="none"><a href="../devotions.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">Devotions</a></li>
-          <li role="none"><a href="../sermons.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">Sermons</a></li>
-          <li role="none"><a href="../events.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">Events</a></li>
-          <li role="none"><a href="../gallery.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">Gallery</a></li>
-          <li role="none"><a href="../contact.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">Contact</a></li>
-          <li role="none"><a href="../prayer-requests.html" class="block py-3 nav-link-ani flex items-center gap-2 text-white hover:text-pink-400" role="menuitem" tabindex="0">Prayer Requests</a></li>
-          <li role="none"><a href="../giving.html" class="block py-3 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-blue-600 text-white font-semibold shadow-xl hover:from-pink-600 hover:to-blue-800 transition-all duration-500 flex items-center gap-2 animate-give-glow focus-visible:ring-2 focus-visible:ring-pink-400 mt-4" role="menuitem" tabindex="0">Give</a></li>
-        </ul>
-      </div>
-    </div>
-    <style>
-      .nav-link-ani {
-        position: relative;
-        padding-bottom: 2px;
-        color: #fff;
-        transition: color 0.2s, font-weight 0.2s;
-        font-weight: 500;
-        outline: none;
-      }
-      .nav-link-ani:after {
-        content: '';
-        display: block;
-        position: absolute;
-        left: 0; right: 0; bottom: 0;
-        height: 3px;
-        background: linear-gradient(90deg, #f472b6 0%, #a78bfa 50%, #38bdf8 100%);
-        border-radius: 2px;
-        opacity: 0;
-        transform: scaleX(0.6);
-        transition: opacity 0.4s, transform 0.4s;
-      }
-      .nav-link-ani:hover:after, .nav-link-ani:focus-visible:after {
-        opacity: 1;
-        transform: scaleX(1);
-      }
-      .nav-link-ani.active:after {
-        opacity: 1;
-        transform: scaleX(1);
-      }
-      .nav-link-ani:hover, .nav-link-ani:focus-visible {
-        color: #fbbf24;
-        font-weight: 700;
-        text-shadow: 0 2px 8px #f472b6cc;
-      }
-      /* Hamburger animation */
-      .group.open .top-bar {
-        transform: rotate(45deg) translateY(12px);
-      }
-      .group.open .middle-bar {
-        opacity: 0;
-      }
-      .group.open .bottom-bar {
-        transform: rotate(-45deg) translateY(-12px);
-      }
-      /* Mobile menu fade/slide */
-      #mobile-menu.open {
-        transform: translateX(0);
-        opacity: 1;
-      }
-      #mobile-overlay.open {
-        opacity: 1;
-        pointer-events: auto;
-      }
-    </style>
-    <script src="assets/js/components.js"></script>
-  </header>
+  <div id="header"></div>
+  <script>
+    fetch('../components/header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header').innerHTML = data;
+        // --- Dropdown and mobile menu logic ---
+        // Mobile menu open/close logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileOverlay = document.getElementById('mobile-overlay');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        function openMobileMenu() {
+          mobileMenu.classList.remove('translate-x-full', 'opacity-0');
+          mobileMenu.classList.add('translate-x-0', 'opacity-100');
+          mobileOverlay.classList.remove('hidden', 'opacity-0');
+          mobileOverlay.classList.add('block', 'opacity-100');
+          mobileMenuBtn.setAttribute('aria-expanded', 'true');
+        }
+        function closeMobileMenu() {
+          mobileMenu.classList.add('translate-x-full', 'opacity-0');
+          mobileMenu.classList.remove('translate-x-0', 'opacity-100');
+          mobileOverlay.classList.add('hidden', 'opacity-0');
+          mobileOverlay.classList.remove('block', 'opacity-100');
+          mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        }
+        if (mobileMenuBtn && mobileMenu && mobileOverlay && mobileMenuClose) {
+          mobileMenuBtn.addEventListener('click', openMobileMenu);
+          mobileMenuClose.addEventListener('click', closeMobileMenu);
+          mobileOverlay.addEventListener('click', closeMobileMenu);
+        }
+        // Ministries dropdown: open on hover or click, close on outside click
+        const ministriesDropdown = document.getElementById('ministries-dropdown');
+        const ministriesLink = document.getElementById('ministries-link');
+        const ministriesMenu = document.getElementById('ministries-menu');
+        let ministriesOpen = false;
+        if (ministriesDropdown && ministriesLink && ministriesMenu) {
+          function openDropdown() {
+            ministriesMenu.classList.add('opacity-100', 'pointer-events-auto');
+            ministriesMenu.classList.remove('opacity-0', 'pointer-events-none');
+            ministriesOpen = true;
+          }
+          function closeDropdown() {
+            ministriesMenu.classList.remove('opacity-100', 'pointer-events-auto');
+            ministriesMenu.classList.add('opacity-0', 'pointer-events-none');
+            ministriesOpen = false;
+          }
+          ministriesDropdown.addEventListener('mouseenter', openDropdown);
+          ministriesDropdown.addEventListener('mouseleave', closeDropdown);
+          ministriesLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            ministriesOpen ? closeDropdown() : openDropdown();
+          });
+          document.addEventListener('click', function(e) {
+            if (!ministriesDropdown.contains(e.target)) {
+              closeDropdown();
+            }
+          });
+        }
+      });
+  </script>
 
   <!-- HERO SECTION: Modern, Professional, Interactive -->
   <section class="relative bg-gradient-to-br from-blue-800 via-purple-700 to-pink-600 min-h-[55vh] flex items-center justify-center overflow-hidden shadow-2xl">
@@ -165,7 +640,7 @@
     <div class="absolute inset-0 bg-black bg-opacity-40"></div>
     <div class="relative z-10 flex flex-col items-center justify-center w-full px-4 py-16 text-center animate-fade-in-up">
       <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white drop-shadow-lg mb-4">Teenagers Ministry</h1>
-      <p class="text-xl md:text-2xl text-blue-100 max-w-2xl mx-auto mb-8 font-medium drop-shadow-md">Guiding teens to discover their identity in Christ and build strong, lasting faith.</p>
+      <p class="text-xl md:text-2xl text-blue-100 max-w-2xl mx-auto mb-8 font-medium drop-shadow-md">Empowering teens to grow in faith, character, and leadership through real conversations, fun, and service.</p>
     </div>
     <style>
       @keyframes fadeInUpHero {
@@ -183,416 +658,1191 @@
     </style>
   </section>
 
-  <!-- Main Content with top padding for fixed header -->
-  <main class="pt-20">
-
-  <!-- Ministry Overview Section -->
+  <!-- OVERVIEW SECTION: Two-Column Layout -->
   <section class="container mx-auto px-4 py-20">
-    <div class="max-w-4xl mx-auto text-center mb-16">
-      <h2 class="text-3xl md:text-4xl font-extrabold text-blue-900 mb-6 fade-in-up">Welcome to Teenagers Ministry</h2>
-      <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8 fade-in-up"></div>
-      <p class="text-lg text-gray-800 leading-relaxed fade-in-up">
-        Our Teenagers Ministry is specifically designed for teens ages 13-17, providing a safe, fun, and faith-filled environment where they can grow spiritually, build authentic friendships, and discover their identity in Christ. We understand the unique challenges teens face and create programs that speak directly to their hearts and minds.
-      </p>
-    </div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-      <div class="bg-white rounded-2xl shadow-lg p-8 text-center group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up">
-        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-200 transition-colors duration-300">
-          <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-          </svg>
+    <div class="flex flex-col md:flex-row items-center gap-12">
+      <div class="flex-1">
+        <div class="relative group overflow-hidden rounded-3xl shadow-2xl w-full max-w-md">
+          <img src="../assets/images/gallery/helena-lopes-e3OUQGT9bWU-unsplash.jpg" alt="Teens Smiling" class="transition-transform duration-700 ease-in-out group-hover:scale-105 group-hover:-rotate-2 object-cover border-4 border-indigo-100 animate-fade-in-up" />
+          <svg class="absolute top-4 left-4 w-12 h-12 text-pink-400 opacity-70 animate-bounce" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3"/></svg>
+          <svg class="absolute bottom-4 right-4 w-10 h-10 text-blue-400 opacity-60 animate-spin-slow" fill="none" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="8" stroke="currentColor" stroke-width="2"/></svg>
         </div>
-        <h3 class="text-xl font-bold text-blue-900 mb-4">Relevant Bible Study</h3>
-        <p class="text-gray-800">Interactive Bible studies that address real teen issues and help them apply God's Word to their daily lives.</p>
       </div>
-      
-      <div class="bg-white rounded-2xl shadow-lg p-8 text-center group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.1s;">
-        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-purple-200 transition-colors duration-300">
-          <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-          </svg>
+      <div class="flex-1">
+        <h2 class="text-4xl font-extrabold text-indigo-900 mb-4 fredoka">Welcome to Teenagers Ministry</h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mb-8"></div>
+        <p class="text-lg text-gray-800 leading-relaxed mb-6">Our Teenagers Ministry (ages 13-17) is a safe, fun, and faith-filled space for teens to grow spiritually, build authentic friendships, and discover their identity in Christ. We address real teen issues and create programs that speak directly to their hearts and minds.</p>
+        <ul class="text-base text-blue-900 space-y-3 mb-6">
+          <li class="flex items-center gap-3"><span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-pink-100 text-pink-600 text-xl animate-bounce">📖</span> Weekly Bible Studies & Discussions</li>
+          <li class="flex items-center gap-3"><span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-purple-100 text-purple-600 text-xl animate-spin-slow">🎤</span> Music, Worship, and Creative Arts</li>
+          <li class="flex items-center gap-3"><span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-green-100 text-green-600 text-xl animate-bounce">🤝</span> Service Projects & Community Impact</li>
+          <li class="flex items-center gap-3"><span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-yellow-100 text-yellow-600 text-xl animate-spin-slow">🧑‍🤝‍🧑</span> Mentoring, Life Skills, and Leadership</li>
+          <li class="flex items-center gap-3"><span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 text-blue-600 text-xl animate-bounce">🏕️</span> Camps, Retreats, and Social Events</li>
+        </ul>
+        <!-- Why Join Callout -->
+        <div class="bg-gradient-to-r from-indigo-100 via-pink-50 to-blue-50 border-l-4 border-pink-400 rounded-2xl p-6 mb-6 shadow animate-fade-in-up">
+          <h3 class="text-xl font-bold text-indigo-800 mb-2 flex items-center gap-2"><svg class="w-6 h-6 text-pink-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm-1-4l-3-3 1.414-1.414L9 11.172l4.293-4.293 1.414 1.414L9 14z"/></svg> Why Join?</h3>
+          <ul class="text-blue-900 space-y-1 text-base">
+            <li class="flex items-center gap-2"><span class="text-green-500">✔</span> Make real friends</li>
+            <li class="flex items-center gap-2"><span class="text-green-500">✔</span> Grow in faith and confidence</li>
+            <li class="flex items-center gap-2"><span class="text-green-500">✔</span> Discover your gifts</li>
+            <li class="flex items-center gap-2"><span class="text-green-500">✔</span> Have fun and make a difference</li>
+          </ul>
         </div>
-        <h3 class="text-xl font-bold text-blue-900 mb-4">Safe Community</h3>
-        <p class="text-gray-800">A welcoming environment where teens can be themselves, make friends, and feel accepted for who they are.</p>
-      </div>
-      
-      <div class="bg-white rounded-2xl shadow-lg p-8 text-center group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.2s;">
-        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-green-200 transition-colors duration-300">
-          <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold text-blue-900 mb-4">Fun & Engaging</h3>
-        <p class="text-gray-800">Exciting activities, games, and events that make learning about faith enjoyable and memorable.</p>
+        <a href="#programs" class="inline-block px-6 py-3 rounded-full bg-gradient-to-r from-indigo-500 to-blue-400 text-white font-semibold shadow hover:from-indigo-600 hover:to-blue-600 transition">See Programs</a>
       </div>
     </div>
   </section>
 
-  <!-- Programs & Activities Section -->
-  <section id="programs" class="bg-gray-50 py-20">
+  <!-- PROGRAMS & ACTIVITIES: Icon Cards -->
+  <section id="programs" class="py-16 bg-gradient-to-br from-blue-50 via-indigo-100 to-white">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-extrabold text-blue-900 text-center mb-2 fade-in-up">Our Programs & Activities</h2>
-      <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-12 fade-in-up"></div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Teen Bible Study -->
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up">
-          <div class="h-48 bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
-            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-            </svg>
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-indigo-900 fredoka">Our Programs & Activities</h2>
+      <!-- Filter Tabs -->
+      <div class="flex flex-wrap justify-center gap-3 mb-8">
+        <button class="filter-tab px-6 py-2 rounded-full bg-indigo-600 text-white font-semibold transition-all duration-300" data-filter="all">All Programs</button>
+        <button class="filter-tab px-6 py-2 rounded-full bg-pink-100 text-pink-700 font-semibold hover:bg-pink-200 transition-all duration-300" data-filter="faith">Faith</button>
+        <button class="filter-tab px-6 py-2 rounded-full bg-purple-100 text-purple-700 font-semibold hover:bg-purple-200 transition-all duration-300" data-filter="fun">Fun</button>
+        <button class="filter-tab px-6 py-2 rounded-full bg-green-100 text-green-700 font-semibold hover:bg-green-200 transition-all duration-300" data-filter="service">Service</button>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div class="program-card bg-white rounded-2xl shadow-xl p-0 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 group overflow-hidden animate-fade-in-up" data-category="faith">
+          <div class="w-full h-44 flex items-center justify-center bg-gradient-to-br from-blue-600 to-purple-600 relative overflow-hidden">
+            <span class="text-5xl z-10">📖</span>
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
           </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <h3 class="text-xl font-bold mb-2 text-indigo-900">Bible Study</h3>
+            <p class="text-gray-600 mb-4">Interactive studies and real talk about faith and life.</p>
+            <button class="learn-more-btn inline-block px-4 py-2 rounded-lg bg-blue-100 text-blue-700 font-semibold hover:bg-blue-200 transition" data-program="bible-study">Learn More</button>
+          </div>
+        </div>
+        <div class="program-card bg-white rounded-2xl shadow-xl p-0 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 group overflow-hidden animate-fade-in-up" data-category="faith">
+          <div class="w-full h-44 flex items-center justify-center bg-gradient-to-br from-purple-600 to-pink-600 relative overflow-hidden">
+            <span class="text-5xl z-10">🎤</span>
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <h3 class="text-xl font-bold mb-2 text-indigo-900">Worship & Music</h3>
+            <p class="text-gray-600 mb-4">Join the band, sing, or help with creative arts.</p>
+            <button class="learn-more-btn inline-block px-4 py-2 rounded-lg bg-purple-100 text-purple-700 font-semibold hover:bg-purple-200 transition" data-program="worship">Learn More</button>
+          </div>
+        </div>
+        <div class="program-card bg-white rounded-2xl shadow-xl p-0 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 group overflow-hidden animate-fade-in-up" data-category="fun">
+          <div class="w-full h-44 flex items-center justify-center bg-gradient-to-br from-green-600 to-teal-600 relative overflow-hidden">
+            <span class="text-5xl z-10">🎉</span>
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <h3 class="text-xl font-bold mb-2 text-indigo-900">Events & Hangouts</h3>
+            <p class="text-gray-600 mb-4">Game nights, movie nights, and fun outings.</p>
+            <button class="learn-more-btn inline-block px-4 py-2 rounded-lg bg-green-100 text-green-700 font-semibold hover:bg-green-200 transition" data-program="events">Learn More</button>
+          </div>
+        </div>
+        <div class="program-card bg-white rounded-2xl shadow-xl p-0 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 group overflow-hidden animate-fade-in-up" data-category="service">
+          <div class="w-full h-44 flex items-center justify-center bg-gradient-to-br from-blue-700 to-indigo-700 relative overflow-hidden">
+            <span class="text-5xl z-10">🤝</span>
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <h3 class="text-xl font-bold mb-2 text-indigo-900">Service Projects</h3>
+            <p class="text-gray-600 mb-4">Make a difference in the community together.</p>
+            <button class="learn-more-btn inline-block px-4 py-2 rounded-lg bg-blue-100 text-blue-700 font-semibold hover:bg-blue-200 transition" data-program="service">Learn More</button>
+          </div>
+        </div>
+        <div class="program-card bg-white rounded-2xl shadow-xl p-0 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 group overflow-hidden animate-fade-in-up" data-category="faith">
+          <div class="w-full h-44 flex items-center justify-center bg-gradient-to-br from-pink-600 to-rose-600 relative overflow-hidden">
+            <span class="text-5xl z-10">🧑‍🤝‍🧑</span>
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <h3 class="text-xl font-bold mb-2 text-indigo-900">Mentoring</h3>
+            <p class="text-gray-600 mb-4">Connect with mentors for life and faith guidance.</p>
+            <button class="learn-more-btn inline-block px-4 py-2 rounded-lg bg-pink-100 text-pink-700 font-semibold hover:bg-pink-200 transition" data-program="mentoring">Learn More</button>
+          </div>
+        </div>
+        <div class="program-card bg-white rounded-2xl shadow-xl p-0 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 group overflow-hidden animate-fade-in-up" data-category="fun">
+          <div class="w-full h-44 flex items-center justify-center bg-gradient-to-br from-amber-600 to-orange-600 relative overflow-hidden">
+            <span class="text-5xl z-10">🏕️</span>
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <h3 class="text-xl font-bold mb-2 text-indigo-900">Camps & Retreats</h3>
+            <p class="text-gray-600 mb-4">Unforgettable weekends away with friends and God.</p>
+            <button class="learn-more-btn inline-block px-4 py-2 rounded-lg bg-amber-100 text-amber-700 font-semibold hover:bg-amber-200 transition" data-program="camps">Learn More</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Program Details Modal -->
+    <div id="program-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+      <div class="bg-white rounded-2xl max-w-md w-full max-h-[80vh] overflow-y-auto">
           <div class="p-6">
-            <h3 class="text-xl font-bold text-blue-900 mb-3">Teen Bible Study</h3>
-            <p class="text-gray-800 mb-4">Interactive Bible study sessions designed specifically for teenagers, addressing real-life issues they face.</p>
-            <ul class="text-sm text-gray-800 space-y-1 mb-4">
+          <div class="flex justify-between items-center mb-4">
+            <h3 id="modal-title" class="text-2xl font-bold text-indigo-900"></h3>
+            <button id="close-modal" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+          </div>
+          <div id="modal-content" class="text-gray-700"></div>
+          <div class="mt-6 flex gap-3">
+            <button class="flex-1 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">Join Program</button>
+            <button id="close-modal-2" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      // Filter functionality
+      const filterTabs = document.querySelectorAll('.filter-tab');
+      const programCards = document.querySelectorAll('.program-card');
+      
+      filterTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const filter = tab.dataset.filter;
+          
+          // Update active tab
+          filterTabs.forEach(t => t.classList.remove('bg-indigo-600', 'text-white'));
+          filterTabs.forEach(t => t.classList.add('bg-gray-100', 'text-gray-700'));
+          tab.classList.remove('bg-gray-100', 'text-gray-700');
+          tab.classList.add('bg-indigo-600', 'text-white');
+          
+          // Filter cards
+          programCards.forEach(card => {
+            if (filter === 'all' || card.dataset.category === filter) {
+              card.style.display = 'block';
+              card.classList.add('animate-fade-in-up');
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+      
+      // Modal functionality
+      const modal = document.getElementById('program-modal');
+      const modalTitle = document.getElementById('modal-title');
+      const modalContent = document.getElementById('modal-content');
+      const learnMoreBtns = document.querySelectorAll('.learn-more-btn');
+      const closeBtns = document.querySelectorAll('#close-modal, #close-modal-2');
+      
+      const programDetails = {
+        'bible-study': {
+          title: 'Bible Study',
+          content: `
+            <p class="mb-4">Join our interactive Bible study sessions designed specifically for teenagers!</p>
+            <ul class="space-y-2 mb-4">
               <li>• Sunday Teen Bible Study (10:00 AM)</li>
               <li>• Wednesday Evening Study (6:00 PM)</li>
               <li>• Discussion Groups & Q&A</li>
+              <li>• Real-life application of Scripture</li>
             </ul>
-            <a href="../contact.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
-              Join Bible Study
-            </a>
-          </div>
-        </div>
-        
-        <!-- Teen Worship Team -->
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.1s;">
-          <div class="h-48 bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">
-            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
-            </svg>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-blue-900 mb-3">Teen Worship Team</h3>
-            <p class="text-gray-800 mb-4">Express your musical talents and lead worship with other teens. All skill levels welcome!</p>
-            <ul class="text-sm text-gray-800 space-y-1 mb-4">
+            <p class="text-sm text-gray-600">All skill levels welcome - come as you are!</p>
+          `
+        },
+        'worship': {
+          title: 'Worship & Music',
+          content: `
+            <p class="mb-4">Express your musical talents and lead worship with other teens!</p>
+            <ul class="space-y-2 mb-4">
               <li>• Contemporary Worship Music</li>
               <li>• Instrumental & Vocal Training</li>
               <li>• Teen Service Worship</li>
+              <li>• Creative Arts & Media</li>
             </ul>
-            <a href="../contact.html" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
-              Join Worship Team
-            </a>
-          </div>
-        </div>
-        
-        <!-- Teen Events -->
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.2s;">
-          <div class="h-48 bg-gradient-to-br from-green-600 to-teal-600 flex items-center justify-center">
-            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-            </svg>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-blue-900 mb-3">Teen Events & Hangouts</h3>
-            <p class="text-gray-800 mb-4">Fun, faith-filled events where teens can hang out, make friends, and grow together.</p>
-            <ul class="text-sm text-gray-800 space-y-1 mb-4">
+            <p class="text-sm text-gray-600">No experience required - we'll teach you!</p>
+          `
+        },
+        'events': {
+          title: 'Events & Hangouts',
+          content: `
+            <p class="mb-4">Fun, faith-filled events where teens can hang out and make friends!</p>
+            <ul class="space-y-2 mb-4">
               <li>• Monthly Teen Nights</li>
               <li>• Game Nights & Movie Nights</li>
               <li>• Outdoor Activities & Trips</li>
+              <li>• Special Holiday Events</li>
             </ul>
-            <a href="../events.html" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
-              View Events
-            </a>
-          </div>
-        </div>
-        
-        <!-- Teen Service Projects -->
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.3s;">
-          <div class="h-48 bg-gradient-to-br from-blue-700 to-indigo-700 flex items-center justify-center">
-            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-            </svg>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-blue-900 mb-3">Service Projects</h3>
-            <p class="text-gray-800 mb-4">Make a difference in your community through age-appropriate service projects and outreach.</p>
-            <ul class="text-sm text-gray-800 space-y-1 mb-4">
+            <p class="text-sm text-gray-600">Always free and always fun!</p>
+          `
+        },
+        'service': {
+          title: 'Service Projects',
+          content: `
+            <p class="mb-4">Make a difference in your community through age-appropriate service!</p>
+            <ul class="space-y-2 mb-4">
               <li>• Community Clean-up Days</li>
               <li>• Food Bank Volunteering</li>
               <li>• School Outreach Programs</li>
+              <li>• Fundraising for Causes</li>
             </ul>
-            <a href="../contact.html" class="inline-block bg-blue-700 hover:bg-blue-800 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
-              Get Involved
-            </a>
-          </div>
-        </div>
-        
-        <!-- Teen Mentoring -->
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.4s;">
-          <div class="h-48 bg-gradient-to-br from-pink-600 to-rose-600 flex items-center justify-center">
-            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
-            </svg>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-blue-900 mb-3">Teen Mentoring</h3>
-            <p class="text-gray-800 mb-4">Connect with caring adult mentors who understand teen life and can guide you through challenges.</p>
-            <ul class="text-sm text-gray-800 space-y-1 mb-4">
+            <p class="text-sm text-gray-600">Learn leadership and compassion!</p>
+          `
+        },
+        'mentoring': {
+          title: 'Mentoring',
+          content: `
+            <p class="mb-4">Connect with caring adult mentors who understand teen life!</p>
+            <ul class="space-y-2 mb-4">
               <li>• One-on-One Mentoring</li>
               <li>• Life Skills Development</li>
               <li>• Academic & Career Guidance</li>
+              <li>• Faith & Character Building</li>
             </ul>
-            <a href="../contact.html" class="inline-block bg-pink-600 hover:bg-pink-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
-              Find a Mentor
-            </a>
-          </div>
-        </div>
-        
-        <!-- Teen Camps & Retreats -->
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.5s;">
-          <div class="h-48 bg-gradient-to-br from-amber-600 to-orange-600 flex items-center justify-center">
-            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-blue-900 mb-3">Camps & Retreats</h3>
-            <p class="text-gray-800 mb-4">Exciting overnight experiences that combine fun, fellowship, and spiritual growth.</p>
-            <ul class="text-sm text-gray-800 space-y-1 mb-4">
+            <p class="text-sm text-gray-600">Safe, confidential, and supportive!</p>
+          `
+        },
+        'camps': {
+          title: 'Camps & Retreats',
+          content: `
+            <p class="mb-4">Exciting overnight experiences that combine fun, fellowship, and growth!</p>
+            <ul class="space-y-2 mb-4">
               <li>• Summer Teen Camp</li>
               <li>• Winter Retreat</li>
               <li>• Weekend Getaways</li>
+              <li>• Leadership Training</li>
             </ul>
-            <a href="../events.html" class="inline-block bg-amber-600 hover:bg-amber-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
-              Learn More
-            </a>
+            <p class="text-sm text-gray-600">Create memories that last a lifetime!</p>
+          `
+        }
+      };
+      
+      learnMoreBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const program = btn.dataset.program;
+          const details = programDetails[program];
+          
+          modalTitle.textContent = details.title;
+          modalContent.innerHTML = details.content;
+          modal.classList.remove('hidden');
+        });
+      });
+      
+      closeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          modal.classList.add('hidden');
+        });
+      });
+      
+      // Close modal when clicking outside
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.add('hidden');
+        }
+      });
+    </script>
+  </section>
+
+  <!-- LEADERSHIP TEAM: Redesigned Profile Cards -->
+  <section class="relative py-24 px-4 md:px-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-100 shadow-inner overflow-x-hidden">
+    <div class="absolute inset-0 pointer-events-none">
+      <svg class="absolute top-0 left-0 w-40 h-40 opacity-30 animate-spin-slow" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="#a5b4fc" stroke-width="8"/></svg>
+      <svg class="absolute bottom-0 right-0 w-32 h-32 opacity-20 animate-pulse" viewBox="0 0 100 100"><rect x="20" y="20" width="60" height="60" fill="#f472b6"/></svg>
+    </div>
+    <div class="relative z-10 max-w-5xl mx-auto">
+      <div class="flex flex-col items-center mb-10">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="text-4xl md:text-5xl text-indigo-700 animate-bounce">🤝</span>
+          <h2 class="text-4xl md:text-5xl font-extrabold text-indigo-900 text-center drop-shadow-lg fredoka">Meet Our Teen Leaders</h2>
+        </div>
+        <p class="text-lg md:text-xl text-gray-700 text-center max-w-2xl mb-4 fade-in-up">Our passionate, creative, and caring leadership team is here to guide, inspire, and walk alongside every teen. Get to know the faces behind the ministry!</p>
+        <div class="w-32 h-1 bg-gradient-to-r from-blue-500 via-purple-400 to-pink-400 rounded-full mb-2"></div>
+      </div>
+      <div class="overflow-x-auto pb-4 md:overflow-visible">
+        <div class="flex md:grid md:grid-cols-3 gap-8 min-w-[700px] md:min-w-0">
+          <!-- Leader 1 -->
+          <div class="leader-card bg-white rounded-3xl shadow-2xl p-8 text-center group hover:shadow-pink-300 hover:scale-105 transition-all duration-300 border-4 border-transparent hover:border-pink-400 relative fade-in-up" data-leader="bishop-david">
+            <div class="relative mb-4">
+              <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Bishop David Mwangi" class="w-28 h-28 rounded-full mx-auto object-cover border-4 border-blue-200 group-hover:border-pink-400 transition-colors duration-300 shadow-lg">
+              <div class="absolute -top-3 -right-3 w-10 h-10 bg-gradient-to-br from-pink-400 to-blue-400 rounded-full flex items-center justify-center text-white text-xl font-bold animate-pulse shadow-lg">👑</div>
+            </div>
+            <h3 class="text-2xl font-bold text-indigo-900 mb-1">Bishop David Mwangi</h3>
+            <p class="text-pink-600 font-semibold mb-2">Ministry Director</p>
+            <p class="text-gray-700 mb-4">Has a heart for teens and loves helping them grow in faith and life.</p>
+            <div class="flex justify-center gap-3 mt-2">
+              <a href="mailto:director@dietofthewordchurch.org" class="contact-icon text-blue-500 hover:text-blue-700 transition-colors duration-300" data-tooltip="Email Bishop David">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </a>
+              <a href="../contact.html" class="contact-icon text-pink-500 hover:text-pink-700 transition-colors duration-300" data-tooltip="Contact Form">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 10.5V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2h7"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 10.5l-9 5.25L3 10.5"/></svg>
+              </a>
+              <button class="meet-team-btn contact-icon text-purple-500 hover:text-purple-700 transition-colors duration-300" data-leader="bishop-david" data-tooltip="Learn More">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </button>
+            </div>
+          </div>
+          <!-- Leader 2 -->
+          <div class="leader-card bg-white rounded-3xl shadow-2xl p-8 text-center group hover:shadow-blue-300 hover:scale-105 transition-all duration-300 border-4 border-transparent hover:border-blue-400 relative fade-in-up" style="transition-delay:0.1s;" data-leader="michael">
+            <div class="relative mb-4">
+              <img src="https://randomuser.me/api/portraits/men/28.jpg" alt="Michael Ochieng" class="w-28 h-28 rounded-full mx-auto object-cover border-4 border-purple-200 group-hover:border-blue-400 transition-colors duration-300 shadow-lg">
+              <div class="absolute -top-3 -right-3 w-10 h-10 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full flex items-center justify-center text-white text-xl font-bold animate-pulse shadow-lg">⭐</div>
+            </div>
+            <h3 class="text-2xl font-bold text-indigo-900 mb-1">Michael Ochieng</h3>
+            <p class="text-blue-600 font-semibold mb-2">Ministry Coordinator</p>
+            <p class="text-gray-700 mb-4">Coordinates all teen activities and ensures everyone feels welcome.</p>
+            <div class="flex justify-center gap-3 mt-2">
+              <a href="mailto:coordinator@dietofthewordchurch.org" class="contact-icon text-blue-500 hover:text-blue-700 transition-colors duration-300" data-tooltip="Email Michael">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </a>
+              <a href="../contact.html" class="contact-icon text-pink-500 hover:text-pink-700 transition-colors duration-300" data-tooltip="Contact Form">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 10.5V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2h7"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 10.5l-9 5.25L3 10.5"/></svg>
+              </a>
+              <button class="meet-team-btn contact-icon text-purple-500 hover:text-purple-700 transition-colors duration-300" data-leader="michael" data-tooltip="Learn More">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </button>
+            </div>
+          </div>
+          <!-- Leader 3 -->
+          <div class="leader-card bg-white rounded-3xl shadow-2xl p-8 text-center group hover:shadow-purple-300 hover:scale-105 transition-all duration-300 border-4 border-transparent hover:border-purple-400 relative fade-in-up" style="transition-delay:0.2s;" data-leader="grace">
+            <div class="relative mb-4">
+              <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="Grace Akinyi" class="w-28 h-28 rounded-full mx-auto object-cover border-4 border-pink-200 group-hover:border-purple-400 transition-colors duration-300 shadow-lg">
+              <div class="absolute -top-3 -right-3 w-10 h-10 bg-gradient-to-br from-pink-400 to-purple-400 rounded-full flex items-center justify-center text-white text-xl font-bold animate-pulse shadow-lg">🎵</div>
+            </div>
+            <h3 class="text-2xl font-bold text-indigo-900 mb-1">Grace Akinyi</h3>
+            <p class="text-purple-600 font-semibold mb-2">Worship Leader</p>
+            <p class="text-gray-700 mb-4">Leads the worship team and helps young musicians develop their talents.</p>
+            <div class="flex justify-center gap-3 mt-2">
+              <a href="mailto:worship@dietofthewordchurch.org" class="contact-icon text-blue-500 hover:text-blue-700 transition-colors duration-300" data-tooltip="Email Grace">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </a>
+              <a href="../contact.html" class="contact-icon text-pink-500 hover:text-pink-700 transition-colors duration-300" data-tooltip="Contact Form">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 10.5V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2h7"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 10.5l-9 5.25L3 10.5"/></svg>
+              </a>
+              <button class="meet-team-btn contact-icon text-purple-500 hover:text-purple-700 transition-colors duration-300" data-leader="grace" data-tooltip="Learn More">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Leadership Team Section -->
-  <section class="container mx-auto px-4 py-20">
-    <h2 class="text-3xl md:text-4xl font-extrabold text-blue-900 text-center mb-2 fade-in-up">Teenagers Ministry Leadership</h2>
-    <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-12 fade-in-up"></div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Teen Ministry Director -->
-      <div class="bg-white rounded-2xl shadow-lg p-8 text-center group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up">
-        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Pastor Sarah Wanjiku" class="w-24 h-24 rounded-full mx-auto mb-6 object-cover border-4 border-blue-200">
-        <h3 class="text-xl font-bold text-blue-900 mb-2">Pastor Sarah Wanjiku</h3>
-        <p class="text-blue-600 font-semibold mb-4">Teenagers Ministry Director</p>
-        <p class="text-gray-800 mb-4">Pastor Sarah has a heart for teenagers and loves helping them navigate the challenges of adolescence while growing in their faith.</p>
-        <a href="../contact.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
-          Contact Pastor Sarah
-        </a>
-      </div>
-      
-      <!-- Teen Coordinator -->
-      <div class="bg-white rounded-2xl shadow-lg p-8 text-center group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.1s;">
-        <img src="https://randomuser.me/api/portraits/men/28.jpg" alt="Michael Ochieng" class="w-24 h-24 rounded-full mx-auto mb-6 object-cover border-4 border-purple-200">
-        <h3 class="text-xl font-bold text-blue-900 mb-2">Michael Ochieng</h3>
-        <p class="text-blue-600 font-semibold mb-4">Teenagers Ministry Coordinator</p>
-        <p class="text-gray-800 mb-4">Michael coordinates all teen activities and events, ensuring every teenager feels welcome and connected in our ministry.</p>
-        <a href="../contact.html" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
-          Contact Michael
-        </a>
-      </div>
-      
-      <!-- Teen Worship Leader -->
-      <div class="bg-white rounded-2xl shadow-lg p-8 text-center group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up" style="transition-delay:0.2s;">
-        <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="Grace Akinyi" class="w-24 h-24 rounded-full mx-auto mb-6 object-cover border-4 border-pink-200">
-        <h3 class="text-xl font-bold text-blue-900 mb-2">Grace Akinyi</h3>
-        <p class="text-blue-600 font-semibold mb-4">Teen Worship Leader</p>
-        <p class="text-gray-800 mb-4">Grace leads our teen worship team and helps young musicians develop their talents for God's glory.</p>
-        <a href="../contact.html" class="inline-block bg-pink-600 hover:bg-pink-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-300 text-sm">
-          Contact Grace
+      <div class="flex justify-center mt-10">
+        <a href="../contact.html" class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-pink-500 to-blue-500 text-white font-bold rounded-full shadow-lg hover:scale-105 hover:from-blue-500 hover:to-pink-500 transition-all duration-300 text-lg animate-pulse">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+          Join the Leadership Team
         </a>
       </div>
     </div>
+    <!-- Redesigned Team Details Modal -->
+    <div id="team-modal" class="fixed inset-0 bg-black bg-opacity-60 z-50 hidden flex items-center justify-center p-4">
+      <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl animate-fade-in">
+        <div class="h-32 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 flex items-center justify-center">
+          <span class="text-5xl">🌟</span>
+        </div>
+        <div class="p-8">
+          <div class="flex justify-between items-center mb-4">
+            <h3 id="team-modal-title" class="text-3xl font-extrabold text-indigo-900"></h3>
+            <button id="close-team-modal" class="text-gray-500 hover:text-gray-700 text-3xl">&times;</button>
+          </div>
+          <div id="team-modal-content" class="text-gray-700"></div>
+          <div class="mt-8 flex gap-3">
+            <button class="flex-1 px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition text-lg">Contact Leader</button>
+            <button id="close-team-modal-2" class="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition text-lg">Close</button>
+          </div>
+      </div>
+      </div>
+    </div>
+    <style>
+      .contact-icon {
+        position: relative;
+      }
+      .contact-icon:hover::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #1f2937;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        white-space: nowrap;
+        z-index: 10;
+      }
+      @media (max-width: 768px) {
+        .min-w-[700px] { min-width: 700px; }
+      }
+      @keyframes fade-in-up {
+        0% { opacity: 0; transform: translateY(40px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+      .fade-in-up {
+        animation: fade-in-up 0.8s cubic-bezier(.4,0,.2,1) both;
+      }
+      .animate-fade-in {
+        animation: fade-in-up 0.6s cubic-bezier(.4,0,.2,1) both;
+      }
+      .animate-spin-slow {
+        animation: spin 12s linear infinite;
+      }
+      @keyframes spin {
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+    <script>
+      // Team modal functionality (unchanged)
+    </script>
   </section>
 
-  <!-- Testimonials Section -->
-  <section class="bg-gray-50 py-20">
+  <!-- TESTIMONIALS: Carousel -->
+  <section class="bg-gradient-to-br from-white via-blue-50 to-indigo-100 py-20">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-extrabold text-blue-900 text-center mb-2 fade-in-up">What Our Teens Say</h2>
-      <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-12 fade-in-up"></div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-white rounded-2xl shadow-lg p-8 group hover:shadow-2xl transition-all duration-300 fade-in-up">
-          <div class="flex items-center mb-4">
-            <img src="https://randomuser.me/api/portraits/women/23.jpg" alt="Faith Muthoni" class="w-12 h-12 rounded-full object-cover mr-4" />
-            <div>
-              <h4 class="font-bold text-blue-900">Faith Muthoni</h4>
-              <p class="text-blue-700 text-sm">Teen Group Member, Age 15</p>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-indigo-900 text-center mb-10 fredoka">What Our Teens Say</h2>
+      <div class="relative max-w-5xl mx-auto">
+        <div id="testimonial-carousel" class="overflow-hidden rounded-3xl shadow-2xl bg-gradient-to-br from-pink-100 via-blue-50 to-indigo-100 py-8 px-2">
+          <div class="flex transition-transform duration-700 ease-in-out" data-carousel-track>
+            <!-- Testimonial 1 -->
+            <div class="min-w-full px-4 flex flex-col items-center text-center">
+              <div class="bg-white rounded-3xl shadow-xl p-8 flex flex-col items-center animate-fade-in-up relative border-4 border-pink-200 hover:scale-105 transition-transform duration-300">
+                <div class="absolute top-4 right-4 flex gap-1">
+                  <span class="text-yellow-400 text-lg">⭐</span>
+                  <span class="text-yellow-400 text-lg">⭐</span>
+                  <span class="text-yellow-400 text-lg">⭐</span>
+                  <span class="text-yellow-400 text-lg">⭐</span>
+                  <span class="text-yellow-400 text-lg">⭐</span>
+                </div>
+                <div class="relative mb-4">
+                  <img src="https://randomuser.me/api/portraits/women/23.jpg" alt="Faith Muthoni" class="w-24 h-24 rounded-full object-cover border-4 border-blue-300 shadow-lg animate-bounce-slow" />
+                  <span class="absolute -bottom-2 -right-2 text-3xl">😊</span>
+                </div>
+                <h3 class="text-xl font-extrabold mb-1 text-pink-700 fredoka">Faith Muthoni</h3>
+                <p class="text-blue-700 text-sm mb-2">Teen Group Member, Age 15</p>
+                <div class="bg-gradient-to-r from-blue-100 to-pink-100 rounded-xl px-6 py-4 mb-4 shadow-inner text-gray-800 italic text-lg font-medium animate-fade-in-up">
+                  "Teenagers ministry has been amazing! I've made so many friends and learned so much about God. The Bible studies really help me with stuff I'm going through at school."
+                </div>
+                <div class="flex gap-2 mt-2">
+                  <span class="text-2xl">😊</span>
+                  <span class="text-2xl">🙏</span>
+                  <span class="text-2xl">💕</span>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 2 -->
+            <div class="min-w-full px-4 flex flex-col items-center text-center">
+              <div class="bg-white rounded-3xl shadow-xl p-8 flex flex-col items-center animate-fade-in-up relative border-4 border-blue-200 hover:scale-105 transition-transform duration-300">
+                <div class="absolute top-4 right-4 flex gap-1">
+                  <span class="text-yellow-400 text-lg">⭐</span>
+                  <span class="text-yellow-400 text-lg">⭐</span>
+                  <span class="text-yellow-400 text-lg">⭐</span>
+                  <span class="text-yellow-400 text-lg">⭐</span>
+                  <span class="text-yellow-400 text-lg">⭐</span>
+                </div>
+                <div class="relative mb-4">
+                  <img src="https://randomuser.me/api/portraits/men/34.jpg" alt="David Kimani" class="w-24 h-24 rounded-full object-cover border-4 border-pink-300 shadow-lg animate-bounce-slow" />
+                  <span class="absolute -bottom-2 -right-2 text-3xl">🎸</span>
+                </div>
+                <h3 class="text-xl font-extrabold mb-1 text-blue-700 fredoka">David Kimani</h3>
+                <p class="text-blue-700 text-sm mb-2">Worship Team Member, Age 16</p>
+                <div class="bg-gradient-to-r from-pink-100 to-blue-100 rounded-xl px-6 py-4 mb-4 shadow-inner text-gray-800 italic text-lg font-medium animate-fade-in-up">
+                  "Being part of the teen worship team has been incredible. I've learned to play guitar and lead worship. Pastor Sarah and the team are so supportive!"
+                </div>
+                <div class="flex gap-2 mt-2">
+                  <span class="text-2xl">🎸</span>
+                  <span class="text-2xl">🎵</span>
+                  <span class="text-2xl">🙌</span>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 3 -->
+            <div class="min-w-full px-4 flex flex-col items-center text-center">
+              <div class="bg-white rounded-3xl shadow-xl p-8 flex flex-col items-center animate-fade-in-up relative border-4 border-indigo-200 hover:scale-105 transition-transform duration-300">
+                <div class="absolute top-4 right-4 flex gap-1">
+                  <span class="text-yellow-400 text-lg">⭐</span>
+                  <span class="text-yellow-400 text-lg">⭐</span>
+                  <span class="text-yellow-400 text-lg">⭐</span>
+                  <span class="text-yellow-400 text-lg">⭐</span>
+                  <span class="text-yellow-400 text-lg">⭐</span>
+                </div>
+                <div class="relative mb-4">
+                  <img src="https://randomuser.me/api/portraits/women/56.jpg" alt="Sarah Njeri" class="w-24 h-24 rounded-full object-cover border-4 border-pink-300 shadow-lg animate-bounce-slow" />
+                  <span class="absolute -bottom-2 -right-2 text-3xl">🎉</span>
+                </div>
+                <h3 class="text-xl font-extrabold mb-1 text-indigo-700 fredoka">Sarah Njeri</h3>
+                <p class="text-blue-700 text-sm mb-2">Bible Study Leader, Age 17</p>
+                <div class="bg-gradient-to-r from-blue-100 to-pink-100 rounded-xl px-6 py-4 mb-4 shadow-inner text-gray-800 italic text-lg font-medium animate-fade-in-up">
+                  "The teen events are so much fun! I love hanging out with other Christian teens. The service projects have taught me how to help others and make a difference."
+                </div>
+                <div class="flex gap-2 mt-2">
+                  <span class="text-2xl">🎉</span>
+                  <span class="text-2xl">🤝</span>
+                  <span class="text-2xl">💪</span>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 4 -->
+            <div class="min-w-full px-4 flex flex-col items-center text-center">
+              <div class="bg-white rounded-3xl shadow-xl p-8 flex flex-col items-center animate-fade-in-up relative border-4 border-yellow-200 hover:scale-105 transition-transform duration-300">
+                <div class="absolute top-4 right-4 flex gap-1">
+                  <span class="text-yellow-400 text-lg">⭐</span>
+                  <span class="text-yellow-400 text-lg">⭐</span>
+                  <span class="text-yellow-400 text-lg">⭐</span>
+                  <span class="text-yellow-400 text-lg">⭐</span>
+                  <span class="text-yellow-400 text-lg">⭐</span>
+                </div>
+                <div class="relative mb-4">
+                  <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="James Mwangi" class="w-24 h-24 rounded-full object-cover border-4 border-blue-300 shadow-lg animate-bounce-slow" />
+                  <span class="absolute -bottom-2 -right-2 text-3xl">🧑‍🤝‍🧑</span>
+                </div>
+                <h3 class="text-xl font-extrabold mb-1 text-yellow-700 fredoka">James Mwangi</h3>
+                <p class="text-blue-700 text-sm mb-2">Mentoring Program, Age 14</p>
+                <div class="bg-gradient-to-r from-yellow-100 to-blue-100 rounded-xl px-6 py-4 mb-4 shadow-inner text-gray-800 italic text-lg font-medium animate-fade-in-up">
+                  "My mentor has helped me so much with school and life decisions. I feel more confident and know I have someone to talk to when things get tough."
+                </div>
+                <div class="flex gap-2 mt-2">
+                  <span class="text-2xl">🧑‍🤝‍🧑</span>
+                  <span class="text-2xl">💡</span>
+                  <span class="text-2xl">🎯</span>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 5 -->
+            <div class="min-w-full px-4 flex flex-col items-center text-center">
+              <div class="bg-white rounded-3xl shadow-xl p-8 flex flex-col items-center animate-fade-in-up relative border-4 border-pink-200 hover:scale-105 transition-transform duration-300">
+                <div class="absolute top-4 right-4 flex gap-1">
+                  <span class="text-yellow-400 text-lg">⭐</span>
+                  <span class="text-yellow-400 text-lg">⭐</span>
+                  <span class="text-yellow-400 text-lg">⭐</span>
+                  <span class="text-yellow-400 text-lg">⭐</span>
+                  <span class="text-yellow-400 text-lg">⭐</span>
+                </div>
+                <div class="relative mb-4">
+                  <img src="https://randomuser.me/api/portraits/women/78.jpg" alt="Grace Wanjiku" class="w-24 h-24 rounded-full object-cover border-4 border-indigo-300 shadow-lg animate-bounce-slow" />
+                  <span class="absolute -bottom-2 -right-2 text-3xl">🏕️</span>
+                </div>
+                <h3 class="text-xl font-extrabold mb-1 text-pink-700 fredoka">Grace Wanjiku</h3>
+                <p class="text-blue-700 text-sm mb-2">Camp Attendee, Age 16</p>
+                <div class="bg-gradient-to-r from-pink-100 to-blue-100 rounded-xl px-6 py-4 mb-4 shadow-inner text-gray-800 italic text-lg font-medium animate-fade-in-up">
+                  "Summer camp was the best week of my life! I made friends for life and grew so much in my faith. Can't wait for next year's camp!"
+                </div>
+                <div class="flex gap-2 mt-2">
+                  <span class="text-2xl">🏕️</span>
+                  <span class="text-2xl">🔥</span>
+                  <span class="text-2xl">💖</span>
+                </div>
+              </div>
             </div>
           </div>
-          <p class="text-gray-800 italic">"Teenagers ministry has been amazing! I've made so many friends and learned so much about God. The Bible studies really help me with stuff I'm going through at school."</p>
         </div>
-        
-        <div class="bg-white rounded-2xl shadow-lg p-8 group hover:shadow-2xl transition-all duration-300 fade-in-up" style="transition-delay:0.1s;">
-          <div class="flex items-center mb-4">
-            <img src="https://randomuser.me/api/portraits/men/34.jpg" alt="David Kimani" class="w-12 h-12 rounded-full object-cover mr-4" />
-            <div>
-              <h4 class="font-bold text-blue-900">David Kimani</h4>
-              <p class="text-blue-700 text-sm">Worship Team Member, Age 16</p>
-            </div>
-          </div>
-          <p class="text-gray-800 italic">"Being part of the teen worship team has been incredible. I've learned to play guitar and lead worship. Pastor Sarah and the team are so supportive!"</p>
+        <!-- Enhanced Carousel Controls -->
+        <button id="testimonial-prev" aria-label="Previous" class="absolute left-0 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-indigo-100 text-indigo-700 rounded-full shadow-lg p-3 md:p-4 transition z-20 group">
+          <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <button id="testimonial-next" aria-label="Next" class="absolute right-0 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-indigo-100 text-indigo-700 rounded-full shadow-lg p-3 md:p-4 transition z-20 group">
+          <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        </button>
+        <!-- Enhanced Indicators -->
+        <div class="flex justify-center gap-3 mt-8">
+          <button class="w-4 h-4 rounded-full bg-indigo-300 hover:bg-indigo-500 transition-all duration-300 transform hover:scale-125" data-carousel-indicator="0"></button>
+          <button class="w-4 h-4 rounded-full bg-indigo-300 hover:bg-indigo-500 transition-all duration-300 transform hover:scale-125" data-carousel-indicator="1"></button>
+          <button class="w-4 h-4 rounded-full bg-indigo-300 hover:bg-indigo-500 transition-all duration-300 transform hover:scale-125" data-carousel-indicator="2"></button>
+          <button class="w-4 h-4 rounded-full bg-indigo-300 hover:bg-indigo-500 transition-all duration-300 transform hover:scale-125" data-carousel-indicator="3"></button>
+          <button class="w-4 h-4 rounded-full bg-indigo-300 hover:bg-indigo-500 transition-all duration-300 transform hover:scale-125" data-carousel-indicator="4"></button>
         </div>
-        
-        <div class="bg-white rounded-2xl shadow-lg p-8 group hover:shadow-2xl transition-all duration-300 fade-in-up" style="transition-delay:0.2s;">
-          <div class="flex items-center mb-4">
-            <img src="https://randomuser.me/api/portraits/women/56.jpg" alt="Sarah Njeri" class="w-12 h-12 rounded-full object-cover mr-4" />
-            <div>
-              <h4 class="font-bold text-blue-900">Sarah Njeri</h4>
-              <p class="text-blue-700 text-sm">Bible Study Leader, Age 17</p>
-            </div>
-          </div>
-          <p class="text-gray-800 italic">"The teen events are so much fun! I love hanging out with other Christian teens. The service projects have taught me how to help others and make a difference."</p>
+        <!-- Auto-play Toggle -->
+        <div class="flex justify-center mt-4">
+          <button id="autoplay-toggle" class="px-4 py-2 bg-indigo-600 text-white rounded-full text-sm font-semibold hover:bg-indigo-700 transition">
+            <span id="autoplay-text">Pause Auto-play</span>
+          </button>
         </div>
+      </div>
+      <style>
+        .animate-bounce-slow { animation: bounce 2.5s infinite alternate; }
+        @keyframes bounce { 0% { transform: translateY(0); } 100% { transform: translateY(-10px); } }
+      </style>
+      <script>
+        // Modern Testimonials Carousel
+        (function() {
+          const track = document.querySelector('[data-carousel-track]');
+          const slides = Array.from(track.children);
+          const prevBtn = document.getElementById('testimonial-prev');
+          const nextBtn = document.getElementById('testimonial-next');
+          const indicators = document.querySelectorAll('[data-carousel-indicator]');
+          const autoplayToggle = document.getElementById('autoplay-toggle');
+          const autoplayText = document.getElementById('autoplay-text');
+          let current = 0;
+          let autoplayInterval;
+          let isAutoplayActive = true;
+          function updateCarousel(idx) {
+            track.style.transform = `translateX(-${idx * 100}%)`;
+            indicators.forEach((btn, i) => {
+              if (i === idx) {
+                btn.classList.remove('bg-indigo-300');
+                btn.classList.add('bg-indigo-500', 'scale-125');
+              } else {
+                btn.classList.remove('bg-indigo-500', 'scale-125');
+                btn.classList.add('bg-indigo-300');
+              }
+            });
+            slides.forEach((slide, i) => {
+              if (i === idx) {
+                slide.querySelector('.animate-fade-in-up').classList.add('animate-fade-in-up');
+              }
+            });
+          }
+          function nextSlide() {
+            current = (current + 1) % slides.length;
+            updateCarousel(current);
+          }
+          function prevSlide() {
+            current = (current - 1 + slides.length) % slides.length;
+            updateCarousel(current);
+          }
+          function startAutoplay() {
+            if (isAutoplayActive) {
+              autoplayInterval = setInterval(nextSlide, 5000);
+            }
+          }
+          function stopAutoplay() {
+            clearInterval(autoplayInterval);
+          }
+          prevBtn.addEventListener('click', () => {
+            prevSlide();
+            stopAutoplay();
+            startAutoplay();
+          });
+          nextBtn.addEventListener('click', () => {
+            nextSlide();
+            stopAutoplay();
+            startAutoplay();
+          });
+          indicators.forEach((btn, i) => {
+            btn.addEventListener('click', () => {
+              current = i;
+              updateCarousel(current);
+              stopAutoplay();
+              startAutoplay();
+            });
+          });
+          autoplayToggle.addEventListener('click', () => {
+            isAutoplayActive = !isAutoplayActive;
+            if (isAutoplayActive) {
+              autoplayText.textContent = 'Pause Auto-play';
+              startAutoplay();
+            } else {
+              autoplayText.textContent = 'Start Auto-play';
+              stopAutoplay();
+            }
+          });
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+              prevSlide();
+              stopAutoplay();
+              startAutoplay();
+            } else if (e.key === 'ArrowRight') {
+              nextSlide();
+              stopAutoplay();
+              startAutoplay();
+            }
+          });
+          const carousel = document.getElementById('testimonial-carousel');
+          carousel.addEventListener('mouseenter', stopAutoplay);
+          carousel.addEventListener('mouseleave', startAutoplay);
+          updateCarousel(current);
+          startAutoplay();
+        })();
+      </script>
+    </div>
+  </div>
+  </section>
+
+  <!-- LESSON RESOURCES: Modern Accordion Section -->
+  <section id="lesson-resources" class="py-14 bg-gradient-to-br from-blue-50 via-pink-50 to-purple-50 border-t-4 border-blue-200 mt-8">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <!-- Friendly Intro -->
+      <div class="flex flex-col md:flex-row items-center gap-6 mb-10">
+        <img src="../assets/images/gallery/priscilla-du-preez-XkKCui44iM0-unsplash.jpg" alt="Teen teacher smiling" class="w-20 h-20 rounded-full border-4 border-blue-300 shadow-lg object-cover mb-3 md:mb-0">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-bold fredoka text-blue-700 mb-1 flex items-center gap-2">
+            <svg class="w-7 h-7 text-pink-400 inline-block" fill="currentColor" viewBox="0 0 20 20"><path d="M10.185 2.027a1 1 0 00-.37 0l-7 1.75A1 1 0 002 4.75v10.5a1 1 0 00.815.98l7 1.75a1 1 0 00.37 0l7-1.75A1 1 0 0018 15.25V4.75a1 1 0 00-.815-.98l-7-1.75zM4 6.21l6 1.5v8.08l-6-1.5V6.21zm8 9.58v-8.08l6-1.5v8.08l-6 1.5z"/></svg>
+            Lesson Resources
+          </h2>
+          <p class="text-purple-700">Explore our latest lesson notes, activities, and resources for teens. Download, watch, and grow in faith together. New lessons are added regularly!</p>
+        </div>
+      </div>
+      <!-- Filter Bar -->
+      <div class="flex flex-wrap gap-3 mb-4 items-center justify-center" id="lesson-filter-bar">
+        <button class="filter-btn px-4 py-2 rounded-full bg-blue-100 text-blue-700 font-semibold hover:bg-blue-200 focus:ring-2 focus:ring-blue-400 transition" data-filter="all">All</button>
+        <button class="filter-btn px-4 py-2 rounded-full bg-pink-100 text-pink-700 font-semibold hover:bg-pink-200 focus:ring-2 focus:ring-pink-400 transition" data-filter="faith">Faith</button>
+        <button class="filter-btn px-4 py-2 rounded-full bg-green-100 text-green-700 font-semibold hover:bg-green-200 focus:ring-2 focus:ring-green-400 transition" data-filter="life-skills">Life Skills</button>
+        <button class="filter-btn px-4 py-2 rounded-full bg-yellow-100 text-yellow-700 font-semibold hover:bg-yellow-200 focus:ring-2 focus:ring-yellow-400 transition" data-filter="purpose">Purpose</button>
+        <button class="filter-btn px-4 py-2 rounded-full bg-purple-100 text-purple-700 font-semibold hover:bg-purple-200 focus:ring-2 focus:ring-purple-400 transition" data-filter="relationships">Relationships</button>
+        <button class="filter-btn px-4 py-2 rounded-full bg-indigo-100 text-indigo-700 font-semibold hover:bg-indigo-200 focus:ring-2 focus:ring-indigo-400 transition" data-filter="wellbeing">Wellbeing</button>
+      </div>
+      <!-- Search Bar -->
+      <div class="flex justify-center mb-8">
+        <input id="lesson-search" type="text" placeholder="Search lessons..." class="w-full max-w-md px-4 py-2 rounded-full border-2 border-blue-200 focus:ring-2 focus:ring-blue-400 outline-none text-lg" />
+      </div>
+      <!-- Show/Collapse All Buttons -->
+      <div class="flex gap-4 justify-center mb-8">
+        <button id="show-all-btn" class="px-5 py-2 rounded-full bg-blue-600 text-white font-bold shadow hover:bg-blue-700 transition">Show All</button>
+        <button id="collapse-all-btn" class="px-5 py-2 rounded-full bg-pink-600 text-white font-bold shadow hover:bg-pink-700 transition">Collapse All</button>
+      </div>
+      <!-- Accordion Lesson Cards -->
+      <div class="grid gap-8 md:grid-cols-2" id="lesson-accordion-list">
+        <!-- Lessons will be rendered here by JS -->
       </div>
     </div>
   </section>
-
-  <!-- Enhanced Call to Action -->
-  <section class="bg-gradient-to-br from-blue-900 via-purple-800 to-blue-700 text-white py-20">
-    <div class="container mx-auto px-4 text-center">
-      <h2 class="text-3xl md:text-4xl font-extrabold mb-6 fade-in-up">Ready to Join the Teen Movement?</h2>
-      <p class="text-xl text-white mb-10 max-w-3xl mx-auto fade-in-up">Be part of an exciting community where you can grow in faith, make amazing friends, and have fun while learning about God.</p>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 group fade-in-up">
-          <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold mb-3">Contact Us</h3>
-          <p class="text-white mb-6">Have questions about teenagers ministry? We'd love to hear from you and help you get connected.</p>
-          <a href="../contact.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 transform hover:scale-105">
-            Send Message
-          </a>
-        </div>
-        
-        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 group fade-in-up" style="transition-delay:0.1s;">
-          <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold mb-3">Join Teen Group</h3>
-          <p class="text-white mb-6">Find a program or activity that interests you and start your journey with our teenagers ministry.</p>
-          <a href="../contact.html" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 transform hover:scale-105">
-            Get Started
-          </a>
-        </div>
-        
-        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 group fade-in-up" style="transition-delay:0.2s;">
-          <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold mb-3">Upcoming Events</h3>
-          <p class="text-white mb-6">Check out our exciting upcoming events, camps, and activities designed specifically for teenagers.</p>
-          <a href="../events.html" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 transform hover:scale-105">
-            View Events
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <div id="footer"></div>
-
-  <script src="/assets/js/components.js"></script>
   <script>
-    // Animate fade-in-up elements on scroll
-    function animateFadeInUp() {
-      document.querySelectorAll('.fade-in-up').forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 40) {
-          el.classList.add('visible');
-        }
-      });
+  // Teenagers lessons data
+  const lessons = [
+    {
+      title: "Identity in Christ",
+      category: "faith",
+      icon: "🧑‍🎓",
+      tag: "Faith",
+      summary: "Discovering who we are in Christ and how that shapes our lives.",
+      scripture: "2 Corinthians 5:17",
+      questions: [
+        "What does it mean to be a new creation?",
+        "How can we remind ourselves of our identity in Christ daily?"
+      ],
+      activity: "Create a vision board of your God-given identity.",
+      download: "#",
+      video: "https://www.youtube.com/watch?v=example1"
+    },
+    {
+      title: "Handling Peer Pressure",
+      category: "life-skills",
+      icon: "🤝",
+      tag: "Life Skills",
+      summary: "Learning to stand firm in faith when faced with peer pressure.",
+      scripture: "Romans 12:2",
+      questions: [
+        "What are some examples of peer pressure you face?",
+        "How can you respond in a Christ-like way?"
+      ],
+      activity: "Role-play scenarios of positive responses to peer pressure.",
+      download: "#",
+      video: "https://www.youtube.com/watch?v=example2"
+    },
+    {
+      title: "Purpose & Passion",
+      category: "purpose",
+      icon: "🔥",
+      tag: "Purpose",
+      summary: "Exploring God's purpose for our lives and how to pursue it passionately.",
+      scripture: "Jeremiah 29:11",
+      questions: [
+        "What gifts has God given you?",
+        "How can you use them for His glory?"
+      ],
+      activity: "Write a letter to your future self about your dreams and God's plan.",
+      download: "#",
+      video: "https://www.youtube.com/watch?v=example3"
+    },
+    {
+      title: "Healthy Relationships",
+      category: "relationships",
+      icon: "💬",
+      tag: "Relationships",
+      summary: "Building strong, healthy, and God-honoring relationships.",
+      scripture: "1 Corinthians 13:4-7",
+      questions: [
+        "What does real love look like?",
+        "How can you be a better friend?"
+      ],
+      activity: "List ways to show love and respect in your friendships.",
+      download: "#",
+      video: "https://www.youtube.com/watch?v=example4"
+    },
+    {
+      title: "Overcoming Anxiety",
+      category: "wellbeing",
+      icon: "🌈",
+      tag: "Wellbeing",
+      summary: "Trusting God in times of stress and anxiety.",
+      scripture: "Philippians 4:6-7",
+      questions: [
+        "What makes you anxious?",
+        "How can prayer help you find peace?"
+      ],
+      activity: "Practice a short guided prayer or meditation for peace.",
+      download: "#",
+      video: "https://www.youtube.com/watch?v=example5"
     }
-    window.addEventListener('scroll', animateFadeInUp);
-    window.addEventListener('DOMContentLoaded', animateFadeInUp);
+  ];
 
-    // Highlight active nav link
-    document.addEventListener('DOMContentLoaded', function () {
-      var path = window.location.pathname.split('/').pop();
-      document.querySelectorAll('.nav-link').forEach(function(link) {
-        if (link.getAttribute('href') === path) {
-          link.classList.add('active');
+  function renderLessons(list) {
+    const container = document.getElementById('lesson-accordion-list');
+    container.innerHTML = '';
+    list.forEach((lesson, idx) => {
+      const borderColor = {
+        'faith': 'border-pink-300',
+        'life-skills': 'border-green-300',
+        'purpose': 'border-yellow-300',
+        'relationships': 'border-purple-300',
+        'wellbeing': 'border-indigo-300'
+      }[lesson.category] || 'border-blue-200';
+      const tagColor = {
+        'faith': 'bg-pink-500 text-white',
+        'life-skills': 'bg-green-500 text-white',
+        'purpose': 'bg-yellow-400 text-white',
+        'relationships': 'bg-purple-500 text-white',
+        'wellbeing': 'bg-indigo-500 text-white'
+      }[lesson.category] || 'bg-blue-200 text-blue-800';
+      container.innerHTML += `
+        <div class="lesson-accordion bg-white rounded-2xl shadow-xl border-2 ${borderColor} fade-in-up" data-category="${lesson.category}">
+          <button class="w-full flex items-center gap-4 p-6 focus:outline-none focus-visible:ring-2 rounded-t-2xl group" aria-expanded="${idx===0?'true':'false'}" aria-controls="lesson${idx}-panel" id="lesson${idx}-header">
+            <span class="text-4xl md:text-5xl">${lesson.icon}</span>
+            <div class="flex-1 text-left">
+              <h3 class="font-bold text-blue-700 text-lg mb-1 flex items-center gap-2">${lesson.title} <span class="ml-2 ${tagColor} text-xs font-bold px-2 py-1 rounded-full align-middle">${lesson.tag}</span></h3>
+              <div class="text-sm text-purple-600 mb-1">${lesson.summary}</div>
+              <div class="text-xs text-gray-500 italic">"${lesson.scripture}"</div>
+            </div>
+            <svg class="w-6 h-6 text-pink-400 transition-transform group-aria-expanded:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="lesson-panel px-6 pb-6${idx===0?'':' hidden'}" id="lesson${idx}-panel" aria-labelledby="lesson${idx}-header">
+            <div class="flex flex-col gap-2 mt-2">
+              <div class="mb-2">
+                <strong>Discussion Questions:</strong>
+                <ul class="list-disc ml-6">
+                  ${lesson.questions.map(q => `<li>${q}</li>`).join('')}
+                </ul>
+              </div>
+              <div class="mb-2"><strong>Practical Activity:</strong> ${lesson.activity}</div>
+              <div class="flex flex-wrap gap-2 mt-2">
+                <a href="${lesson.download}" class="inline-block px-4 py-2 rounded bg-blue-100 text-blue-700 font-semibold hover:bg-blue-200 transition w-max">Download Notes (PDF)</a>
+                <a href="${lesson.video}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded bg-pink-100 text-pink-700 font-semibold hover:bg-pink-200 transition w-max">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M6.5 5.5v9l8-4.5-8-4.5z"/></svg>
+                  Watch Video
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+  }
+  renderLessons(lessons);
+  // Accordion logic
+  setTimeout(() => {
+    document.querySelectorAll('.lesson-accordion button').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const expanded = this.getAttribute('aria-expanded') === 'true';
+        // Close all
+        document.querySelectorAll('.lesson-accordion button').forEach(b => b.setAttribute('aria-expanded', 'false'));
+        document.querySelectorAll('.lesson-panel').forEach(p => p.classList.add('hidden'));
+        // Open this one if it was closed
+        if (!expanded) {
+          this.setAttribute('aria-expanded', 'true');
+          document.getElementById(this.getAttribute('aria-controls')).classList.remove('hidden');
         }
       });
     });
-    // Sticky shadow on scroll
-    window.addEventListener('scroll', function () {
-      const header = document.getElementById('main-header');
-      if (window.scrollY > 10) {
-        header.classList.add('shadow-lg');
+  }, 100);
+  // Filter logic
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const filter = this.getAttribute('data-filter');
+      filterBtns.forEach(b => b.classList.remove('ring-2', 'ring-offset-2'));
+      this.classList.add('ring-2', 'ring-offset-2');
+      document.querySelectorAll('.lesson-accordion').forEach(card => {
+        const category = card.getAttribute('data-category');
+        if (filter === 'all' || category === filter) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+  // Search logic
+  const searchInput = document.getElementById('lesson-search');
+  searchInput.addEventListener('input', function() {
+    const query = this.value.toLowerCase();
+    document.querySelectorAll('.lesson-accordion').forEach(card => {
+      const text = card.textContent.toLowerCase();
+      if (text.includes(query)) {
+        card.classList.remove('hidden');
       } else {
-        header.classList.remove('shadow-lg');
+        card.classList.add('hidden');
       }
     });
-    // Mobile menu slide-in/out and overlay
-    document.addEventListener('DOMContentLoaded', function () {
-      const btn = document.getElementById('mobile-menu-btn');
-      const menu = document.getElementById('mobile-menu');
-      const overlay = document.getElementById('mobile-overlay');
-      const closeBtn = document.getElementById('mobile-menu-close');
-      if (btn && menu && overlay && closeBtn) {
-        btn.addEventListener('click', function () {
-          menu.classList.remove('translate-x-full');
-          overlay.classList.remove('hidden');
-          setTimeout(() => overlay.classList.add('opacity-100'), 10);
-        });
-        closeBtn.addEventListener('click', function () {
-          menu.classList.add('translate-x-full');
-          overlay.classList.remove('opacity-100');
-          setTimeout(() => overlay.classList.add('hidden'), 300);
-        });
-        overlay.addEventListener('click', function () {
-          menu.classList.add('translate-x-full');
-          overlay.classList.remove('opacity-100');
-          setTimeout(() => overlay.classList.add('hidden'), 300);
-        });
+  });
+  // Show All/Collapse All logic
+  const showAllBtn = document.getElementById('show-all-btn');
+  const collapseAllBtn = document.getElementById('collapse-all-btn');
+  showAllBtn.addEventListener('click', function() {
+    document.querySelectorAll('.lesson-accordion button').forEach(b => b.setAttribute('aria-expanded', 'true'));
+    document.querySelectorAll('.lesson-panel').forEach(p => p.classList.remove('hidden'));
+  });
+  collapseAllBtn.addEventListener('click', function() {
+    document.querySelectorAll('.lesson-accordion button').forEach(b => b.setAttribute('aria-expanded', 'false'));
+    document.querySelectorAll('.lesson-panel').forEach(p => p.classList.add('hidden'));
+  });
+  // Animate fade-in-up elements on scroll
+  function animateFadeInUp() {
+    document.querySelectorAll('.fade-in-up').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 40) {
+        el.classList.add('visible');
       }
     });
-    // Ministries dropdown functionality
-    document.addEventListener('DOMContentLoaded', function () {
-      const dropdownBtn = document.getElementById('ministries-dropdown-btn');
-      const dropdown = document.getElementById('ministries-mega');
-      const arrow = document.getElementById('ministries-arrow');
-      if (dropdownBtn && dropdown && arrow) {
-        dropdownBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          const isOpen = dropdown.classList.contains('opacity-100');
-          if (isOpen) {
-            dropdown.classList.remove('opacity-100', 'visible', 'scale-100');
-            dropdown.classList.add('opacity-0', 'invisible', 'scale-95');
-            arrow.classList.remove('rotate-180');
-          } else {
-            dropdown.classList.remove('opacity-0', 'invisible', 'scale-95');
-            dropdown.classList.add('opacity-100', 'visible', 'scale-100');
-            arrow.classList.add('rotate-180');
-          }
-        });
-        document.addEventListener('click', function(e) {
-          if (!dropdownBtn.contains(e.target) && !dropdown.contains(e.target)) {
-            dropdown.classList.remove('opacity-100', 'visible', 'scale-100');
-            dropdown.classList.add('opacity-0', 'invisible', 'scale-95');
-            arrow.classList.remove('rotate-180');
-          }
-        });
-        document.addEventListener('keydown', function(e) {
-          if (e.key === 'Escape') {
-            dropdown.classList.remove('opacity-100', 'visible', 'scale-100');
-            dropdown.classList.add('opacity-0', 'invisible', 'scale-95');
-            arrow.classList.remove('rotate-180');
-          }
-        });
-      }
-    });
+  }
+  window.addEventListener('scroll', animateFadeInUp);
+  window.addEventListener('DOMContentLoaded', animateFadeInUp);
   </script>
+
+  <!-- STICKY JOIN BUTTON -->
+  <a href="#lesson-resources" class="fixed bottom-8 right-8 z-50 bg-gradient-to-r from-pink-500 to-blue-600 text-white font-bold px-6 py-3 rounded-full shadow-xl hover:scale-110 hover:from-pink-600 hover:to-blue-800 transition-all duration-300 flex items-center gap-2 animate-pulse-slow group" style="box-shadow: 0 8px 32px 0 #f472b6aa;" data-tooltip="Click to join or learn more!">
+    <svg class="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 10.5V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2h7"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 10.5l-9 5.25L3 10.5"/></svg>
+    Join Teen Ministry
+    <style>
+      .animate-pulse-slow { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; } }
+      [data-tooltip]:hover::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: 120%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #1f2937;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 14px;
+        white-space: nowrap;
+        z-index: 1000;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      }
+      [data-tooltip]:hover::before {
+        content: '';
+        position: absolute;
+        bottom: 110%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 6px solid transparent;
+        border-top-color: #1f2937;
+        z-index: 1000;
+      }
+    </style>
+  </a>
+
+  <!-- Lesson Resources Section (Dynamic) -->
+  <section id="lesson-resources-section" class="section">
+    <h2 class="section-title">Lesson Resources</h2>
+    <div class="lesson-controls" style="display:none;"></div>
+    <div class="lesson-layout">
+      <aside class="lesson-sidebar">
+        <div class="lesson-sidebar-title">Filter by Category</div>
+        <div id="lesson-filters"></div>
+      </aside>
+      <div class="lesson-grid" id="lesson-resources"></div>
+    </div>
+    <div id="no-lessons-message" style="display:none; text-align:center; color:#888; margin-top:2em;">No lessons available yet.</div>
+    <div class="lesson-footer">Keep shining your light! 🌟</div>
+  </section>
+  <div id="lesson-modal-root"></div>
+  <script>
+  // =============================
+  // Dynamic Lesson Data Section
+  // =============================
+  const lessons = [
+    {
+      title: "Identity in Christ",
+      category: "Faith",
+      icon: "🧑‍🎓",
+      scripture: "2 Corinthians 5:17",
+      summary: "Discovering who we are in Christ and how that shapes our lives.",
+      questions: [
+        "What does it mean to be a new creation?",
+        "How can we remind ourselves of our identity in Christ daily?"
+      ],
+      activity: "Create a vision board of your God-given identity.",
+      teacher: { name: "Sis. Joy", avatar: "https://ui-avatars.com/api/?name=Joy&background=6366f1&color=fff" }
+    },
+    {
+      title: "Handling Peer Pressure",
+      category: "Life Skills",
+      icon: "🤝",
+      scripture: "Romans 12:2",
+      summary: "Learning to stand firm in faith when faced with peer pressure.",
+      questions: [
+        "What are some examples of peer pressure you face?",
+        "How can you respond in a Christ-like way?"
+      ],
+      activity: "Role-play scenarios of positive responses to peer pressure.",
+      teacher: { name: "Bro. Mike", avatar: "https://ui-avatars.com/api/?name=Mike&background=10b981&color=fff" }
+    },
+    {
+      title: "Purpose & Passion",
+      category: "Purpose",
+      icon: "🔥",
+      scripture: "Jeremiah 29:11",
+      summary: "Exploring God's purpose for our lives and how to pursue it passionately.",
+      questions: [
+        "What gifts has God given you?",
+        "How can you use them for His glory?"
+      ],
+      activity: "Write a letter to your future self about your dreams and God's plan.",
+      teacher: { name: "Sis. Faith", avatar: "https://ui-avatars.com/api/?name=Faith&background=f59e42&color=fff" }
+    },
+    {
+      title: "Healthy Relationships",
+      category: "Relationships",
+      icon: "💬",
+      scripture: "1 Corinthians 13:4-7",
+      summary: "Building strong, healthy, and God-honoring relationships.",
+      questions: [
+        "What does real love look like?",
+        "How can you be a better friend?"
+      ],
+      activity: "List ways to show love and respect in your friendships.",
+      teacher: { name: "Bro. John", avatar: "https://ui-avatars.com/api/?name=John&background=f43f5e&color=fff" }
+    },
+    {
+      title: "Overcoming Anxiety",
+      category: "Wellbeing",
+      icon: "🌈",
+      scripture: "Philippians 4:6-7",
+      summary: "Trusting God in times of stress and anxiety.",
+      questions: [
+        "What makes you anxious?",
+        "How can prayer help you find peace?"
+      ],
+      activity: "Practice a short guided prayer or meditation for peace.",
+      teacher: { name: "Sis. Hope", avatar: "https://ui-avatars.com/api/?name=Hope&background=06b6d4&color=fff" }
+    }
+  ];
+
+  const lessonContainer = document.getElementById('lesson-resources');
+  const noLessonsMsg = document.getElementById('no-lessons-message');
+  const filterContainer = document.getElementById('lesson-filters');
+  const modalRoot = document.getElementById('lesson-modal-root');
+
+  function getUniqueCategories() {
+    return [...new Set(lessons.map(l => l.category))];
+  }
+
+  function renderFilters() {
+    filterContainer.innerHTML = '';
+    const categories = getUniqueCategories();
+    categories.forEach(cat => {
+      const btn = document.createElement('button');
+      btn.className = 'lesson-filter-btn';
+      btn.textContent = cat;
+      btn.onclick = () => {
+        renderLessons(lessons.filter(l => l.category === cat), cat);
+        setActiveFilter(cat);
+      };
+      btn.setAttribute('data-category', cat);
+      filterContainer.appendChild(btn);
+    });
+    // Add 'All' button
+    const allBtn = document.createElement('button');
+    allBtn.className = 'lesson-filter-btn';
+    allBtn.textContent = 'All';
+    allBtn.onclick = () => {
+      renderLessons(lessons);
+      setActiveFilter('All');
+    };
+    allBtn.setAttribute('data-category', 'All');
+    filterContainer.appendChild(allBtn);
+    setActiveFilter('All');
+  }
+  function setActiveFilter(cat) {
+    document.querySelectorAll('.lesson-filter-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-category') === cat);
+    });
+  }
+
+  function renderLessons(lessonList, filterCat) {
+    lessonContainer.innerHTML = '';
+    if (!lessonList.length) {
+      noLessonsMsg.style.display = 'block';
+      return;
+    } else {
+      noLessonsMsg.style.display = 'none';
+    }
+    // Featured lesson (first in list)
+    if (!filterCat || filterCat === 'All') {
+      const featured = lessonList[0];
+      if (featured) {
+        const featuredEl = document.createElement('div');
+        featuredEl.className = 'featured-lesson';
+        featuredEl.innerHTML = `
+          <span class="lesson-icon">${featured.icon}</span>
+          <div>
+            <div class="lesson-title">${featured.title}</div>
+            <span class="lesson-category lesson-tag">${featured.category}</span>
+            <div class="lesson-summary" style="margin-top:0.7em;">${featured.summary}</div>
+          </div>
+          <div class="lesson-teacher">
+            <img class="teacher-avatar" src="${featured.teacher.avatar}" alt="${featured.teacher.name}" />
+            <span>${featured.teacher.name}</span>
+          </div>
+        `;
+        featuredEl.onclick = () => openLessonModal(featured);
+        lessonContainer.appendChild(featuredEl);
+      }
+    }
+    // Grid lessons (skip featured if not filtered)
+    lessonList.slice((!filterCat || filterCat === 'All') ? 1 : 0).forEach(lesson => {
+      const lessonEl = document.createElement('div');
+      lessonEl.className = 'lesson-card';
+      lessonEl.setAttribute('data-category', lesson.category);
+      lessonEl.innerHTML = `
+        <div class="lesson-header">
+          <span class="lesson-icon">${lesson.icon}</span>
+          <span class="lesson-title">${lesson.title}</span>
+          <span class="lesson-category lesson-tag">${lesson.category}</span>
+        </div>
+        <div class="lesson-teacher">
+          <img class="teacher-avatar" src="${lesson.teacher.avatar}" alt="${lesson.teacher.name}" />
+          <span>${lesson.teacher.name}</span>
+        </div>
+      `;
+      lessonEl.onclick = () => openLessonModal(lesson);
+      lessonContainer.appendChild(lessonEl);
+    });
+  }
+
+  function openLessonModal(lesson) {
+    modalRoot.innerHTML = `
+      <div class="lesson-modal-bg" tabindex="-1">
+        <div class="lesson-modal">
+          <button class="close-modal" aria-label="Close">&times;</button>
+          <div class="lesson-header">
+            <span class="lesson-icon">${lesson.icon}</span>
+            <span class="lesson-title">${lesson.title}</span>
+            <span class="lesson-category lesson-tag">${lesson.category}</span>
+          </div>
+          <div class="lesson-teacher">
+            <img class="teacher-avatar" src="${lesson.teacher.avatar}" alt="${lesson.teacher.name}" />
+            <span>${lesson.teacher.name}</span>
+          </div>
+          <div class="lesson-scripture"><strong>Scripture:</strong> ${lesson.scripture}</div>
+          <div class="lesson-summary">${lesson.summary}</div>
+          <div class="lesson-questions"><strong>Discussion Questions:</strong><ul>${lesson.questions.map(q => `<li>${q}</li>`).join('')}</ul></div>
+          <div class="lesson-activity"><strong>Practical Activity:</strong> ${lesson.activity}</div>
+        </div>
+      </div>
+    `;
+    document.querySelector('.lesson-modal-bg').onclick = function(e) {
+      if (e.target === this) closeLessonModal();
+    };
+    document.querySelector('.close-modal').onclick = closeLessonModal;
+    document.addEventListener('keydown', escModalClose);
+  }
+  function closeLessonModal() {
+    modalRoot.innerHTML = '';
+    document.removeEventListener('keydown', escModalClose);
+  }
+  function escModalClose(e) {
+    if (e.key === 'Escape') closeLessonModal();
+  }
+  // Initial Render
+  renderFilters();
+  renderLessons(lessons);
+  </script>
+  <!--
+    =============================
+    BACKEND INTEGRATION (FUTURE)
+    =============================
+    To load lessons from your backend, replace the 'lessons' array with a fetch call, e.g.:
+    fetch('/api/lessons')
+      .then(res => res.json())
+      .then(data => renderLessons(data));
+  -->
 </body>
 </html>

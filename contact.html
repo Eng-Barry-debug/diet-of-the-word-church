@@ -26,61 +26,67 @@
   <!-- Skip to Content for Accessibility -->
   <a href="#main-content" class="sr-only focus:not-sr-only absolute top-2 left-2 z-50 bg-blue-700 text-white px-4 py-2 rounded shadow-lg transition-all duration-200">Skip to Content</a>
   <!-- Header Navigation Component -->
-  <header id="main-header" class="bg-white/30 backdrop-blur-xl border-b border-blue-200 shadow-2xl transition-all duration-500 sticky top-0 z-50" style="background: rgba(30, 41, 59, 0.7);" role="banner">
-    <nav class="container mx-auto flex items-center justify-between px-4 py-3" aria-label="Main navigation" role="navigation">
-      <!-- Logo/Brand -->
-      <a href="index.html" class="flex items-center gap-3 text-white font-extrabold text-2xl tracking-wide focus-visible:ring-2 focus-visible:ring-pink-400" tabindex="0">
-        <img src="assets/images/Diet logo 2.png" alt="Diet of the Word Church Logo" class="w-20 h-20 object-contain drop-shadow-xl rounded-full">
-      </a>
-      <!-- Desktop Nav -->
-      <ul class="hidden lg:flex items-center space-x-7 font-medium" role="menubar">
-        <li role="none"><a href="index.html" class="nav-link-ani" role="menuitem" tabindex="0">Home</a></li>
-        <li role="none"><a href="about.html" class="nav-link-ani" role="menuitem" tabindex="0">About</a></li>
-        <li role="none"><a href="leadership.html" class="nav-link-ani" role="menuitem" tabindex="0">Leadership</a></li>
-        <li style="position: relative;">
-          <a href="#" style="color: white; font-weight: bold; padding: 8px 16px; display: inline-block;">Ministries</a>
-          <ul style="display: none; position: absolute; left: 0; top: 100%; background: white; border: 1px solid #eee; border-radius: 8px; min-width: 180px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            <li><a href="ministries/toddlers.html" style="display: block; padding: 8px 16px;">Toddlers</a></li>
-            <li><a href="ministries/sunday-school.html" style="display: block; padding: 8px 16px;">Sunday School</a></li>
-            <li><a href="ministries/teenagers.html" style="display: block; padding: 8px 16px;">Teenagers</a></li>
-            <li><a href="ministries/youth.html" style="display: block; padding: 8px 16px;">Youth</a></li>
-            <li><a href="ministries/adults.html" style="display: block; padding: 8px 16px;">Adults</a></li>
-          </ul>
-          <script>
-            // Show dropdown on hover
-            const li = document.currentScript.parentElement;
-            li.addEventListener('mouseenter', () => li.querySelector('ul').style.display = 'block');
-            li.addEventListener('mouseleave', () => li.querySelector('ul').style.display = 'none');
-          </script>
-        </li>
-        <li role="none"><a href="devotions.html" class="nav-link-ani" role="menuitem" tabindex="0">Devotions</a></li>
-        <li role="none"><a href="sermons.html" class="nav-link-ani" role="menuitem" tabindex="0">Sermons</a></li>
-        <li role="none"><a href="events.html" class="nav-link-ani" role="menuitem" tabindex="0">Events</a></li>
-        <li role="none"><a href="gallery.html" class="nav-link-ani" role="menuitem" tabindex="0">Gallery</a></li>
-        <li role="none"><a href="contact.html" class="nav-link-ani" role="menuitem" tabindex="0">Contact</a></li>
-        <li role="none"><a href="prayer-requests.html" class="nav-link-ani" role="menuitem" tabindex="0">Prayer Requests</a></li>
-        <li role="none">
-          <a href="giving.html" class="ml-2 px-5 py-2 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-blue-600 text-white font-semibold shadow-xl hover:from-pink-600 hover:to-blue-800 transition-all duration-500 flex items-center gap-2 animate-give-glow focus-visible:ring-2 focus-visible:ring-pink-400" role="menuitem" tabindex="0">
-            <svg class="w-5 h-5 animate-give-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 1.343-3 3 0 1.657 1.343 3 3 3s3-1.343 3-3c0-1.657-1.343-3-3-3zm0 0V4m0 7v7m0 0H9m3 0h3"/></svg>
-            Give
-          </a>
-        </li>
-        <!-- Notification Bell -->
-        <li role="none">
-          <button class="ml-2 p-2 rounded-full bg-white/30 hover:bg-pink-100 transition shadow focus-visible:ring-2 focus-visible:ring-pink-400 animate-bell" aria-label="Notifications">
-            <svg class="w-6 h-6 text-pink-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 7.165 6 9.388 6 12v2.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
-          </button>
-        </li>
-      </ul>
-      <!-- Modern Hamburger Menu Button -->
-      <button id="mobile-menu-btn" class="md:hidden flex items-center justify-center w-12 h-12 rounded-full bg-black/70 hover:bg-black/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-400 group transition-all duration-300" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
-        <span class="relative w-7 h-7 flex flex-col justify-center items-center">
-          <span class="hamburger-bar top-bar block w-7 h-1 bg-white rounded transition-all duration-300 group-[.open]:rotate-45 group-[.open]:translate-y-3"></span>
-          <span class="hamburger-bar middle-bar block w-7 h-1 bg-white rounded mt-1.5 mb-1.5 transition-all duration-300 group-[.open]:opacity-0"></span>
-          <span class="hamburger-bar bottom-bar block w-7 h-1 bg-white rounded transition-all duration-300 group-[.open]:-rotate-45 group-[.open]:-translate-y-3"></span>
-        </span>
-      </button>
-    </nav>
+  <div id="header"></div>
+  <script>
+    fetch('components/header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header').innerHTML = data;
+        // --- Dropdown and mobile menu logic ---
+        // Mobile menu open/close logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileOverlay = document.getElementById('mobile-overlay');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        function openMobileMenu() {
+          mobileMenu.classList.remove('translate-x-full', 'opacity-0');
+          mobileMenu.classList.add('translate-x-0', 'opacity-100');
+          mobileOverlay.classList.remove('hidden', 'opacity-0');
+          mobileOverlay.classList.add('block', 'opacity-100');
+          mobileMenuBtn.setAttribute('aria-expanded', 'true');
+        }
+        function closeMobileMenu() {
+          mobileMenu.classList.add('translate-x-full', 'opacity-0');
+          mobileMenu.classList.remove('translate-x-0', 'opacity-100');
+          mobileOverlay.classList.add('hidden', 'opacity-0');
+          mobileOverlay.classList.remove('block', 'opacity-100');
+          mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        }
+        if (mobileMenuBtn && mobileMenu && mobileOverlay && mobileMenuClose) {
+          mobileMenuBtn.addEventListener('click', openMobileMenu);
+          mobileMenuClose.addEventListener('click', closeMobileMenu);
+          mobileOverlay.addEventListener('click', closeMobileMenu);
+        }
+        // Ministries dropdown: open on hover or click, close on outside click
+        const ministriesDropdown = document.getElementById('ministries-dropdown');
+        const ministriesLink = document.getElementById('ministries-link');
+        const ministriesMenu = document.getElementById('ministries-menu');
+        let ministriesOpen = false;
+        if (ministriesDropdown && ministriesLink && ministriesMenu) {
+          function openDropdown() {
+            ministriesMenu.classList.add('opacity-100', 'pointer-events-auto');
+            ministriesMenu.classList.remove('opacity-0', 'pointer-events-none');
+            ministriesOpen = true;
+          }
+          function closeDropdown() {
+            ministriesMenu.classList.remove('opacity-100', 'pointer-events-auto');
+            ministriesMenu.classList.add('opacity-0', 'pointer-events-none');
+            ministriesOpen = false;
+          }
+          ministriesDropdown.addEventListener('mouseenter', openDropdown);
+          ministriesDropdown.addEventListener('mouseleave', closeDropdown);
+          ministriesLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            ministriesOpen ? closeDropdown() : openDropdown();
+          });
+          document.addEventListener('click', function(e) {
+            if (!ministriesDropdown.contains(e.target)) {
+              closeDropdown();
+            }
+          });
+        }
+      });
+  </script>
     <!-- Mobile Nav & Overlay -->
     <div id="mobile-overlay" class="fixed inset-0 bg-black bg-opacity-40 z-40 hidden opacity-0 transition-opacity duration-300" tabindex="-1" aria-hidden="true"></div>
     <div id="mobile-menu" class="md:hidden fixed top-0 right-0 w-full max-w-xs h-full bg-black/95 text-white backdrop-blur-2xl shadow-2xl border-l-4 border-indigo-400 z-50 transform translate-x-full opacity-0 transition-all duration-500 rounded-l-2xl flex flex-col" role="menu" aria-label="Mobile navigation" tabindex="-1">
@@ -169,7 +175,6 @@
         pointer-events: auto;
       }
     </style>
-    <script src="assets/js/components.js"></script>
   </header>
 
   <!-- HERO SECTION: Modern, Professional, Interactive -->
@@ -468,57 +473,14 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-gradient-to-r from-blue-900 via-purple-900 to-blue-800 text-white py-12 mt-20">
-    <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8">
-      <!-- Logo and Mission -->
-      <div class="flex flex-col items-center md:items-start text-center md:text-left gap-3">
-        <img src="assets/images/Diet logo 2.png" alt="Diet of the Word International Church Logo" class="w-16 h-16 object-contain mb-2">
-        <div class="font-extrabold text-xl tracking-wide">Diet of the Word International Church</div>
-        <div class="text-blue-200 text-sm max-w-xs">Nourishing lives with the Word of God, building a Christ-centered community in Nairobi and beyond.</div>
-      </div>
-      <!-- Quick Links -->
-      <div class="flex flex-col gap-2 text-center md:text-left">
-        <div class="font-bold mb-2 text-blue-100 uppercase tracking-wider">Quick Links</div>
-        <div class="flex flex-wrap gap-4 justify-center md:justify-start">
-          <a href="about.html" class="hover:text-purple-300">About</a>
-          <a href="leadership.html" class="hover:text-purple-300">Leadership</a>
-          <a href="ministries/adults.html" class="hover:text-purple-300">Ministries</a>
-          <a href="events.html" class="hover:text-purple-300">Events</a>
-          <a href="gallery.html" class="hover:text-purple-300">Gallery</a>
-          <a href="giving.html" class="hover:text-purple-300">Giving</a>
-          <a href="contact.html" class="hover:text-purple-300">Contact</a>
-          <a href="#" class="hover:text-purple-300">Privacy Policy</a>
-        </div>
-      </div>
-      <!-- Social & Copyright -->
-      <div class="flex flex-col items-center md:items-end gap-3">
-        <div class="flex gap-4 mb-2">
-          <a href="https://web.facebook.com/dietofthewordchurch" class="text-blue-600 hover:text-blue-800" aria-label="Facebook" target="_blank"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.325 24h11.495v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.312 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0"/></svg></a>
-          <a href="https://www.instagram.com/dietofthewordchurch/?hl=en" class="text-pink-500 hover:text-pink-700" aria-label="Instagram" target="_blank"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.241 1.308 3.608.058 1.266.069 1.646.069 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.974-2.241 1.246-3.608 1.308-1.266.058-1.646.069-4.85s-.012-3.584-.07-4.85c-.062-1.366-.334-2.633-1.308-3.608-.974-.974-2.241-1.246-3.608-1.308C15.647.012 15.267 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm7.2-10.406a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg></a>
-          <a href="https://twitter.com/dietchurchKE" class="text-blue-400 hover:text-blue-600" aria-label="Twitter" target="_blank"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557a9.93 9.93 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724c-.951.564-2.005.974-3.127 1.195A4.916 4.916 0 0 0 16.616 3c-2.717 0-4.924 2.206-4.924 4.924 0 .386.044.763.127 1.124C7.728 8.807 4.1 6.884 1.671 3.965c-.423.724-.666 1.561-.666 2.475 0 1.708.87 3.216 2.188 4.099a4.904 4.904 0 0 1-2.229-.616c-.054 2.281 1.581 4.415 3.949 4.89a4.936 4.936 0 0 1-2.224.084c.627 1.956 2.444 3.377 4.6 3.417A9.867 9.867 0 0 1 0 21.543a13.94 13.94 0 0 0 7.548 2.212c9.058 0 14.009-7.513 14.009-14.009 0-.213-.005-.425-.014-.636A10.012 10.012 0 0 0 24 4.557z"/></svg></a>
-          <a href="https://www.youtube.com/@DietOfTheWordChurch" class="text-red-600 hover:text-red-800" aria-label="YouTube" target="_blank"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-        </div>
-        <div class="text-blue-200 text-sm">Nairobi, Kenya</div>
-        <div class="text-blue-200 text-xs">&copy; 2025 Diet of the Word International Church. All rights reserved.</div>
-      </div>
-    </div>
-  </footer>
-
+  <div id="footer"></div>
   <script>
-    // Animate fade-in-up elements on scroll
-    function animateFadeInUp() {
-      document.querySelectorAll('.fade-in-up').forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 40) {
-          el.classList.add('visible');
-        }
+    // Ensure all fade-in-up elements are visible on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.fade-in-up').forEach(function(el) {
+        el.classList.add('visible');
       });
-    }
-    window.addEventListener('scroll', animateFadeInUp);
-    window.addEventListener('DOMContentLoaded', animateFadeInUp);
-    // ... (rest of the form and navigation JS as in previous advanced version) ...
+    });
   </script>
-  <script src="assets/js/main.js"></script>
 </body>
 </html> 

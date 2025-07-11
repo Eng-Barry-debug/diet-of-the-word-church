@@ -4,6 +4,137 @@
 document.addEventListener('DOMContentLoaded', function () {
   // Example: highlight today's date in events, etc.
   console.log('Main JS loaded');
+
+  // Sermon page button logic (robust version)
+  // WATCH BUTTON (video sermons)
+  document.querySelectorAll('.video-card-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const iframe = btn.parentElement.querySelector('iframe');
+      const videoSrc = iframe ? iframe.getAttribute('src') : null;
+      const modal = document.getElementById('video-modal');
+      const modalIframe = document.getElementById('modal-iframe');
+      if (!iframe || !videoSrc) {
+        console.error('No video iframe found for Watch button.');
+        alert('Sorry, video not found.');
+        return;
+      }
+      if (!modal || !modalIframe) {
+        console.error('Video modal or modal iframe not found.');
+        alert('Sorry, video modal not found.');
+        return;
+      }
+      modalIframe.src = videoSrc;
+      modal.classList.remove('hidden');
+      console.log('Opened video modal with src:', videoSrc);
+    });
+  });
+  // CLOSE VIDEO MODAL
+  const closeVideoModal = document.getElementById('close-video-modal');
+  if (closeVideoModal) {
+    closeVideoModal.addEventListener('click', function() {
+      const modal = document.getElementById('video-modal');
+      const modalIframe = document.getElementById('modal-iframe');
+      if (modal && modalIframe) {
+        modalIframe.src = '';
+        modal.classList.add('hidden');
+        console.log('Closed video modal.');
+      }
+    });
+  }
+  // DOWNLOAD BUTTON (audio/video sermons)
+  document.querySelectorAll('.sermon-card').forEach(function(card) {
+    const downloadBtn = card.querySelector('a[aria-label^="Download"]');
+    const audio = card.querySelector('audio');
+    const iframe = card.querySelector('iframe');
+    if (downloadBtn) {
+      if (audio) {
+        // Audio: download the source file
+        const source = audio.querySelector('source');
+        if (source && source.src) {
+          downloadBtn.setAttribute('href', source.src);
+          downloadBtn.setAttribute('download', 'sermon-audio.mp3');
+          downloadBtn.removeAttribute('target');
+          downloadBtn.textContent = 'Download';
+          console.log('Download button set for audio:', source.src);
+        } else {
+          downloadBtn.removeAttribute('href');
+          downloadBtn.removeAttribute('download');
+          downloadBtn.textContent = 'Download';
+          console.warn('No audio source found for download.');
+        }
+      } else if (iframe) {
+        // Video: link to YouTube
+        const src = iframe.getAttribute('src');
+        if (src && src.includes('youtube.com')) {
+          let ytUrl = src.replace('/embed/', '/watch?v=').replace('videoseries?list=', 'playlist?list=');
+          downloadBtn.setAttribute('href', ytUrl);
+          downloadBtn.setAttribute('target', '_blank');
+          downloadBtn.removeAttribute('download');
+          downloadBtn.textContent = 'YouTube';
+          console.log('Download button set for video (YouTube):', ytUrl);
+        } else {
+          downloadBtn.removeAttribute('href');
+          downloadBtn.textContent = 'YouTube';
+          console.warn('No valid YouTube src for video download.');
+        }
+      } else {
+        downloadBtn.removeAttribute('href');
+        downloadBtn.textContent = 'Download';
+        console.warn('No audio or video found for download button.');
+      }
+    }
+  });
+  // SHARE BUTTON
+  document.querySelectorAll('.share-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const card = btn.closest('.sermon-card');
+      let shareUrl = window.location.href.split('#')[0];
+      if (card && card.getAttribute('aria-label')) {
+        shareUrl += '#' + encodeURIComponent(card.getAttribute('aria-label').replace(/\s+/g, '-').toLowerCase());
+      }
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(shareUrl).then(function() {
+          const tooltip = btn.querySelector('.share-tooltip');
+          if (tooltip) {
+            tooltip.classList.remove('hidden');
+            setTimeout(() => tooltip.classList.add('hidden'), 1500);
+          }
+          console.log('Share link copied:', shareUrl);
+        }).catch(function(err) {
+          alert('Could not copy link.');
+          console.error('Clipboard error:', err);
+        });
+      } else {
+        alert('Clipboard not supported.');
+        console.error('Clipboard API not supported.');
+      }
+    });
+  });
+  // LISTEN BUTTON (audio sermons)
+  document.querySelectorAll('.audio-play-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const card = btn.closest('.sermon-card');
+      const audio = card ? card.querySelector('audio') : null;
+      if (audio) {
+        audio.scrollIntoView({behavior: 'smooth', block: 'center'});
+        audio.play().then(() => {
+          console.log('Audio playing.');
+        }).catch(function(err) {
+          alert('Could not play audio.');
+          console.error('Audio play error:', err);
+        });
+      } else {
+        alert('Audio not found.');
+        console.warn('No audio element found for Listen button.');
+      }
+    });
+  });
+
+  // Fetch and render latest sermons from YouTube
+  fetchLatestSermons().then(renderSermonGrid);
 });
 
 // Multi-step Contact Form Logic
@@ -526,4 +657,140 @@ document.head.appendChild(style);
   updateTags();
   updateDropdown();
   updateHidden();
-})(); 
+})();
+
+// --- YOUTUBE API SERMON GRID ---
+const YT_API_KEY = 'AIzaSyCNb3hhJh15GOC-0MFeguhKUlcxmCr8-g8';
+const YT_CHANNEL_ID = 'UCQs4pC8ZkOYExChGIoQ34lQ';
+const YT_VIDEO_COUNT = 15;
+
+async function fetchLatestSermons() {
+  const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${YT_API_KEY}&channelId=${YT_CHANNEL_ID}&part=snippet,id&order=date&maxResults=${YT_VIDEO_COUNT}`;
+  try {
+    const res = await fetch(apiUrl);
+    const data = await res.json();
+    if (!data.items) throw new Error('No videos found');
+    return data.items.filter(item => item.id.kind === 'youtube#video');
+  } catch (err) {
+    console.error('Failed to fetch YouTube videos:', err);
+    return [];
+  }
+}
+
+function attachSermonCardListeners() {
+  // Watch button (video sermons)
+  document.querySelectorAll('.video-card-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const iframe = btn.closest('.sermon-card').querySelector('iframe');
+      const videoSrc = iframe ? iframe.getAttribute('src') : null;
+      const modal = document.getElementById('video-modal');
+      const modalIframe = document.getElementById('modal-iframe');
+      if (!iframe || !videoSrc) {
+        console.error('No video iframe found for Watch button.');
+        alert('Sorry, video not found.');
+        return;
+      }
+      if (!modal || !modalIframe) {
+        console.error('Video modal or modal iframe not found.');
+        alert('Sorry, video modal not found.');
+        return;
+      }
+      modalIframe.src = videoSrc;
+      modal.classList.remove('hidden');
+      console.log('Opened video modal with src:', videoSrc);
+    });
+  });
+  // Share button
+  document.querySelectorAll('.share-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const card = btn.closest('.sermon-card');
+      let shareUrl = window.location.href.split('#')[0];
+      if (card && card.getAttribute('aria-label')) {
+        shareUrl += '#' + encodeURIComponent(card.getAttribute('aria-label').replace(/\s+/g, '-').toLowerCase());
+      }
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(shareUrl).then(function() {
+          const tooltip = btn.querySelector('.share-tooltip');
+          if (tooltip) {
+            tooltip.classList.remove('hidden');
+            setTimeout(() => tooltip.classList.add('hidden'), 1500);
+          }
+          console.log('Share link copied:', shareUrl);
+        }).catch(function(err) {
+          alert('Could not copy link.');
+          console.error('Clipboard error:', err);
+        });
+      } else {
+        alert('Clipboard not supported.');
+        console.error('Clipboard API not supported.');
+      }
+    });
+  });
+  // Listen button (audio sermons) - for future compatibility
+  document.querySelectorAll('.audio-play-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const card = btn.closest('.sermon-card');
+      const audio = card ? card.querySelector('audio') : null;
+      if (audio) {
+        audio.scrollIntoView({behavior: 'smooth', block: 'center'});
+        audio.play().then(() => {
+          console.log('Audio playing.');
+        }).catch(function(err) {
+          alert('Could not play audio.');
+          console.error('Audio play error:', err);
+        });
+      } else {
+        alert('Audio not found.');
+        console.warn('No audio element found for Listen button.');
+      }
+    });
+  });
+}
+
+function renderSermonGrid(videos) {
+  const grid = document.querySelector('#recent-sermons .grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  videos.forEach((video, idx) => {
+    const videoId = video.id.videoId;
+    const title = video.snippet.title;
+    const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
+    const date = new Date(video.snippet.publishedAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+    let desc = video.snippet.description || '';
+    if (desc.length > 180) desc = desc.slice(0, 177) + '...';
+    const card = document.createElement('article');
+    card.className = 'bg-white border border-blue-100 rounded-3xl shadow-xl p-8 flex flex-col group hover:shadow-2xl hover:border-blue-300 transition-transform duration-300 hover:scale-105 fade-in-up sermon-card';
+    card.tabIndex = 0;
+    card.setAttribute('aria-label', title);
+    card.innerHTML = `
+      <div class="aspect-w-16 aspect-h-9 mb-4 rounded-xl overflow-hidden shadow relative">
+        <iframe src="https://www.youtube.com/embed/${videoId}" title="${title}" frameborder="0" allowfullscreen class="w-full h-full pointer-events-none rounded-xl"></iframe>
+      </div>
+      <div class="flex items-center gap-3 mb-2">
+        <span class="bg-gradient-to-r from-blue-600 to-purple-500 text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg" aria-label="Published on ${date}">${date}</span>
+      </div>
+      <h3 class="text-2xl font-extrabold text-blue-900 mb-2 leading-tight" title="${title}">${title}</h3>
+      <p class="text-gray-600 mb-4 text-base leading-relaxed">${desc}</p>
+      <div class="flex flex-wrap gap-3 mt-auto">
+        <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2.5 rounded-full transition ripple-btn focus:outline-none focus:ring-2 focus:ring-blue-400 video-card-btn flex items-center gap-2" aria-label="Watch ${title}">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/><polygon points="10,8 16,12 10,16" fill="currentColor"/></svg>
+          Watch
+        </button>
+        <a href="${videoUrl}" target="_blank" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-5 py-2.5 rounded-full transition ripple-btn focus:outline-none focus:ring-2 focus:ring-purple-400 flex items-center gap-2" aria-label="Open ${title} on YouTube">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          YouTube
+        </a>
+        <button class="bg-green-600 hover:bg-green-700 text-white font-semibold px-5 py-2.5 rounded-full transition ripple-btn focus:outline-none focus:ring-2 focus:ring-green-400 share-btn flex items-center gap-2 relative" aria-label="Share link to ${title}" data-share="${title}">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 12v.01M8 12v.01M12 12v.01M16 12v.01M20 12v.01"/></svg>
+          Share
+          <span class="share-tooltip hidden absolute left-1/2 -translate-x-1/2 -top-8 bg-green-700 text-white text-xs px-3 py-1 rounded shadow">Link copied!</span>
+        </button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+  attachSermonCardListeners();
+} 
